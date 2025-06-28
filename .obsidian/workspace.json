@@ -1,0 +1,234 @@
+{
+  "main": {
+    "id": "cb5984dfe47a5787",
+    "type": "split",
+    "children": [
+      {
+        "id": "bb45f2c851523f96",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8e3284ccc27762c4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "archive/T&L_玉城祐輔まとめ.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "T&L_玉城祐輔まとめ"
+            }
+          },
+          {
+            "id": "90013896c7f0c44d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "司法書士法人あさと事務所の玉城祐輔.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "司法書士法人あさと事務所の玉城祐輔"
+            }
+          },
+          {
+            "id": "229b4aceffb3deee",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "B-nature/持続化計画書_B-nature合同会社.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "持続化計画書_B-nature合同会社"
+            }
+          },
+          {
+            "id": "6679048e5bc68720",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "財務コンサルティング提案資料.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "財務コンサルティング提案資料"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4b402b6210e848dd",
+    "type": "split",
+    "children": [
+      {
+        "id": "ea59694df0069c51",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "918fa63ffc0aa199",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "ファイルエクスプローラ"
+            }
+          },
+          {
+            "id": "035aabc6123b0a04",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "検索"
+            }
+          },
+          {
+            "id": "c903ff3af2bb8479",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "ブックマーク"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5eb2d468820e25e9",
+    "type": "split",
+    "children": [
+      {
+        "id": "717805dbe83e3da0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b7d6e11cf974e0b0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "NotebookLMで資料整理が驚くほど効率化！.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "NotebookLMで資料整理が驚くほど効率化！へのバックリンク"
+            }
+          },
+          {
+            "id": "2295d3e4161bdac7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "NotebookLMで資料整理が驚くほど効率化！.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "NotebookLMで資料整理が驚くほど効率化！からのアウトゴーイングリンク"
+            }
+          },
+          {
+            "id": "3f0aaa7d5a64ba8e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "タグ"
+            }
+          },
+          {
+            "id": "2f2f70de6388b523",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "NotebookLMで資料整理が驚くほど効率化！.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "NotebookLMで資料整理が驚くほど効率化！のアウトライン"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:クイックスイッチャーを開く": false,
+      "graph:グラフビューを開く": false,
+      "canvas:新規キャンバスを作成": false,
+      "daily-notes:今日のデイリーノートを開く": false,
+      "templates:テンプレートを挿入": false,
+      "command-palette:コマンドパレットを開く": false
+    }
+  },
+  "active": "6679048e5bc68720",
+  "lastOpenFiles": [
+    "B-nature/持続化計画書_B-nature合同会社.md",
+    "B-nature/Gem_持続化計画書.md",
+    "B-nature",
+    "司法書士法人あさと事務所の玉城祐輔.md",
+    "archive/T&L_玉城祐輔まとめ.md",
+    "archive/T&L_事業改善案.md",
+    "archive/宜野湾JC_理事長所信2025.md",
+    "archive/宜野湾JC2025_異業種交流BBQチラシ企画書.md",
+    "archive/宜野湾JC2025_異業種交流BBQ案内.md",
+    "archive/玉城祐輔_連絡先情報_tamashiro.md",
+    "archive/玉城祐輔コンテンツビジネスの秘訣.md",
+    "無題のファイル.canvas",
+    "2025-05-18.md",
+    "NotebookLMで資料整理が驚くほど効率化！.md",
+    "宜野湾JC_理事長所信2025.md",
+    "持続化補助金",
+    "2025-05-17.md"
+  ]
+}

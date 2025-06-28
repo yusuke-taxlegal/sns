@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沖縄県中小企業向け 求人効果最大化インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .section-title {
+            font-size: 2rem; /* 32px */
+            font-weight: 700;
+            margin-bottom: 1.5rem; /* 24px */
+            color: #005A8D; /* Deep Blue from a hypothetical palette */
+            text-align: center;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem; /* 8px */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem; /* 24px */
+            margin-bottom: 1.5rem; /* 24px */
+        }
+        .stat-number {
+            font-size: 3rem; /* 48px */
+            font-weight: 700;
+            color: #0077B6; /* Primary Blue */
+        }
+        .flowchart-step {
+            background-color: #E0F2FE; /* Light Blue Accent */
+            border: 2px solid #00B4D8; /* Secondary Blue */
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            color: #005A8D;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flowchart-arrow {
+            font-size: 2rem;
+            color: #0077B6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0.5rem 0;
+        }
+        /* Chosen Color Palette: Ocean Breeze Okinawa (Hypothetical) */
+        /* Primary: #0077B6 (Dark Blue) */
+        /* Secondary: #00B4D8 (Bright Blue) */
+        /* Accent: #90E0EF (Light Sky Blue) */
+        /* Neutral Light: #F0F8FF (Alice Blue - Background-ish) */
+        /* Neutral Dark: #E0F2FE (Lighter Blue for cards/accents) */
+        /* Text Primary: #1A202C (Gray 800) */
+        /* Text Secondary: #4A5568 (Gray 600) */
+        /* Highlight/Success: #48BB78 (Green 500) */
+        /* Warning/Emphasis: #F59E0B (Amber 500) */
+
+        .bg-primary { background-color: #0077B6; }
+        .text-primary { color: #0077B6; }
+        .border-primary { border-color: #0077B6; }
+        .bg-secondary { background-color: #00B4D8; }
+        .text-secondary { color: #00B4D8; }
+        .bg-accent { background-color: #90E0EF; }
+        .text-accent { color: #90E0EF; }
+        .bg-neutral-light { background-color: #F0F8FF; }
+        .bg-neutral-dark { background-color: #E0F2FE; }
+        .text-primary-content { color: #1A202C; }
+        .text-secondary-content { color: #4A5568; }
+        .text-highlight { color: #48BB78; }
+        .text-warning { color: #F59E0B; }
+
+        nav a {
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #00B4D8; /* Secondary Blue */
+        }
+    </style>
+</head>
+<body class="bg-neutral-light text-primary-content antialiased">
+
+    <header class="bg-primary text-white py-8 shadow-lg">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">沖縄県内地方部の中小・小規模零細事業者様向け</h1>
+            <h2 class="text-2xl md:text-3xl font-semibold">求人効果を最大化する広告作成ガイド</h2>
+            <p class="mt-4 text-lg">魅力的な人材を獲得するための戦略的インフォグラフィック</p>
+        </div>
+    </header>
+
+    <nav class="sticky top-0 bg-white shadow-md z-50 py-3">
+        <div class="container mx-auto px-6 flex flex-wrap justify-center space-x-4 md:space-x-6">
+            <a href="#section1" class="text-primary-content hover:text-secondary font-semibold">基本戦略</a>
+            <a href="#section2" class="text-primary-content hover:text-secondary font-semibold">必須情報</a>
+            <a href="#section3" class="text-primary-content hover:text-secondary font-semibold">魅力化戦略</a>
+            <a href="#section4" class="text-primary-content hover:text-secondary font-semibold">視覚・物語</a>
+            <a href="#section5" class="text-primary-content hover:text-secondary font-semibold">沖縄の強み</a>
+            <a href="#section6" class="text-primary-content hover:text-secondary font-semibold">媒体選定</a>
+            <a href="#section7" class="text-primary-content hover:text-secondary font-semibold">行動計画</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="section1" class="mb-16">
+            <h2 class="section-title" style="color: #0077B6;">基本戦略：なぜ沖縄の中小企業に魅力的な求人広告が必要か</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="card bg-neutral-dark">
+                    <h3 class="text-xl font-semibold text-primary mb-3">競争を勝ち抜くために</h3>
+                    <p class="text-secondary-content">沖縄県の独特な労働市場では、特に大企業や都市部の求人との競争において、地域特有の魅力や企業独自の強みを前面に押し出すことが不可欠です。質の高い求人広告は、単なる採用ツールを超え、ブランディング戦略の重要な一翼を担います。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-3">長期的な貢献者を見つける</h3>
+                    <p class="text-secondary-content">効果的な採用活動とは、欠員補充ではなく、企業の理念や文化に共感し、長期的に貢献してくれる貴重なチームメンバーを見つけ出すことです。求人広告は、その最初の接点となります。</p>
+                </div>
+            </div>
+            <div class="mt-8 card text-center">
+                <h3 class="text-2xl font-bold text-primary mb-2">求職者が注目する情報 TOP 5</h3>
+                <p class="text-secondary-content mb-4">厚生労働省山形労働局の調査より。これらの情報を具体的に、魅力的に伝えることが鍵です。</p>
+                <div class="chart-container mx-auto h-80 md:h-96">
+                    <canvas id="jobSeekerPrioritiesChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-secondary-content">このチャートは、求職者が求人票で特に重視する項目を示しています。「仕事内容」が最も重視され、次いで「就業場所」「賃金」と続きます。これらの情報を明確かつ魅力的に伝えることが、応募獲得に不可欠です。</p>
+            </div>
+        </section>
+
+        <section id="section2" class="mb-16">
+            <h2 class="section-title" style="color: #0077B6;">必須情報と法的注意点</h2>
+            <div class="card bg-neutral-dark">
+                <h3 class="text-xl font-semibold text-primary mb-3">法的義務と信頼構築（職業安定法等の遵守）</h3>
+                <p class="text-secondary-content mb-4">求人広告には、労働関連法規で定められた項目を明示する義務があります。正確な情報は信頼の第一歩です。</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th class="py-3 px-4 text-left">記載項目</th>
+                                <th class="py-3 px-4 text-left">詳細な説明（ポイント）</th>
+                                <th class="py-3 px-4 text-left">関連法規</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-secondary-content">
+                            <tr class="border-b"><td class="py-3 px-4">業務内容</td><td class="py-3 px-4">具体的職務、誤解なき名称、変更可能性明記</td><td class="py-3 px-4">職業安定法</td></tr>
+                            <tr class="border-b bg-gray-50"><td class="py-3 px-4">契約期間</td><td class="py-3 px-4">有期雇用の場合、期間・更新条件・上限明記</td><td class="py-3 px-4">職業安定法</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">試用期間</td><td class="py-3 px-4">有無、期間、期間中の待遇明記</td><td class="py-3 px-4">職業安定法</td></tr>
+                            <tr class="border-b bg-gray-50"><td class="py-3 px-4">就業場所</td><td class="py-3 px-4">事業所名、所在地を正確に（ビル名・階数まで）</td><td class="py-3 px-4">職業安定法</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">就業時間・休日</td><td class="py-3 px-4">始業終業時刻、休憩、休日日数・曜日、時間外労働</td><td class="py-3 px-4">職業安定法、労働基準法</td></tr>
+                            <tr class="border-b bg-gray-50"><td class="py-3 px-4">賃金</td><td class="py-3 px-4">形態、基本給額（幅がある場合は下限上限）、固定残業代詳細</td><td class="py-3 px-4">職業安定法</td></tr>
+                            <tr><td class="py-3 px-4">加入保険</td><td class="py-3 px-4">社会保険（健康・厚生年金・雇用・労災）加入状況</td><td class="py-3 px-4">職業安定法</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-4 text-sm text-secondary-content">この表は、求人広告に最低限記載すべき法的義務事項をまとめたものです。これらの情報を遵守することが、求職者からの信頼を得るための基本となります。</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-3">差別の禁止</h3>
+                    <p class="text-secondary-content">性別、年齢（原則）、国籍、信条などに基づく差別的表現は法律で禁止されています。「営業マン」→「営業スタッフ」、「20代限定」→原則不可。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-3">権利の尊重</h3>
+                    <p class="text-secondary-content">著作権（他社素材の無断使用禁止）、肖像権（社員写真使用は本人同意必須）、個人情報保護法を遵守しましょう。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="section3" class="mb-16">
+            <h2 class="section-title" style="color: #0077B6;">魅力的な求人広告作成のコア戦略</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card bg-neutral-dark">
+                    <h3 class="text-lg font-semibold text-primary mb-2">1. ペルソナ設定</h3>
+                    <p class="text-secondary-content text-sm">求める人材像（年齢、スキル、価値観など）を具体的に定義し、ターゲットに響くメッセージを。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-lg font-semibold text-primary mb-2">2. 目を引くタイトル</h3>
+                    <p class="text-secondary-content text-sm">キーワード、独自メリット、具体性（年間休日125日等）、感情への訴求を意識。</p>
+                </div>
+                <div class="card bg-neutral-dark">
+                    <h3 class="text-lg font-semibold text-primary mb-2">3. 具体的な仕事内容</h3>
+                    <p class="text-secondary-content text-sm">業務内容、背景、成長機会、影響力、チーム、やりがいを明確に。専門用語は避ける。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-lg font-semibold text-primary mb-2">4. 魅力的な自社紹介</h3>
+                    <p class="text-secondary-content text-sm">ミッション、企業文化（具体例で）、独自の強み (USP)、安定性・成長性を提示。</p>
+                </div>
+                <div class="card bg-neutral-dark">
+                    <h3 class="text-lg font-semibold text-primary mb-2">5. 報酬の透明性</h3>
+                    <p class="text-secondary-content text-sm">給与（固定残業代詳細必須）、福利厚生（具体的に列挙）、労働条件を明確に。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-lg font-semibold text-primary mb-2">6. 信頼を築く開示</h3>
+                    <p class="text-secondary-content text-sm">募集背景（事業拡大等）、仕事の厳しさも正直に伝え、ミスマッチを防ぐ。</p>
+                </div>
+            </div>
+            <div class="mt-8 card">
+                <h3 class="text-xl font-semibold text-primary mb-4 text-center">応募から採用までの一般的な流れ（例）</h3>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-2 items-stretch">
+                    <div class="flowchart-step">応募</div>
+                    <div class="flowchart-arrow md:rotate-0 rotate-90">➔</div>
+                    <div class="flowchart-step">書類選考<br>(1週間以内目安)</div>
+                    <div class="flowchart-arrow md:rotate-0 rotate-90">➔</div>
+                    <div class="flowchart-step">面接 (1～2回)</div>
+                    <div class="md:hidden flowchart-arrow rotate-90">➔</div>
+                    <div class="flowchart-step md:col-start-2 md:mt-0 mt-2">内定</div>
+                    <div class="md:hidden flowchart-arrow rotate-90">➔</div>
+                     <p class="md:col-span-5 mt-4 text-sm text-secondary-content text-center">応募後の選考プロセスや期間の目安を明記することで、応募者の不安を軽減できます。上記は一例です。</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="section4" class="mb-16">
+            <h2 class="section-title" style="color: #0077B6;">視覚情報とストーリーテリングで共感を醸成</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card bg-neutral-dark">
+                    <h3 class="text-xl font-semibold text-primary mb-3">写真の力 📷</h3>
+                    <ul class="list-disc list-inside text-secondary-content space-y-1">
+                        <li>働く社員の姿（許可を得て）</li>
+                        <li>リアルなオフィス・作業環境</li>
+                        <li>社内イベントの様子</li>
+                        <li>自然で飾らないスナップショット</li>
+                        <li>沖縄ならではの風景（関連する場合）</li>
+                    </ul>
+                    <p class="mt-2 text-sm text-secondary-content">写真は言葉以上に職場の雰囲気を伝えます。求職者が働く姿をイメージできるよう工夫しましょう。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-3">動画で惹きつける 🎬</h3>
+                     <ul class="list-disc list-inside text-secondary-content space-y-1">
+                        <li>会社紹介・オフィスツアー</li>
+                        <li>社員インタビュー・1日密着</li>
+                        <li>社長メッセージ</li>
+                        <li>スマホ撮影でもOK、リアルさ重視</li>
+                        <li>沖縄のワークライフバランス紹介</li>
+                    </ul>
+                    <p class="mt-2 text-sm text-secondary-content">動画は熱意や空気感を伝えやすいです。短く、ありのままの姿が親近感を生みます。</p>
+                </div>
+                <div class="card bg-neutral-dark">
+                    <h3 class="text-xl font-semibold text-primary mb-3">「人」の要素：社員の声 🗣️</h3>
+                    <ul class="list-disc list-inside text-secondary-content space-y-1">
+                        <li>働く魅力、成長体験</li>
+                        <li>日々の業務、プロジェクト秘話</li>
+                        <li>社長の創業ストーリー</li>
+                        <li>困難を乗り越えたエピソード</li>
+                        <li>U/Iターン移住者の体験談</li>
+                    </ul>
+                    <p class="mt-2 text-sm text-secondary-content">社員の生の声やストーリーは説得力があります。共感可能な物語で感情的な繋がりを。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="section5" class="mb-16">
+            <h2 class="section-title" style="color: #0077B6;">中小企業の強みと沖縄の魅力を活かす</h2>
+            <div class="card">
+                <h3 class="text-xl font-semibold text-primary mb-3 text-center">中小企業ならではのアピールポイント</h3>
+                <div class="chart-container mx-auto h-96 md:h-[450px]">
+                    <canvas id="smeStrengthsChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-secondary-content">このレーダーチャートは、中小企業が持つ代表的な強みを示しています。「経営者との距離の近さ」や「事業への直接的な影響力」などは、大企業にはない魅力です。これらの強みを具体的にアピールしましょう。</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                <div class="card bg-neutral-dark">
+                    <h3 class="text-xl font-semibold text-primary mb-3">地域社会との繋がりをアピール</h3>
+                    <p class="text-secondary-content mb-2">沖縄の地域社会への貢献は強力な動機付けになります。</p>
+                    <ul class="list-disc list-inside text-secondary-content space-y-1 text-sm">
+                        <li>地元産原材料の調達</li>
+                        <li>地域イベントへの参加・協賛</li>
+                        <li>環境保全活動（ビーチクリーン等）</li>
+                        <li>伝統文化の継承、課題解決への貢献</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-3">Uターン・Iターン人材への訴求</h3>
+                    <p class="text-secondary-content mb-2">沖縄のライフスタイルは大きな魅力です。</p>
+                    <ul class="list-disc list-inside text-secondary-content space-y-1 text-sm">
+                        <li>ワークライフバランス、自然との近さ</li>
+                        <li>独自の文化、ゆったりとした時間</li>
+                        <li>移住支援制度（住宅手当、社宅など）</li>
+                        <li>移住者の体験談紹介</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="section6" class="mb-16">
+            <h2 class="section-title" style="color: #0077B6;">リーチ最大化：沖縄における最適な求人媒体の選定</h2>
+            <div class="card bg-neutral-dark">
+                <h3 class="text-xl font-semibold text-primary mb-3 text-center">沖縄県内の主要求人媒体比較（特徴抜粋）</h3>
+                <p class="text-secondary-content mb-4 text-center">各媒体の特徴を理解し、ターゲット層と予算に合わせて戦略的に選びましょう。</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th class="py-3 px-4 text-left">媒体名</th>
+                                <th class="py-3 px-4 text-left">種類</th>
+                                <th class="py-3 px-4 text-left">主要ターゲット・リーチ</th>
+                                <th class="py-3 px-4 text-left">中小企業向け特徴</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-secondary-content">
+                            <tr class="border-b"><td class="py-2 px-3">Agre</td><td class="py-2 px-3">地域特化総合</td><td class="py-2 px-3">若年～中高年、ウェブ強い</td><td class="py-2 px-3">求人誌・ウェブ連動、知名度高</td></tr>
+                            <tr class="border-b bg-gray-50"><td class="py-2 px-3">Rookie</td><td class="py-2 px-3">地域特化総合</td><td class="py-2 px-3">幅広い年齢層、紙媒体も</td><td class="py-2 px-3">フリーペーパー・ウェブ連携</td></tr>
+                            <tr class="border-b"><td class="py-2 px-3">ジョブアンテナ</td><td class="py-2 px-3">地域特化総合(ウェブ中心)</td><td class="py-2 px-3">20-30代中心、U/Iターン</td><td class="py-2 px-3">スカウト機能、特集記事PR</td></tr>
+                            <tr class="border-b bg-gray-50"><td class="py-2 px-3">沖縄タイムス 求人ぱっしょん</td><td class="py-2 px-3">地域特化総合(新聞・ウェブ)</td><td class="py-2 px-3">新聞読者層(40代以上含)、ウェブ</td><td class="py-2 px-3">新聞掲載とウェブ無料連動</td></tr>
+                            <tr class="border-b"><td class="py-2 px-3">しゅふぴた</td><td class="py-2 px-3">ニッチ(主婦主夫特化)</td><td class="py-2 px-3">主婦・主夫層</td><td class="py-2 px-3">柔軟な働き方検索充実</td></tr>
+                            <tr><td class="py-2 px-3">Indeed</td><td class="py-2 px-3">全国規模</td><td class="py-2 px-3">幅広い求職者</td><td class="py-2 px-3">無料掲載可能、キーワード検索</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                 <p class="mt-4 text-sm text-secondary-content">この表は沖縄の主要求人媒体の一部とその特徴を示しています。自社の募集職種、ターゲット層、予算を考慮して最適な媒体を選びましょう。複数の媒体を組み合わせる戦略も有効です。</p>
+            </div>
+        </section>
+
+        <section id="section7" class="mb-16">
+            <h2 class="section-title" style="color: #0077B6;">アクションプラン：採用成功への10の鍵</h2>
+            <div id="actionPlanContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+            <div class="mt-10 text-center card bg-primary text-white">
+                <h3 class="text-2xl font-bold mb-3">継続的な改善が成功の鍵</h3>
+                <p class="text-lg">求人広告は一度作成したら終わりではありません。応募状況を分析し、内容を修正・改善していくことが重要です。本ガイドを参考に、貴社に最適な人材との出会いを実現してください。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p>&copy; <span id="currentYear"></span> 沖縄県中小企業向け求人広告ガイド. All rights reserved.</p>
+            <p class="text-sm mt-1">このインフォグラフィックはデモンストレーション目的で作成されました。</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        function getDetailForKeyPoint(index) {
+            const details = [
+                "仕事内容、待遇、求める人物像など、全ての情報を曖昧にせず、具体的に記述しましょう。",
+                "どのような人材に来てほしいのかを明確にし、その層に響くメッセージを発信しましょう。",
+                "言葉だけでなく、写真や動画、社員のストーリーを通じて、職場のリアルな雰囲気や魅力を伝えましょう。",
+                "大企業にはない柔軟性や地域との繋がり、沖縄ならではのライフスタイルをアピールしましょう。",
+                "良い面だけでなく、仕事の厳しさや課題も正直に伝え、信頼関係を構築しましょう。",
+                "差別表現を避け、男女雇用機会均等法や労働基準法などの各種労働法規を必ず守りましょう。",
+                "ターゲット層、予算、募集職種の特性に合わせて、最適な媒体を選定・組み合わせましょう。",
+                "なぜ募集しているのか（事業拡大、新規PJ等）を伝えることで、求職者の納得感を高めます。",
+                "あまりに多くのスキルや経験を求めると応募のハードルが上がります。「あれば歓迎」も活用。",
+                "選考プロセスや期間の目安を伝えることで、応募者の不安を軽減し、応募を促します。"
+            ];
+            return details[index] || "";
+        }
+
+        function wrapText(text, maxLength) {
+            if (typeof text !== 'string') return text;
+            if (text.length <= maxLength) return text;
+
+            const words = text.split(' ');
+            let currentLine = '';
+            const lines = [];
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            }
+            if (currentLine.trim().length > 0) {
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 0 ? lines : [text];
+        }
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        // Action Plan Generation
+        const actionPlanPoints = [
+            "具体性と明確性を追求する",
+            "ペルソナを定義し、ターゲットを絞る",
+            "「見せる」ことを意識する（写真・動画・ストーリー）",
+            "中小企業の強みと沖縄の魅力を活かす",
+            "透明性と誠実さを貫く",
+            "法的コンプライアンスを遵守する",
+            "求人媒体を賢く選ぶ",
+            "募集背景を明確にする",
+            "応募資格は必要最小限に",
+            "応募後の流れを明記する"
+        ];
+
+        const actionPlanHtml = actionPlanPoints.map((point, index) => {
+            return `
+                <div class="card bg-neutral-dark hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">${index + 1}</span>
+                        <h3 class="text-md font-semibold text-primary">${point}</h3>
+                    </div>
+                    <p class="text-xs text-secondary-content">${getDetailForKeyPoint(index)}</p>
+                </div>
+            `;
+        }).join('');
+
+        const actionPlanContainer = document.getElementById('actionPlanContainer');
+        if (actionPlanContainer) {
+            actionPlanContainer.innerHTML = actionPlanHtml;
+        } else {
+            console.error("Action plan container (actionPlanContainer) not found!");
+        }
+
+        // Chart 1: Job Seeker Priorities
+        const jobSeekerPrioritiesCtx = document.getElementById('jobSeekerPrioritiesChart').getContext('2d');
+        new Chart(jobSeekerPrioritiesCtx, {
+            type: 'bar',
+            data: {
+                labels: ['仕事内容', '就業場所', '賃金', '休日等', '職種'].map(label => wrapText(label, 16)),
+                datasets: [{
+                    label: '求職者の注目度 (推定%)',
+                    data: [85, 78, 75, 70, 65], 
+                    backgroundColor: ['#0077B6', '#00B4D8', '#90E0EF', '#48BB78', '#F59E0B'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: { color: '#4A5568' }
+                    },
+                    y: {
+                        ticks: { color: '#4A5568', autoSkip: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: { display: false },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback }
+                    }
+                }
+            }
+        });
+
+        // Chart 2: SME Strengths
+        const smeStrengthsCtx = document.getElementById('smeStrengthsChart').getContext('2d');
+        new Chart(smeStrengthsCtx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    wrapText('影響力・裁量権', 16),
+                    wrapText('経営者との近さ', 16),
+                    wrapText('風通しの良さ', 16),
+                    wrapText('幅広い業務経験', 16),
+                    wrapText('チームワーク', 16),
+                    wrapText('意思決定の速さ', 16)
+                ],
+                datasets: [{
+                    label: '中小企業の強み (自己評価)',
+                    data: [8, 9, 7, 8, 9, 7], 
+                    backgroundColor: 'rgba(0, 180, 216, 0.2)', 
+                    borderColor: '#0077B6', 
+                    borderWidth: 2,
+                    pointBackgroundColor: '#0077B6',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#0077B6'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: '#CBD5E0' }, 
+                        grid: { color: '#E2E8F0' }, 
+                        pointLabels: {
+                            font: { size: 12 },
+                            color: '#4A5568' 
+                        },
+                        ticks: {
+                            backdropColor: 'transparent',
+                            color: '#4A5568', 
+                            stepSize: 2
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { color: '#4A5568' }
+                    },
+                    title: { display: false },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
