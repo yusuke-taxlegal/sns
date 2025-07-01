@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ガーデンプールご利用案内</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f9ff;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 300px;
+        }
+        .flow-arrow::after {
+            content: '▼';
+            display: block;
+            text-align: center;
+            font-size: 2rem;
+            color: #0074D9;
+            margin: 0.5rem 0;
+        }
+        .flow-card {
+            border: 2px solid #00A1E4;
+        }
+    </style>
+</head>
+<body class="bg-sky-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-sky-800 mb-2">🏊‍♂️ ガーデンプール ご利用案内 🏊‍♀️</h1>
+            <p class="text-lg text-sky-700">安全で快適な時間をお過ごしいただくためのガイドです。</p>
+        </header>
+
+        <section id="flow" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-800">ご利用までの3ステップ</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="flow-step">
+                    <div class="bg-white p-6 rounded-xl shadow-lg flow-card">
+                        <div class="text-4xl mb-4">🗓️</div>
+                        <h3 class="text-xl font-bold text-sky-700 mb-2">Step 1: 予約</h3>
+                        <p class="text-gray-600">利用日の<strong class="text-sky-600">1週間前</strong>から受付開始。1日の利用は原則2回までです。</p>
+                    </div>
+                    <div class="flow-arrow md:hidden"></div>
+                </div>
+                <div class="flow-step">
+                    <div class="bg-white p-6 rounded-xl shadow-lg flow-card">
+                        <div class="text-4xl mb-4">🔑</div>
+                        <h3 class="text-xl font-bold text-sky-700 mb-2">Step 2: 当日受付</h3>
+                        <p class="text-gray-600">理事会で鍵を受け取り、「鍵貸出簿」に記入してください。</p>
+                    </div>
+                    <div class="flow-arrow md:hidden"></div>
+                </div>
+                <div class="flow-step">
+                    <div class="bg-white p-6 rounded-xl shadow-lg flow-card">
+                        <div class="text-4xl mb-4">🔄</div>
+                        <h3 class="text-xl font-bold text-sky-700 mb-2">Step 3: 返却</h3>
+                        <p class="text-gray-600">利用後は速やかに鍵を返却し、貸出簿に記入します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="key-points" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-800">一目でわかる！重要ポイント</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-sky-500 text-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="text-2xl font-bold">利用期間</div>
+                    <div class="text-4xl font-bold my-2">5/1-10/31</div>
+                    <p class="text-sm">天候等で変更の場合あり</p>
+                </div>
+                <div class="bg-sky-500 text-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="text-2xl font-bold">利用時間</div>
+                    <div class="text-4xl font-bold my-2">2時間</div>
+                    <p class="text-sm">完全入れ替え制</p>
+                </div>
+                <div class="bg-sky-500 text-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="text-2xl font-bold">最大人数</div>
+                    <div class="text-4xl font-bold my-2">20名</div>
+                    <p class="text-sm">4組合計</p>
+                </div>
+                 <div class="bg-sky-500 text-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="text-2xl font-bold">受付時間</div>
+                    <div class="text-4xl font-bold my-2">9-19時</div>
+                    <p class="text-sm">最終受付は19時</p>
+                </div>
+            </div>
+            <div class="mt-8 bg-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-bold text-center text-sky-700 mb-4">1日の利用回数上限 (原則)</h3>
+                <p class="text-center text-gray-600 mb-4">原則1日2回までご利用いただけます。当日、利用開始30分前に空きがあれば、上限を超えての利用も可能です。</p>
+                <div class="chart-container">
+                    <canvas id="usageLimitChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="rules" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-800">プールサイドのルール</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-green-100 p-6 rounded-xl shadow-md border-l-4 border-green-500">
+                    <h3 class="text-2xl font-bold text-green-800 mb-4">👍 OK! (遵守事項)</h3>
+                    <ul class="space-y-3 text-green-900">
+                        <li class="flex items-start"><span class="mr-2 mt-1">🤸</span><span>必ず準備運動・シャワー・足洗い場を利用する。</span></li>
+                        <li class="flex items-start"><span class="mr-2 mt-1">🩱</span><span>清潔な水着を着用する。</span></li>
+                        <li class="flex items-start"><span class="mr-2 mt-1">💧</span><span>水分補給はフタ付き容器で。(アルコール・ガラス瓶は不可)</span></li>
+                        <li class="flex items-start"><span class="mr-2 mt-1">👨‍👩‍👧‍👦</span><span>中学生未満、高齢者、体の不自由な方は保護者等の同伴が必須です。<strong class="block font-normal text-sm text-green-700 mt-1">※同伴者も利用人数に含まれます。</strong></span></li>
+                        <li class="flex items-start"><span class="mr-2 mt-1">✨</span><span>備品は大切に使い、使用後は元の場所に戻す。</span></li>
+                        <li class="flex items-start"><span class="mr-2 mt-1">🔑</span><span>貴重品は必ずロッカーで管理する。</span></li>
+                    </ul>
+                </div>
+                <div class="bg-red-100 p-6 rounded-xl shadow-md border-l-4 border-red-500">
+                    <h3 class="text-2xl font-bold text-red-800 mb-4">🚫 NG! (禁止事項)</h3>
+                     <ul class="space-y-3 text-red-900">
+                        <li class="flex items-start"><span class="mr-2 mt-1">🤒</span><span>体調不良、泥酔、伝染病等の場合、利用はできません。</span></li>
+                        <li class="flex items-start"><span class="mr-2 mt-1">🏃‍♂️</span><span>走る、飛び込むなどの危険行為。</span></li>
+                        <li class="flex items-start"><span class="mr-2 mt-1">🍔</span><span>飲食、飲酒、喫煙。</span></li>
+                        <li class="flex items-start"><span class="mr-2 mt-1">🔫</span><span>ガラス製品、危険物、おもちゃの銃などの持ち込み。</span></li>
+                        <li class="flex items-start"><span class="mr-2 mt-1">💄</span><span>水質を汚す可能性のある日焼けオイルや化粧品の使用。</span></li>
+                        <li class="flex items-start"><span class="mr-2 mt-1">📢</span><span>他の利用者に迷惑をかける行為、公序良俗に反する行為。</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="important-notes" class="mb-8">
+             <h2 class="text-3xl font-bold text-center mb-8 text-sky-800">⚠️ 特に重要なご注意</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-yellow-100 border-l-4 border-yellow-500 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-yellow-800 mb-2">監視員はいません</h3>
+                    <p class="text-yellow-900">安全管理は利用者自身または保護者の責任となります。特にお子様からは絶対に目を離さないでください。</p>
+                </div>
+                 <div class="bg-red-100 border-l-4 border-red-500 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-red-800 mb-2">事故・盗難の免責</h3>
+                    <p class="text-red-900">プール敷地内での一切の事故、盗難について管理組合は責任を負いません。自己管理を徹底してください。</p>
+                </div>
+                 <div class="bg-gray-200 border-l-4 border-gray-500 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">破損時の負担</h3>
+                    <p class="text-gray-900">故意または過失により施設や備品を破損した場合、修復費用を負担していただきます。</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 pt-8 border-t border-sky-200">
+            <p class="text-sky-700">ルールを守って、皆様で気持ちよく利用しましょう。</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const usageCtx = document.getElementById('usageLimitChart').getContext('2d');
+            new Chart(usageCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['利用可能回数', '利用済み回数 (例)'],
+                    datasets: [{
+                        label: '1日の利用回数',
+                        data: [2, 0],
+                        backgroundColor: [
+                            '#00A1E4',
+                            '#F1F1F1' 
+                        ],
+                        borderColor: [
+                            '#0074D9',
+                            '#DDDDDD'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

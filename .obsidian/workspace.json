@@ -4,67 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "bb45f2c851523f96",
+        "id": "abda8b079db21ce1",
         "type": "tabs",
         "children": [
           {
-            "id": "8e3284ccc27762c4",
+            "id": "920e549c0befb24d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "archive/T&L_玉城祐輔まとめ.md",
+                "file": "Zoomセミナー開催サポート提案資料（自動化プラン）.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "T&L_玉城祐輔まとめ"
-            }
-          },
-          {
-            "id": "90013896c7f0c44d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "司法書士法人あさと事務所の玉城祐輔.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "司法書士法人あさと事務所の玉城祐輔"
-            }
-          },
-          {
-            "id": "229b4aceffb3deee",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "B-nature/持続化計画書_B-nature合同会社.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "持続化計画書_B-nature合同会社"
-            }
-          },
-          {
-            "id": "6679048e5bc68720",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "財務コンサルティング提案資料.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "財務コンサルティング提案資料"
+              "title": "Zoomセミナー開催サポート提案資料（自動化プラン）"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -211,8 +168,15 @@
       "command-palette:コマンドパレットを開く": false
     }
   },
-  "active": "6679048e5bc68720",
+  "active": "920e549c0befb24d",
   "lastOpenFiles": [
+    "協同組合親愛トラスト（よ・つ・ばグループ）に関する調査報告書.md",
+    "Zoomセミナー開催サポート提案資料（自動化プラン）.md",
+    "一般社団法人よつば親愛信託おきなわ 調査報告書.md",
+    "プロンプト集/【プロンプト】よつば_セミナー案内アシスタント.md",
+    "【プロンプト】よつば_セミナー案内アシスタント.md",
+    "archive/【プロンプト】よつば沖縄_セミナー案内アシスタント.md",
+    "財務コンサルティング提案資料.md",
     "B-nature/持続化計画書_B-nature合同会社.md",
     "B-nature/Gem_持続化計画書.md",
     "B-nature",
