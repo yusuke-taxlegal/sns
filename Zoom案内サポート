@@ -1,8 +1,8 @@
 // シートの名前を定数として定義
 const SPREADSHEET = SpreadsheetApp.getActiveSpreadsheet();
-const LIST_SHEET_NAME = '👤 参加者リスト';
-const SETTINGS_SHEET_NAME = '⚙️ 設定・メール文面';
-const LOG_SHEET_NAME = '📝 送信ログ';
+const LIST_SHEET_NAME = '参加者リスト';
+const SETTINGS_SHEET_NAME = '設定・メール文面';
+const LOG_SHEET_NAME = '送信ログ';
 
 // 列の番号を定数として定義（A列が1, B列が2...）
 const CHECKBOX_COL = 1;      // 送信チェック
@@ -16,32 +16,32 @@ const THANKS_STATUS_COL = 5; // お礼メール状況
  */
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
-  ui.createMenu('セミナー用メール送信')
-    .addItem('選択した人に案内メールを送信', 'sendGuideMail')
+  ui.createMenu('セミナー用メール')
+    .addItem('選択した人に案内メールを下書き作成', 'createGuideMailDraft')
     .addSeparator()
-    .addItem('選択した人にお礼メールを送信', 'sendThanksMail')
+    .addItem('選択した人にお礼メールを下書き作成', 'createThanksMailDraft')
     .addToUi();
 }
 
 /**
- * 案内メールを送信するメインの関数
+ * 案内メールの下書きを作成するメインの関数
  */
-function sendGuideMail() {
-  sendMail('guide');
+function createGuideMailDraft() {
+  createDraft('guide');
 }
 
 /**
- * お礼メールを送信するメインの関数
+ * お礼メールの下書きを作成するメインの関数
  */
-function sendThanksMail() {
-  sendMail('thanks');
+function createThanksMailDraft() {
+  createDraft('thanks');
 }
 
 /**
- * メール送信を実行する共通関数
+ * メール下書きを作成する共通関数
  * @param {string} mailType - 'guide' (案内) または 'thanks' (お礼)
  */
-function sendMail(mailType) {
+function createDraft(mailType) {
   // 設定シートから情報を取得
   const settings = getSettings();
   if (!settings) return; // 設定がなければ終了
@@ -74,7 +74,7 @@ function sendMail(mailType) {
   const ui = SpreadsheetApp.getUi();
   const response = ui.alert(
     '確認',
-    `${rowsToSend.length}件の${mailType === 'guide' ? '案内' : 'お礼'}メールを送信します。よろしいですか？`,
+    `${rowsToSend.length}件の${mailType === 'guide' ? '案内' : 'お礼'}メールの下書きを作成します。よろしいですか？`,
     ui.ButtonSet.YES_NO
   );
 
@@ -90,29 +90,34 @@ function sendMail(mailType) {
   // 1行ずつメールを送信
   rowsToSend.forEach(person => {
     try {
-      // 本文の{{氏名}}を置換
-      const body = bodyTemplate.replace('{{氏名}}', person.name);
+      // 本文のプレースホルダーを置換
+      const body = bodyTemplate
+        .replace(/{{氏名}}/g, person.name)
+        .replace(/{{セミナー名}}/g, settings.seminarName)
+        .replace(/{{日時}}/g, Utilities.formatDate(new Date(settings.dateTime), "JST", "yyyy/MM/dd HH:mm"))
+        .replace(/{{ZoomURL}}/g, settings.zoomUrl);
       
-      // メール送信
-      GmailApp.sendEmail(person.email, subject, body);
+      // メール下書きを作成（HTML形式をサポート）
+      const htmlBody = body.replace(/\n/g, '<br>');
+      GmailApp.createDraft(person.email, subject, '', { htmlBody: htmlBody });
 
-      // 送信ステータスを更新
+      // ステータスを更新
       const timestamp = new Date();
-      listSheet.getRange(person.rowNum, statusCol).setValue(`送信済み (${Utilities.formatDate(timestamp, "JST", "yyyy/MM/dd HH:mm")})`);
+      listSheet.getRange(person.rowNum, statusCol).setValue(`下書き作成済み (${Utilities.formatDate(timestamp, "JST", "yyyy/MM/dd HH:mm")})`);
       
       // ログシートに記録
-      logSending('成功', mailType, person.email, timestamp);
+      logAction('下書き作成', mailType, person.email, timestamp);
       
       // チェックボックスをfalseに戻す
       listSheet.getRange(person.rowNum, CHECKBOX_COL).setValue(false);
 
     } catch (e) {
       // エラーログを記録
-      logSending('失敗', mailType, person.email, new Date(), e.message);
+      logAction('失敗', mailType, person.email, new Date(), e.message);
     }
   });
   
-  ui.alert('送信が完了しました。');
+  ui.alert('下書きの作成が完了しました。Gmailの下書きフォルダを確認してください。');
 }
 
 /**
@@ -123,36 +128,36 @@ function getSettings() {
   try {
     const settingsSheet = SPREADSHEET.getSheetByName(SETTINGS_SHEET_NAME);
     const settings = {
-      seminarName: settingsSheet.getRange('B1').getValue(),
+      seminarName: settingsSheet.getRange('A2').getValue(),
       dateTime: settingsSheet.getRange('B2').getValue(),
-      zoomUrl: settingsSheet.getRange('B3').getValue(),
-      guideSubject: settingsSheet.getRange('B4').getValue(),
-      guideBody: settingsSheet.getRange('B5').getValue(),
-      thanksSubject: settingsSheet.getRange('B6').getValue(),
-      thanksBody: settingsSheet.getRange('B7').getValue()
+      zoomUrl: settingsSheet.getRange('C2').getValue(),
+      guideSubject: settingsSheet.getRange('D2').getValue(),
+      guideBody: settingsSheet.getRange('E2').getValue(),
+      thanksSubject: settingsSheet.getRange('F2').getValue(),
+      thanksBody: settingsSheet.getRange('G2').getValue()
     };
     return settings;
   } catch (e) {
-    SpreadsheetApp.getUi().alert('「⚙️ 設定・メール文面」シートが見つからないか、形式が正しくありません。');
+    SpreadsheetApp.getUi().alert('「設定・メール文面」シートが見つからないか、形式が正しくありません。');
     return null;
   }
 }
 
 /**
  * 送信ログを記録するヘルパー関数
- * @param {string} result - '成功' または '失敗'
+ * @param {string} action - '下書き作成' や '失敗' など
  * @param {string} mailType - 'guide' または 'thanks'
  * @param {string} email - 送信先メールアドレス
  * @param {Date} timestamp - タイムスタンプ
  * @param {string} [error=''] - エラーメッセージ
  */
-function logSending(result, mailType, email, timestamp, error = '') {
+function logAction(action, mailType, email, timestamp, error = '') {
   const logSheet = SPREADSHEET.getSheetByName(LOG_SHEET_NAME);
   logSheet.appendRow([
     timestamp,
     mailType === 'guide' ? '案内メール' : 'お礼メール',
     email,
-    result,
+    action,
     error
   ]);
 }
