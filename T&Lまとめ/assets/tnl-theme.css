@@ -1,0 +1,92 @@
+/* @theme tnl-theme */
+@import 'default';
+
+/* Global styles */
+section {
+  font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+  font-size: 30px;
+  padding: 60px;
+  background-color: #FFFFFF;
+  color: #333333;
+}
+
+/* Footer: logo on right, copyright in center */
+footer {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-image: url('logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+section::after {
+  content: '© T&L support Co., Ltd.';
+  position: absolute;
+  bottom: 35px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+}
+
+/* General Heading Styles */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    color: #004a95; /* A corporate blue */
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+h2 {
+    font-size: 1.6em;
+    padding-left: 20px;
+    border-left: 8px solid #004a95;
+}
+
+/* For title slide */
+section.title {
+    background: linear-gradient(to bottom right, #2472fc, #52a1ff);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+section.title h1, section.title h2 {
+    color: white;
+    border: none;
+    text-align: center;
+    margin: 0.2em 0;
+}
+section.title h1 {
+    font-size: 2.5em;
+}
+section.title h2 {
+    font-size: 1.5em;
+}
+
+/* For simple "thank you" or "question" slides */
+section.center-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.center-title h1 {
+    font-size: 3em;
+    border-bottom: 4px solid #004a95;
+    padding: 0.2em;
+}
+
+strong {
+    color: #d93843; /* red for emphasis */
+} 

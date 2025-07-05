@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>オーダーメイドGPT作成サービス｜T&Lサポート</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #005baa;
+      --secondary-color: #0077cc;
+      --accent-color: #ffc107;
+      --background-color: #f9f9f9;
+      --text-color: #333;
+      --white-color: #fff;
+      --font-family-base: 'Noto Sans JP', sans-serif;
+      --font-family-heading: 'Poppins', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-family-base);
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 0 1.5em;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white-color);
+      padding: 4em 2em;
+      text-align: center;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      margin-bottom: 3em;
+    }
+
+    .header h1 {
+      font-family: var(--font-family-heading);
+      font-size: 2.8rem;
+      margin: 0;
+      color: var(--white-color);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    /* Sections */
+    .section {
+      background: var(--white-color);
+      margin-bottom: 2.5em;
+      padding: 2.5em;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      font-family: var(--font-family-heading);
+      font-size: 2rem;
+      color: var(--primary-color);
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 0.3em;
+      margin-bottom: 1em;
+    }
+    
+    h3 {
+        font-family: var(--font-family-heading);
+        color: var(--secondary-color);
+        font-size: 1.5rem;
+    }
+
+    ul {
+      padding-left: 1.2em;
+      list-style-type: '✅ ';
+    }
+    
+    ul li {
+        padding-left: 0.5em;
+        margin-bottom: 0.5em;
+    }
+
+    /* Buttons */
+    .button {
+      display: inline-block;
+      background: var(--secondary-color);
+      color: white !important;
+      padding: 0.8em 2em;
+      text-decoration: none;
+      border-radius: 8px;
+      margin-top: 1em;
+      font-weight: 700;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 119, 204, 0.3);
+    }
+
+    .button:hover {
+      background: var(--primary-color);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    
+    .button.primary {
+        background: var(--accent-color);
+        color: var(--text-color) !important;
+        box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
+    }
+    
+    .button.primary:hover {
+        background: #ffb300;
+    }
+
+    /* Footer */
+    .footer {
+        text-align: center;
+        padding: 2em;
+        margin-top: 3em;
+        font-size: 0.9em;
+    }
+    
+    .profile {
+        display: flex;
+        align-items: center;
+        gap: 1.5em;
+    }
+    
+    .profile img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>“発信が止まる”悩みに、終止符を。</h1>
+      <p><strong>あなたの想いを学習した、オーダーメイドGPTでSNS投稿を効率化。</strong></p>
+    </div>
+  </header>
+  
+  <main class="container">
+    <section class="section">
+      <h2>🧠 こんなお悩みありませんか？</h2>
+      <ul>
+        <li>SNS投稿、考えるのが正直めんどう…</li>
+        <li>ChatGPTを使いたいけど、何を聞いていいかわからない</li>
+        <li>AIは便利そうだけど、自分の業種や雰囲気に合うか不安</li>
+        <li>代行までは頼みたくないけど、少し手伝ってほしい</li>
+      </ul>
+      <p>→そんなあなたのために、<strong>"あなただけのAIアシスタント"</strong>を作ります。</p>
+    </section>
+
+    <section class="section">
+      <h2>💡 サービス内容</h2>
+      <h3>▶ ステップ1：無料で使える「お試しGPT」</h3>
+      <p>まずは、あなたの業種や投稿パターンに合わせた<strong>デモ用GPT</strong>を無料でご提供します。</p>
+      <p>スマホでも簡単に使えるので、気軽に試してみてください。</p>
+
+      <h3>▶ ステップ2：本格カスタムGPTを作成（5万円〜）</h3>
+      <p>ヒアリングを通じて、<strong>"あなたの想いや商品・サービスの特性"</strong>を学習。</p>
+      <p>トンマナ・キーワード・よく使う表現などを組み込み、投稿文や告知文をボタン一つで出力できるように設計します。</p>
+    </section>
+
+    <section class="section">
+      <h2>✅ 導入のメリット</h2>
+      <ul>
+        <li>投稿ネタに悩まない！定型パターンを量産可能</li>
+        <li>担当者が変わっても、トンマナがブレない</li>
+        <li>"書けない…"というストレスから解放</li>
+        <li>自分の"分身GPT"が社内にいる安心感</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>📌 想定される使用イメージ</h2>
+      <ul>
+        <li>毎月のセミナー案内文（日時・場所を入力するだけ）</li>
+        <li>週1回のSNS発信用投稿文</li>
+        <li>LINE公式アカウント向け配信文の草案づくり　など</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>💰 料金プラン</h2>
+      <ul>
+        <li><strong>お試しGPT：無料</strong>（面談予約で提供）</li>
+        <li><strong>カスタムGPT作成：5万円〜</strong><br>（ヒアリング＋設計＋納品）</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>📩 お申込み方法</h2>
+      <p>以下のボタンからオンライン相談をご予約いただき、「GPTお試し希望」とお伝えください。</p>
+      <a href="https://www.jicoo.com/t/taxlegal/e/gpt-otameshi" class="button primary">オンライン相談を予約する</a>
+    </section>
+
+    <section class="section">
+      <h2>🙋‍♂️ 提供者について</h2>
+      <div class="profile">
+          <img src="https://i.ibb.co/3kC7D9B/profile-image.jpg" alt="玉城祐輔のプロフィール写真">
+          <div>
+            <h3>玉城祐輔（T&Lサポート株式会社）</h3>
+            <p>元・商工会経営指導員。現在は沖縄県内の小規模事業者向けに、補助金申請・財務支援・デジタル活用支援を提供中。</p>
+            <p>AIやGoogleツールを活用し、<strong>"中小企業が無理なく取り組める業務改善"</strong>を得意としています。</p>
+          </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <p>&copy; 2024 T&Lサポート株式会社. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

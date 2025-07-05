@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T&Lコンサル事業 事業計画インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #F8F9FA; 
+            color: #212529;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #FF764A, #5A96E3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 24rem;
+            width: 100%;
+            max-width: 800px;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #A0BFE0;
+            line-height: 1;
+        }
+        .kpi-value {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .kpi-arrow {
+            font-size: 2.5rem;
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-5xl font-black text-[#5A96E3] mb-4">T&Lコンサル事業 成長戦略</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">資金調達に向けた事業計画の可視化。現状の課題を乗り越え、持続可能な収益構造を構築するためのロードマップ。</p>
+        </header>
+
+        <section id="section1" class="mb-12 md:mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2">1. 事業の現状と課題</h2>
+            <p class="text-center text-gray-500 mb-8">事業環境の変化に適応し、新たな収益モデルへの転換が急務です。</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="card">
+                    <h3 class="font-bold text-xl mb-4 text-[#5A96E3]">収益構造の変化</h3>
+                    <div class="chart-container">
+                        <canvas id="revenueShiftChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-600">従来の補助金依存モデルから、高付加価値な財務コンサルへのシフトを進めていますが、まだ道半ばです。補助金の単価下落が収益を圧迫しています。</p>
+                </div>
+                <div class="space-y-6">
+                    <div class="card flex items-center">
+                        <div class="text-4xl mr-4">⏰</div>
+                        <div>
+                            <h4 class="font-bold text-lg text-gray-800">リードタイムの長期化</h4>
+                            <p class="text-gray-600">経営改善計画は金融機関の方針変更により、相談から収益化までの期間が伸びています。</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-center">
+                        <div class="text-4xl mr-4">🤝</div>
+                        <div>
+                            <h4 class="font-bold text-lg text-gray-800">財務コンサル獲得の壁</h4>
+                            <p class="text-gray-600">事業の核となる月次契約の獲得に苦戦しており、現状は6件に留まっています。</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-center">
+                        <div class="text-4xl mr-4">📢</div>
+                        <div>
+                            <h4 class="font-bold text-lg text-gray-800">限定的な認知度</h4>
+                            <p class="text-gray-600">情報発信が個人に依存しており、組織「T&L」としてのブランド力が課題です。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section2" class="mb-12 md:mb-20 text-center">
+            <h2 class="text-3xl font-bold text-center mb-2">2. 中核目標：財務コンサルの飛躍的拡大</h2>
+            <p class="text-center text-gray-500 mb-8">事業の安定化に向け、明確なKPI（重要業績評価指標）を設定します。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="card md:col-span-2 bg-gradient-to-br from-[#5A96E3] to-[#4AC7A2] text-white p-8">
+                    <h3 class="font-bold text-2xl mb-4">最重要KPI：月次契約件数</h3>
+                    <div class="flex items-center justify-center">
+                        <div class="text-center">
+                            <p class="text-lg">現在</p>
+                            <p class="kpi-value">6<span class="text-2xl ml-1">件</span></p>
+                        </div>
+                        <div class="kpi-arrow text-white/70">→</div>
+                        <div class="text-center">
+                            <p class="text-lg">目標</p>
+                            <p class="kpi-value">30<span class="text-2xl ml-1">件</span></p>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-center">担当者1人あたり月7-8件の新規契約獲得を目指し、5倍の成長を実現します。</p>
+                </div>
+
+                <div class="card">
+                     <h3 class="font-bold text-xl mb-4 text-[#5A96E3]">目標達成時の収益構成</h3>
+                    <div class="chart-container">
+                        <canvas id="revenueMixChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-600">目標達成により、財務コンサルが収益の6割以上を占める安定した事業基盤が確立されます。</p>
+                </div>
+                
+                 <div class="card flex flex-col justify-center text-left h-full">
+                    <h3 class="font-bold text-xl mb-4 text-[#5A96E3]">顧客獲得へのロードマップ</h3>
+                    <p class="mb-4">実績のある補助金申請サポート等を「入口」とし、顧客との信頼関係を構築しながら、本命の財務コンサル契約へ繋げる戦略です。</p>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-blue-50 rounded-lg"><strong>入口戦略:</strong> Webセミナー、士業連携、補助金サポートで相談機会を創出。</div>
+                        <div class="text-center text-2xl">↓</div>
+                        <div class="p-3 bg-green-50 rounded-lg"><strong>中間支援:</strong> 融資斡旋や経営改善計画等のスポット契約で価値を提供。</div>
+                         <div class="text-center text-2xl">↓</div>
+                        <div class="p-3 bg-orange-50 rounded-lg"><strong>最終目標:</strong> 継続的な財務コンサル（月次契約）へ。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section3" class="mb-12 md:mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2">3. 新たな一手：経理DX支援事業</h2>
+            <p class="text-center text-gray-500 mb-8">財務コンサルの導入障壁となっている根本課題を解決する、新しい事業の柱を創造します。</p>
+            <div class="card md:col-span-2 text-center bg-[#f8fafc] border-2 border-[#5A96E3]/50 p-8 mb-8">
+                 <h3 class="font-bold text-2xl mb-2 text-[#5A96E3]">根本課題の特定</h3>
+                 <p class="text-xl">「月次の財務状況がタイムリーに把握できない」</p>
+                 <p class="mt-2 text-gray-600">これが、多くの中小企業が抱える悩みであり、高付加価値コンサルの導入を妨げる最大の壁です。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center">
+                <div class="card">
+                    <div class="text-5xl mb-4">📄</div>
+                    <h4 class="font-bold text-lg">データ化支援</h4>
+                    <p class="text-sm text-gray-600">領収書や請求書をデジタルデータとして管理する体制とルールを構築します。</p>
+                </div>
+                <div class="card">
+                    <div class="text-5xl mb-4">⚙️</div>
+                    <h4 class="font-bold text-lg">自動化支援</h4>
+                    <p class="text-sm text-gray-600">請求書発行や入金確認など、反復作業を自動化するツール導入を支援します。</p>
+                </div>
+                <div class="card">
+                    <div class="text-5xl mb-4">📊</div>
+                    <h4 class="font-bold text-lg">業務フロー設計</h4>
+                    <p class="text-sm text-gray-600">経理全体の業務フローを見直し、誰が何をするか明確にした効率的な仕組みを設計します。</p>
+                </div>
+            </div>
+
+            <div class="card md:col-span-2">
+                <h3 class="font-bold text-xl mb-4 text-[#5A96E3] text-center">Win-Winのエコシステム構築</h3>
+                <div class="flex flex-col md:flex-row items-center justify-around space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="text-center p-6 bg-orange-50 rounded-lg w-full md:w-2/5">
+                        <h4 class="font-bold text-lg text-orange-800">T&Lのメリット</h4>
+                        <p class="text-sm text-orange-700 mt-2">経理DXを入口に、本命の財務コンサルへスムーズに移行可能。新たな高単価サービスが確立。</p>
+                    </div>
+                    <div class="font-bold text-2xl text-gray-400">🤝</div>
+                    <div class="text-center p-6 bg-green-50 rounded-lg w-full md:w-2/5">
+                        <h4 class="font-bold text-lg text-green-800">提携税理士のメリット</h4>
+                        <p class="text-sm text-green-700 mt-2">データが整理された状態で業務を引き継げ、記帳・申告業務が大幅に効率化。</p>
+                    </div>
+                </div>
+                 <p class="mt-4 text-center text-sm text-gray-600">この「経理DX支援」は記帳代行の手前を担うことで、提携税理士事務所との明確な分業体制を確立し、共存共栄を実現します。</p>
+            </div>
+        </section>
+
+        <section id="section4" class="mb-12 md:mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2">4. 収支計画と黒字化への道筋</h2>
+            <p class="text-center text-gray-500 mb-8">短期的な安定と、中長期的な自律的成長を見据えた財務計画です。</p>
+             <div class="card">
+                <h3 class="font-bold text-xl mb-4 text-[#5A96E3]">今後2年間の収益・利益計画</h3>
+                <div class="chart-container">
+                    <canvas id="profitPlanChart"></canvas>
+                </div>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="p-4 bg-gray-100 rounded-lg">
+                        <p class="font-bold">来期 (第11期)</p>
+                        <p class="text-gray-700">税理士事務所等への出向費用（約500万円）を営業外収益として計上し、黒字を確保。事業転換への投資期間とします。</p>
+                    </div>
+                    <div class="p-4 bg-gray-100 rounded-lg">
+                        <p class="font-bold">翌々期 (第12期)</p>
+                        <p class="text-gray-700">出向収益がなくなるため、本業であるコンサル事業（財務コンサル30件達成）での黒字化が必須となります。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="section5" class="text-center">
+            <h2 class="text-3xl font-bold text-center mb-2">5. 今後のアクションプラン</h2>
+            <p class="text-center text-gray-500 mb-8">計画の実現に向け、具体的かつ迅速に行動を開始します。</p>
+             <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card">
+                    <p class="text-3xl mb-2">1.</p>
+                    <h4 class="font-bold text-lg">セミナー戦略の具体化</h4>
+                    <p class="text-sm text-gray-600 mt-2">ヒット率を分析し、集客力の高いテーマに絞り込み、内容を最適化します。</p>
+                </div>
+                 <div class="card">
+                    <p class="text-3xl mb-2">2.</p>
+                    <h4 class="font-bold text-lg">組織的情報発信の強化</h4>
+                    <p class="text-sm text-gray-600 mt-2">T&L公式SNSを開設・運用し、属人化から脱却、企業ブランドを構築します。</p>
+                </div>
+                 <div class="card">
+                    <p class="text-3xl mb-2">3.</p>
+                    <h4 class="font-bold text-lg">経理DXの商品設計</h4>
+                    <p class="text-sm text-gray-600 mt-2">サービス範囲、価格、提供フローを明確にし、パッケージ商品を開発します。</p>
+                </div>
+                 <div class="card">
+                    <p class="text-3xl mb-2">4.</p>
+                    <h4 class="font-bold text-lg">金融機関との連携強化</h4>
+                    <p class="text-sm text-gray-600 mt-2">本事業計画を元に、金融機関との協議を進め、安定的な資金繰りを確保します。</p>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="text-center p-8 mt-12 text-gray-500 text-sm">
+        <p>T&L Consulting Business Plan Infographic</p>
+        <p>&copy; 2025 T&L Inc. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const highContrastPalette = {
+            primary: '#FF764A',   // Energetic Orange
+            secondary: '#5A96E3', // Calm Blue
+            accent1: '#4AC7A2',   // Fresh Green
+            accent2: '#FFC107',   // Bright Yellow
+            neutral: '#6c757d',   // Gray
+        };
+
+        const chartTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        font: {
+                           family: "'Inter', 'Noto Sans JP', sans-serif"
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                       font: {
+                           family: "'Inter', 'Noto Sans JP', sans-serif"
+                        }
+                    }
+                },
+                x: {
+                    ticks: {
+                       font: {
+                           family: "'Inter', 'Noto Sans JP', sans-serif"
+                        }
+                    }
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+        };
+        
+        const wrapLabel = (str, maxWidth) => {
+            if (typeof str !== 'string' || str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const revenueShiftCtx = document.getElementById('revenueShiftChart').getContext('2d');
+            new Chart(revenueShiftCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['昨年度 (第9期)', '今期 (第10期)'],
+                    datasets: [
+                        {
+                            label: '財務コンサル',
+                            data: [5, 15],
+                            backgroundColor: highContrastPalette.primary,
+                        },
+                        {
+                            label: '補助金関連',
+                            data: [70, 25],
+                            backgroundColor: highContrastPalette.secondary,
+                        },
+                        {
+                            label: '経営改善・他',
+                            data: [25, 10],
+                             backgroundColor: highContrastPalette.accent1,
+                        }
+                    ]
+                },
+                options: {
+                    ...chartTooltipOptions,
+                    scales: {
+                        x: { stacked: true },
+                        y: { stacked: true, ticks: { callback: value => value + '%' } }
+                    }
+                }
+            });
+
+            const revenueMixCtx = document.getElementById('revenueMixChart').getContext('2d');
+            new Chart(revenueMixCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['財務コンサル', '補助金・スポット', '経営改善・他'],
+                    datasets: [{
+                        data: [65, 20, 15],
+                        backgroundColor: [
+                            highContrastPalette.primary,
+                            highContrastPalette.secondary,
+                            highContrastPalette.accent1,
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 4,
+                    }]
+                },
+                options: {
+                     ...chartTooltipOptions,
+                     plugins: {
+                        ...chartTooltipOptions.plugins,
+                        legend: { position: 'bottom' }
+                     }
+                }
+            });
+
+            const profitPlanCtx = document.getElementById('profitPlanChart').getContext('2d');
+            new Chart(profitPlanCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['来期 (第11期)', '翌々期 (第12期)'],
+                    datasets: [
+                        {
+                            label: 'コンサル事業収益',
+                            data: [600, 1200],
+                            backgroundColor: highContrastPalette.secondary,
+                            order: 2
+                        },
+                        {
+                            label: '営業外収益(出向費)',
+                            data: [500, 0],
+                            backgroundColor: highContrastPalette.accent1,
+                            order: 2
+                        },
+                        {
+                            label: '最終利益',
+                            data: [150, 250],
+                            backgroundColor: highContrastPalette.primary,
+                            type: 'line',
+                            borderColor: highContrastPalette.primary,
+                            tension: 0.2,
+                            order: 1,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    ...chartTooltipOptions,
+                    scales: {
+                       y: {
+                            beginAtZero: true,
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            ticks: { callback: value => (value) + '万円' }
+                        },
+                        y1: {
+                            beginAtZero: true,
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: {
+                                drawOnChartArea: false, 
+                            },
+                             ticks: { callback: value => (value) + '万円' }
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

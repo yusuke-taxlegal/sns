@@ -1,0 +1,7 @@
+{
+    "markdown.validate.enabled": true,
+    "markdown.marp.themes": [
+        "./T&Lまとめ/assets/tnl-theme.css"
+    ],
+    "markdown.marp.allowLocalFiles": true
+}

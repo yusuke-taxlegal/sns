@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netlify 汎用デプロイ手順ガイド (Cursor版)</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        h1, h2, h3 {
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h1 {
+            font-size: 2em;
+            color: #2E7D32;
+        }
+        h2 {
+            font-size: 1.6em;
+            color: #388E3C;
+            border-bottom-width: 1px;
+        }
+        h3 {
+            font-size: 1.2em;
+            color: #388E3C;
+            border-bottom: none;
+        }
+        p, li {
+            font-size: 1em;
+        }
+        code {
+            background-color: #e8e8e8;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+            border: 1px solid #ddd;
+            word-break: break-all;
+        }
+        .step {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fdfdfd;
+            border: 1px solid #eee;
+            border-left: 5px solid #4CAF50;
+            border-radius: 5px;
+        }
+        .step-number {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #4CAF50;
+        }
+        .alert {
+            padding: 15px;
+            background-color: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        .alert-warning {
+            background-color: #fffbe6;
+            border-color: #ffe58f;
+        }
+        .alert-title {
+            font-weight: bold;
+            color: #2E7D32;
+        }
+        ol, ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Netlify 汎用デプロイ手順ガイド (Cursor版)</h1>
+        <p>このガイドは、CursorのターミナルからNetlifyへ、新規サイトの公開や既存サイトの更新を行うための手順を説明するものです。</p>
+
+        <div class="alert">
+            <p class="alert-title">前提条件</p>
+            <p>Netlify CLIがインストールされ、アカウントへのログイン(<code>netlify login</code>)が完了していることを前提としています。</p>
+        </div>
+
+        <h2>【パターンA】新しいサイトを初めて公開する</h2>
+        <p>新しいプロジェクトのフォルダを初めてWebに公開する際の手順です。</p>
+        
+        <div class="step">
+            <h3><span class="step-number">Step 1.</span> 公開したいフォルダに移動する</h3>
+            <p>ターミナルで、公開したいファイル群が保存されているフォルダに移動します。</p>
+            <code>cd "公開したいフォルダへのパス"</code>
+        </div>
+        
+        <div class="step">
+            <h3><span class="step-number">Step 2.</span> Netlifyにサイトを作成し、公開する</h3>
+            <p>以下のコマンドを実行します。対話形式でいくつか質問されるので、それに答えることでサイトが作成・公開されます。</p>
+            <code>netlify deploy --prod</code>
+            <p style="margin-top:15px;"><strong>【対話形式の質問への回答例】</strong></p>
+            <ul>
+                <li><b>What would you like to do?</b><br>
+                矢印キーで <code>+ Create & configure a new project</code> を選択してEnter。</li>
+                <li><b>Team:</b><br>
+                ご自身のチーム名を確認してEnter。</li>
+                <li><b>Site name (optional):</b><br>
+                サイトのURLになる名前です。希望の名前（半角英数字）を入力するか、空のままEnterを押すとランダムな名前が付きます。</li>
+            </ul>
+        </div>
+        
+        <div class="alert alert-warning">
+            <p class="alert-title">💡 Gitリポジトリ関連でエラーが出た場合</p>
+            <p>上記手順でエラーが出る場合は、以下の2段階の手順でより確実にサイトを作成できます。</p>
+            <ol>
+                <li>先にサイトの器を作成: <code>netlify sites:create --name サイト名</code></li>
+                <li>ファイルをアップロード: <code>netlify deploy --prod --dir .</code></li>
+            </ol>
+        </div>
+
+
+        <h2>【パターンB】既存のサイトを更新する</h2>
+        <p>すでに公開済みのサイトの内容を、ローカルでの変更を反映して更新する際の手順です。</p>
+        
+        <div class="step">
+            <h3><span class="step-number">Step 1.</span> 更新したいサイトのフォルダに移動する</h3>
+            <p>ターミナルで、更新したいファイル群が保存されているフォルダに移動します。一度Netlifyと連携したフォルダには、<code>.netlify</code>という隠しフォルダが作られています。</p>
+            <code>cd "更新したいフォルダへのパス"</code>
+        </div>
+        
+        <div class="step">
+            <h3><span class="step-number">Step 2.</span> 変更内容をアップロード（デプロイ）する</h3>
+            <p>以下のコマンドを1つ実行するだけで、現在のフォルダの中身がNetlifyにアップロードされ、即座にサイトに反映されます。</p>
+            <code>netlify deploy --prod --dir .</code>
+        </div>
+
+        <h2>【共通】デプロイ完了の確認とトラブルシューティング</h2>
+        <div class="step">
+            <h3>デプロイの成功確認</h3>
+            <p>コマンド成功後、ターミナルに以下のようなメッセージが表示されます。このURLにアクセスして、変更が反映されているか確認してください。</p>
+            <code>🚀 Deploy complete</code><br>
+            <code>Deployed to production URL: https://あなたのサイト名.netlify.app</code>
+        </div>
+
+        <div class="step">
+            <h3>よくあるエラー：「Page not found」と表示される</h3>
+            <p>公開したURLにアクセスしてもページが見つからない場合、NetlifyがどのHTMLファイルを表示すればいいか分かっていない可能性があります。以下のどちらかの方法で解決できます。</p>
+            <ul>
+                <li><b>解決策1（推奨）：</b>
+                トップページにしたいHTMLファイルの名前を <code>index.html</code> に変更する。
+                </li>
+                <li><b>解決策2：</b>
+                プロジェクトのフォルダ内に <code>_redirects</code> という名前のファイル（拡張子なし）を新規作成し、中に <code>/ /表示したいファイル名.html 200</code> という1行を記述する。
+                </li>
+            </ul>
+             <p>どちらかの修正を行った後、再度パターンBの手順でデプロイすれば、ページが正しく表示されます。</p>
+        </div>
+
+    </div>
+</body>
+</html> 

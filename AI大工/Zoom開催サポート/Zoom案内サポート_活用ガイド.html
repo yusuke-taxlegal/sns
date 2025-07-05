@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoomセミナー案内アシスタント 活用ガイド</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        h1, h2, h3 {
+            border-bottom: 2px solid #79aec8;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h1 {
+            font-size: 2em;
+            color: #2c3e50;
+        }
+        h2 {
+            font-size: 1.6em;
+            color: #34495e;
+            border-bottom-width: 1px;
+        }
+        h3 {
+            font-size: 1.2em;
+            color: #34495e;
+            border-bottom: none;
+            margin-top: 30px;
+        }
+        p, li {
+            font-size: 1em;
+        }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #c0392b;
+        }
+        .menu-path {
+            font-weight: bold;
+            color: #2980b9;
+        }
+        .step {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fdfdfd;
+            border: 1px solid #eee;
+            border-left: 5px solid #79aec8;
+            border-radius: 5px;
+        }
+        .step-number {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #79aec8;
+        }
+        .alert {
+            padding: 15px;
+            background-color: #fffbe6;
+            border: 1px solid #ffe58f;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        .alert-title {
+            font-weight: bold;
+            color: #d8a03d;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Zoomセミナー案内アシスタント 活用ガイド</h1>
+
+        <p>このツールは、GoogleスプレッドシートからZoomセミナーの参加者へ「案内メール」と「お礼メール」を一括で下書き作成するためのものです。手作業によるメール作成の手間とミスを削減し、業務を効率化します。</p>
+
+        <div class="alert" style="background-color: #e7f3fe; border-color: #b3d7ff; color: #31708f;">
+            <p class="alert-title" style="color: #31708f; font-size: 1.1em;"><strong>サンプル スプレッドシート</strong></p>
+            <p>百聞は一見にしかず。実際のツールの動きを確認できるサンプルシートをご用意しました。ご自身のシート作成の参考にしてください。<br>
+            <a href="https://docs.google.com/spreadsheets/d/18gbFzaMh8H8LRKCh2f4mLCiwg5stGW6wpp8CK3f5HYM/edit?usp=sharing" target="_blank" rel="noopener noreferrer"><strong>» サンプル スプレッドシートを閲覧する</strong></a>
+            </p>
+        </div>
+
+        <h2><span class="step-number">Step 1.</span> 事前準備</h2>
+        <p>メールを作成する前に、2つのシートに必要な情報を設定します。</p>
+
+        <div class="step">
+            <h3>1. 「設定・メール文面」シート</h3>
+            <p>こちらには、送信するメールの共通情報を入力します。</p>
+            <ul>
+                <li><strong>セミナー名:</strong> メール文面に挿入されます。(例: 〇〇活用セミナー)</li>
+                <li><strong>日時:</strong> セミナーの開催日時を入力します。</li>
+                <li><strong>ZoomURL:</strong> 参加者用のZoomミーティングURLを貼り付けます。</li>
+                <li><strong>案内メール件名・本文:</strong> 送信する案内メールの件名と本文を設定します。</li>
+                <li><strong>お礼メール件名・本文:</strong> 送信するお礼メールの件名と本文を設定します。</li>
+            </ul>
+            <div class="alert">
+                <p class="alert-title">ポイント：自動置換</p>
+                <p>本文に <code>{{氏名}}</code> <code>{{セミナー名}}</code> <code>{{日時}}</code> <code>{{ZoomURL}}</code> と入力すると、参加者リストや設定シートの情報に応じて自動で内容が置き換えられます。</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>2. 「参加者リスト」シート</h3>
+            <p>こちらには、メールを送る相手の情報を入力します。</p>
+            <ul>
+                <li><strong>氏名:</strong> 参加者の氏名を入力します。</li>
+                <li><strong>メールアドレス:</strong> 参加者のメールアドレスを正確に入力します。</li>
+            </ul>
+        </div>
+
+
+        <h2><span class="step-number">Step 2.</span> 案内メールの作成手順</h2>
+        <p>以下の手順で、選択した参加者への案内メールを一括で下書き作成できます。</p>
+        <ol class="step">
+            <li>「参加者リスト」シートを開き、メールを送りたい人の行の左端にある<strong>チェックボックスにチェック</strong>を入れます。（複数選択可）</li>
+            <li>スプレッドシート上部のメニューから <span class="menu-path">セミナー用メール > 選択した人に案内メールを下書き作成</span> をクリックします。</li>
+            <li>確認のポップアップが表示されるので、「はい」をクリックします。</li>
+            <li>処理が完了すると、「下書きの作成が完了しました。」と表示されます。</li>
+            <li>ご自身のGmailを開き、「下書き」フォルダにメールが作成されていることを確認してください。</li>
+        </ol>
+        <div class="alert">
+            <p>処理が完了すると、「参加者リスト」シートの「案内メール状況」に日時が記録され、チェックボックスは自動でOFFになります。</p>
+        </div>
+
+        <h2><span class="step-number">Step 3.</span> お礼メールの作成手順</h2>
+        <p>セミナー終了後など、お礼メールを送る際の手順です。案内メールとほぼ同じ操作です。</p>
+         <ol class="step">
+            <li>「参加者リスト」シートを開き、メールを送りたい人の行の左端にある<strong>チェックボックスにチェック</strong>を入れます。</li>
+            <li>メニューから <span class="menu-path">セミナー用メール > 選択した人にお礼メールを下書き作成</span> をクリックします。</li>
+            <li>確認のポップアップが表示されたら「はい」をクリックします。</li>
+            <li>Gmailの「下書き」フォルダに、お礼メールが作成されていることを確認してください。</li>
+        </ol>
+         <div class="alert">
+            <p>処理が完了すると、「参加者リスト」シートの「お礼メール状況」に日時が記録され、チェックボックスは自動でOFFになります。</p>
+        </div>
+
+        <h2><span class="step-number">Step 4.</span> 補足</h2>
+        <h3>送信ログシート</h3>
+        <p><code>送信ログ</code> シートには、いつ、誰に、どのメール（案内/お礼）の下書きを作成したか、成功したか失敗したかの履歴が自動で記録されます。</p>
+        <h3>エラーが出た場合</h3>
+        <p>「『設定・メール文面』シートが見つからないか、形式が正しくありません。」というエラーが出た場合は、シート名が変更されていないか、A2からG2までのセルに必要な情報が入力されているかを確認してください。</p>
+
+    </div>
+
+    <div class="container" style="margin-top: 40px; border-top: 5px solid #2c3e50; padding-top: 10px;">
+        <h2><span class="step-number">発展</span> さらなる効率化のご提案</h2>
+        <p>現在の機能に加えて、以下のような拡張を行うことで、セミナー運営をさらに自動化・効率化できます。ご興味があればお気軽にご相談ください。</p>
+
+        <div class="step">
+            <h3>提案1：Googleフォーム連携による「参加者登録の完全自動化」</h3>
+            <p><strong>現状の課題：</strong><br>
+            参加者の氏名やメールアドレスを手入力する必要があり、手間と入力ミスの原因になります。</p>
+            <p><strong>改善案：</strong><br>
+            Googleフォームで申込フォームを作成し、回答があれば自動でスプレッドシートの「参加者リスト」に追加されるようにします。</p>
+             <div class="alert">
+                <p class="alert-title">期待できる効果</p>
+                <p>申込受付の手間がゼロになり、入力ミスも防げます。担当者が不在でも24時間自動で受付が可能です。</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>提案2：トリガーによる「リマインドメールの自動送信」</h3>
+            <p><strong>現状の課題：</strong><br>
+            セミナー前日のリマインドメールを手動で送信するのは手間がかかり、送信忘れのリスクがあります。</p>
+            <p><strong>改善案：</strong><br>
+            Google Apps Scriptの「トリガー」機能を使い、指定した日時（例：開催前日の朝10時）にリマインドメールを自動送信します。</p>
+             <div class="alert">
+                <p class="alert-title">期待できる効果</p>
+                <p>送信忘れを確実に防ぎ、参加者の「うっかり忘れ」を減らすことで参加率の向上が期待できます。</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>提案3：Googleカレンダー連携による「参加者の予定登録の自動化」</h3>
+            <p><strong>現状の課題：</strong><br>
+            参加者がメールで受け取ったZoom URLを、自身のカレンダーに登録し忘れることがあります。</p>
+            <p><strong>改善案：</strong><br>
+            案内メールを送る際、Googleカレンダーにも自動で予定を登録し、参加者を「招待」するようにします。</p>
+             <div class="alert">
+                <p class="alert-title">期待できる効果</p>
+                <p>参加者のカレンダーに直接予定が入るため参加忘れが減り、手動登録の手間を省くことで参加者の満足度も高まります。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
