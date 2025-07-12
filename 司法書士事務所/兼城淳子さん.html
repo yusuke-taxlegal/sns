@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相続手続きインフォグラフィック - 兼城様相続ケース</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8fafc;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #e2e8f0;
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            box-sizing: border-box;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-left: 20px;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-right: 20px;
+            text-align: left;
+        }
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #003f5c;
+            border-radius: 50%;
+            top: 30px;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 15px;
+                text-align: left !important;
+            }
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            .timeline-dot {
+                left: 10px !important;
+                right: auto !important;
+            }
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .tree ul {
+            position: relative;
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .tree li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 20px 5px 0 5px;
+        }
+        .tree li::before, .tree li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            border-top: 2px solid #cbd5e1;
+            width: 50%;
+            height: 20px;
+        }
+        .tree li::after {
+            right: auto;
+            left: 50%;
+            border-left: 2px solid #cbd5e1;
+        }
+        .tree li:only-child::after, .tree li:only-child::before {
+            display: none;
+        }
+        .tree li:first-child::before, .tree li:last-child::after {
+            border: 0 none;
+        }
+        .tree li:last-child::before {
+            border-right: 2px solid #cbd5e1;
+            border-radius: 0 5px 0 0;
+        }
+        .tree li:first-child::after {
+            border-radius: 5px 0 0 0;
+        }
+        .tree ul ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border-left: 2px solid #cbd5e1;
+            width: 0;
+            height: 20px;
+        }
+        .tree li div {
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            display: inline-block;
+            border-radius: 8px;
+            min-width: 120px;
+            background-color: white;
+        }
+        .deceased-marker {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        .doc-list {
+            text-align: left;
+            margin-top: 1rem;
+            padding-left: 1rem;
+            font-size: 0.9em;
+        }
+        .doc-list li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* A4 Print Styles */
+        @media print {
+            @page {
+                size: A4;
+                margin: 1.5cm;
+            }
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                background-color: white !important;
+                font-size: 10pt;
+            }
+            h1, h2, h3, p, li, div {
+                color: black !important;
+            }
+            .bg-white, .bg-blue-50, .bg-green-50, .bg-yellow-50, .bg-red-50, .bg-purple-50, .bg-blue-100, .bg-green-100, .bg-red-100, .bg-yellow-100, .bg-purple-100, .bg-gray-100 {
+                background-color: white !important;
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+            }
+            .bg-red-100.border-l-4 {
+                border-left-width: 4px !important;
+                border-color: #ccc !important;
+            }
+            .shadow-lg {
+                box-shadow: none !important;
+            }
+            section, .tree, .timeline-item > div {
+                page-break-inside: avoid;
+            }
+            .timeline::before, .timeline-dot {
+                display: none;
+            }
+            .timeline-item, .timeline-item:nth-child(odd), .timeline-item:nth-child(even) {
+                width: 100%;
+                position: static;
+                padding: 10px 0;
+                text-align: left !important;
+                left: auto;
+            }
+            .tree {
+                transform: scale(0.9);
+                transform-origin: top left;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003f5c] mb-2">数世代にわたる相続手続きの課題</h1>
+            <p class="text-lg text-gray-600">兼城様相続ケースから学ぶ、複雑な相続の解決ステップ</p>
+        </header>
+
+        <section class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#374c80] mb-4 text-center">現在の状況：二重の相続が発生</h2>
+                 <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-8 rounded-r-lg" role="alert">
+                    <p class="font-bold">【最重要】土地の権利者が全員亡くなっています</p>
+                    <p class="mt-2">うるま市の土地は、登記上「兼城 太郎 様」と「兼城 信子 様」の共有名義です。しかし、お二人とも既に亡くなられているため、事態は非常に複雑です。</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li><strong>太郎様の持分：</strong> 太郎様の相続人（配偶者やお子さんなど）が相続します。</li>
+                        <li><strong>信子様の持分：</strong> 信子様のお子さん（淳子様、そのこ様、はるお様、さとる様）が相続します。</li>
+                    </ul>
+                     <p class="mt-2">この土地を売却・活用するには、まずこの二つの相続手続きを完了させ、現在の相続人全員の名義に登記し直す必要があります。</p>
+                </div>
+
+                <div class="tree overflow-x-auto pb-4">
+                    <ul>
+                        <li>
+                            <div class="bg-green-100">
+                                <p class="font-bold text-green-800">兼城 太郎</p>
+                                <p class="text-xs text-gray-500">相続人 (長男) / 現名義人</p>
+                                <p class="text-xs deceased-marker">(故)</p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="bg-gray-100">
+                                        <p class="font-bold text-gray-800">太郎様の相続人</p>
+                                        <p class="text-xs text-gray-500">(配偶者・子など)</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="bg-red-100">
+                                <p class="font-bold text-red-800">兼城 信子</p>
+                                <p class="text-xs text-gray-500">相続人 (長女) / 現名義人</p>
+                                <p class="text-xs deceased-marker">(故)</p>
+                                <p class="text-xs text-gray-500 mt-1 border-t border-red-200 pt-1">夫 (先に逝去)</p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="bg-purple-100">
+                                        <p class="font-bold text-purple-800">兼城 淳子</p>
+                                        <p class="text-xs text-gray-500">信子の相続人 (長女)</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <p class="font-bold">そのこ</p>
+                                        <p class="text-xs text-gray-500">信子の相続人 (次女)</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <p class="font-bold">はるお</p>
+                                        <p class="text-xs text-gray-500">信子の相続人 (長男)</p>
+                                    </div>
+                                </li>
+                                 <li>
+                                    <div>
+                                        <p class="font-bold">さとる</p>
+                                        <p class="text-xs text-gray-500">信子の相続人 (次男)</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="bg-yellow-100">
+                                <p class="font-bold text-yellow-800">兼城 健</p>
+                                <p class="text-xs text-gray-500">相続人 (次男)</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-[#003f5c] mb-8 text-center">これまでの経緯と今後のステップ（詳細版）</h2>
+            <div class="relative timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                        <p class="font-bold text-lg text-[#7a5195]">過去の経緯① 不在者手続き</p>
+                        <time class="text-sm text-gray-500">平成7年頃</time>
+                        <p class="mt-2 font-semibold">手続き：</p>
+                        <p class="mt-1 text-sm text-left">当時行方不明だった信子様のため、家庭裁判所へ「不在者財産管理人」の選任と「権限外行為（遺産分割協議）の許可」を申立て。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="border-color: #ef4444;"></div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-red-500">
+                        <p class="font-bold text-lg text-[#ef4444]">現在の課題：数次相続</p>
+                        <time class="text-sm text-gray-500">現在</time>
+                        <p class="mt-2 font-semibold">状況：</p>
+                        <p class="mt-1 text-sm text-left">土地の名義人である太郎様と信子様が亡くなったため、それぞれの相続（第2・第3の相続）手続きが必要な状態です。</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-dot" style="border-color: #ff764a;"></div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                        <p class="font-bold text-lg text-[#ff764a]">今後のステップ① 太郎様の相続</p>
+                        <time class="text-sm text-gray-500">今後すぐ</time>
+                        <p class="mt-2 font-semibold">手続き：</p>
+                        <p class="mt-1 text-sm text-left">太郎様の相続人を戸籍で確定させ、太郎様の財産（土地の持分1/2を含む）についての遺産分割協議を行います。</p>
+                        <p class="mt-2 font-semibold">主な必要書類：</p>
+                        <ul class="list-disc doc-list">
+                            <li>太郎様の出生から死亡までの戸籍謄本</li>
+                            <li>太郎様の相続人全員の戸籍謄本</li>
+                            <li>相続人全員の印鑑証明書</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="border-color: #ff764a;"></div>
+                     <div class="bg-white p-6 rounded-2xl shadow-lg">
+                        <p class="font-bold text-lg text-[#ff764a]">今後のステップ② 信子様の相続</p>
+                        <time class="text-sm text-gray-500">今後すぐ</time>
+                        <p class="mt-2 font-semibold">手続き：</p>
+                        <p class="mt-1 text-sm text-left">信子様の相続人（淳子様たち4名）で、信子様の財産（土地の持分1/2を含む）についての遺産分割協議を行います。</p>
+                        <p class="mt-2 font-semibold">主な必要書類：</p>
+                        <ul class="list-disc doc-list">
+                            <li>信子様の出生から死亡までの戸籍謄本</li>
+                            <li>相続人4名の戸籍謄本</li>
+                            <li>相続人4名の印鑑証明書</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="border-color: #ffa600;"></div>
+                     <div class="bg-white p-6 rounded-2xl shadow-lg">
+                        <p class="font-bold text-lg text-[#ffa600]">今後のステップ③ 全体の解決</p>
+                        <time class="text-sm text-gray-500">最終段階</time>
+                        <p class="mt-2 font-semibold">手続き：</p>
+                        <p class="mt-1 text-sm text-left">太郎様の相続人グループと信子様の相続人グループ、関係者全員で土地全体の最終的な分け方について遺産分割協議を行い、法務局へ登記を申請します。</p>
+                        <p class="mt-2 font-semibold">主な必要書類：</p>
+                        <ul class="list-disc doc-list">
+                            <li>最終的な遺産分割協議書（関係者全員の実印で押印）</li>
+                            <li>関係者全員の印鑑証明書</li>
+                            <li>登記申請書</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-[#003f5c] mb-8 text-center">複雑な相続を解決するキーポイント</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="font-bold text-lg text-[#374c80] mb-2">① 数次相続の理解</h3>
+                    <p class="text-gray-600">相続手続きが終わらないうちに相続人が亡くなり、次の相続が重なる状態です。関係者が増え、手続きが複雑化します。</p>
+                </div>
+                 <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="font-bold text-lg text-[#7a5195] mb-2">② 相続人の確定</h3>
+                    <p class="text-gray-600">まずは、亡くなった太郎様の相続人が誰なのか、戸籍謄本を集めて正確に確定させる必要があります。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="font-bold text-lg text-[#bc5090] mb-2">③ 全員での遺産分割協議</h3>
+                    <p class="text-gray-600">太郎様の相続人全員と、信子様の相続人（淳子様たち4名）全員が参加して、土地全体の分け方を協議し、合意しなければなりません。</p>
+                </div>
+                 <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="font-bold text-lg text-[#ef5675] mb-2">④ 専門家への相談</h3>
+                    <p class="text-gray-600">数次相続は非常に専門的な知識を要します。手続きを円滑に進めるため、司法書士や弁護士への相談が不可欠です。</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="text-center text-gray-500 text-sm mt-12">
+            <p>このインフォグラフィックは提供された資料に基づき作成されたもので、一般的な情報提供を目的としています。</p>
+            <p>個別の事案については、司法書士や弁護士などの専門家にご相談ください。</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js is not used in this version as the focus is on the relationship diagram and timeline.
+        // A placeholder script tag is kept for potential future use.
+    </script>
+</body>
+</html>

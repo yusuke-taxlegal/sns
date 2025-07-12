@@ -1,0 +1,10 @@
+{
+  "noteFolderPath": "脳内メモ",
+  "vaultId": "my-vault-5000",
+  "lineUserId": "U4c3df1fd870b1be08d3c63a95e18b832",
+  "autoSync": true,
+  "syncInterval": 2,
+  "syncOnStartup": true,
+  "organizeByDate": true,
+  "fileNameTemplate": "{date}-{messageId}"
+}

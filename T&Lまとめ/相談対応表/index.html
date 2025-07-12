@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T&Lサポート株式会社 事業戦略インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F4F6F8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            text-align: center;
+        }
+        .kpi-value {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #004D80;
+        }
+        .kpi-label {
+            font-size: 1rem;
+            color: #4A5568;
+            margin-top: 0.5rem;
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        }
+        .flow-arrow {
+            color: #A0AEC0;
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#004D80]">T&Lサポートの挑戦</h1>
+            <p class="text-lg md:text-xl mt-4 text-gray-600">データドリブンな顧客支援で、沖縄の中小企業の未来を共創する</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="vision" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-center text-[#004D80] mb-6">私たちの使命：機会損失の撲滅と提案力の最大化</h2>
+                <div>
+                    <div>
+                        <p class="text-base md:text-lg leading-relaxed text-gray-700 mb-4">
+                            日々多くの事業者様からご相談をいただく中で、担当者個々の対応には限界があり、拾いきれていない本質的な課題や、より良い提案の機会を逃しているケースがありました。
+                        </p>
+                        <p class="text-base md:text-lg leading-relaxed text-gray-700">
+                            私たちはこの状況を打破すべく、「相談対応状況表」という情報共有の仕組みを導入。全ての相談内容をデータとして蓄積・可視化し、チーム全員で顧客の成功を支援する体制を構築します。これは、単なる記録ではなく、私たちの成長を加速させる戦略的なエンジンです。
+                        </p>
+                        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                            <a href="https://forms.gle/Qf4hUZaEW9uUDaWF7"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="block w-full bg-[#004D80] text-white font-bold py-4 px-6 rounded-lg hover:bg-[#003a66] transition-colors duration-300 shadow-md text-base">
+                                <strong>① 相談内容の入力</strong><br><span class="text-sm font-normal">（Googleフォーム）</span>
+                            </a>
+                            <a href="https://docs.google.com/spreadsheets/d/18CLGXOAX8PmSn-nYJzo1QdtCv-8TBDi-4Hlc3nK-Zt0/edit?usp=sharing"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="block w-full bg-[#F48C06] text-white font-bold py-4 px-6 rounded-lg hover:bg-[#dd7e05] transition-colors duration-300 shadow-md text-base">
+                                <strong>② 相談対応状況の確認</strong><br><span class="text-sm font-normal">（スプレッドシート）</span>
+                            </a>
+                            <a href="https://drive.google.com/open?id=15bqmqBsS2CyS5qTXIZ2yeUYuJHaQusa4&usp=drive_fs"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="block w-full bg-gray-600 text-white font-bold py-4 px-6 rounded-lg hover:bg-gray-700 transition-colors duration-300 shadow-md text-base">
+                                <strong>③ 生成ドキュメントの確認</strong><br><span class="text-sm font-normal">（共有フォルダ）</span>
+                            </a>
+                        </div>
+                        <div class="mt-6 p-4 bg-sky-50 border-l-4 border-sky-400 text-sky-800 rounded">
+                            <h4 class="font-bold">入力TIPS</h4>
+                            <p class="text-sm">PCのブックマークやお気に入り、スマートフォンのホーム画面などにフォームURLを登録しておくと、いつでも素早くアクセスでき、入力の手間が省けます。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="process">
+                 <h2 class="text-3xl font-bold text-center text-[#004D80] mb-8">情報共有が生み出す、新しい顧客支援プロセス</h2>
+                <div class="flex flex-col items-center">
+                    <div class="w-full max-w-2xl">
+                        <div class="flow-step">
+                            <span class="text-3xl text-[#F48C06] mr-4">①</span>
+                            <div>
+                                <h3 class="font-bold text-lg">相談受付</h3>
+                                <p class="text-sm text-gray-600">あらゆる窓口からの相談を一元的に集約</p>
+                            </div>
+                        </div>
+                        <div class="text-center flow-arrow">↓</div>
+                        <div class="flow-step">
+                            <span class="text-3xl text-[#F48C06] mr-4">②</span>
+                            <div>
+                                <h3 class="font-bold text-lg">状況表へ入力</h3>
+                                <p class="text-sm text-gray-600">顕在・潜在課題、経緯などをデータとして記録</p>
+                            </div>
+                        </div>
+                         <div class="text-center flow-arrow">↓</div>
+                        <div class="flow-step bg-[#004D80] text-white">
+                            <span class="text-3xl text-white mr-4">③</span>
+                            <div>
+                                <h3 class="font-bold text-lg">チームでの共有・分析</h3>
+                                <p class="text-sm text-gray-50">週次会議で多角的な視点から最適な提案を議論</p>
+                            </div>
+                        </div>
+                         <div class="text-center flow-arrow">↓</div>
+                        <div class="flow-step">
+                            <span class="text-3xl text-[#F48C06] mr-4">④</span>
+                            <div>
+                                <h3 class="font-bold text-lg">戦略的提案</h3>
+                                <p class="text-sm text-gray-600">IT活用から財務まで、顧客に最適なソリューションを提示</p>
+                            </div>
+                        </div>
+                         <div class="text-center flow-arrow">↓</div>
+                         <div class="flow-step">
+                            <span class="text-3xl text-[#F48C06] mr-4">⑤</span>
+                            <div>
+                                <h3 class="font-bold text-lg">グループ連携</h3>
+                                <p class="text-sm text-gray-600">必要に応じて税理士・司法書士事務所と連携し、ワンストップで課題を解決</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="details" class="bg-gray-50 p-6 md:p-8 rounded-lg shadow-inner">
+                <h2 class="text-3xl font-bold text-center text-[#004D80] mb-8">戦略を支える「相談対応状況表」の項目詳細</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white rounded-lg shadow">
+                        <thead class="bg-[#004D80] text-white">
+                            <tr>
+                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">カテゴリ</th>
+                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">項目名</th>
+                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">目的・ポイント</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700">
+                            <tr class="border-b"><td class="py-3 px-4 font-bold" rowspan="4">A.案件基本情報</td><td class="py-3 px-4">対応日時</td><td class="py-3 px-4 text-sm">（ご提案の通り）</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">事業者名</td><td class="py-3 px-4 text-sm">（ご提案の通り）</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">顧客担当者名</td><td class="py-3 px-4 text-sm">誰と話したかを明確にします。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">対応者名</td><td class="py-3 px-4 text-sm">（ご提案の通り）誰が関わったかを明確にします。</td></tr>
+
+                            <tr class="border-b"><td class="py-3 px-4 font-bold" rowspan="4">B.相談経緯・内容</td><td class="py-3 px-4">流入経路</td><td class="py-3 px-4 text-sm">どのチャネルが有効か分析し、マーケティング施策に活かします。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">連携元</td><td class="py-3 px-4 text-sm">グループ連携の貢献度を可視化します。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">事業者の顕在課題</td><td class="py-3 px-4 text-sm">（ご提案の通り）相談内容や課題を具体的に記載します。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">事業者の潜在課題</td><td class="py-3 px-4 text-sm">「拾いきれていない課題」を拾うための最重要項目です。</td></tr>
+
+                            <tr class="border-b"><td class="py-3 px-4 font-bold" rowspan="5">C.提案・アクション</td><td class="py-3 px-4">提案サービス</td><td class="py-3 px-4 text-sm">提案漏れを防ぎ、誰が何を担当できるか明確にします。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">具体的な提案内容</td><td class="py-3 px-4 text-sm">提案内容をナレッジとして蓄積し、チームの提案力を底上げします。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">グループ連携提案</td><td class="py-3 px-4 text-sm">グループ連携を意識的に行うための項目です。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">次アクション</td><td class="py-3 px-4 text-sm">行動を明確にし、案件の停滞を防ぎます。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">アクション期限</td><td class="py-3 px-4 text-sm"></td></tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="next-steps" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-center text-[#004D80] mb-8">データを価値に変える、未来へのステップ</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#F48C06] mb-4">シート運用段階での活用法</h3>
+                        <ul class="list-disc list-inside space-y-3 text-gray-700">
+                            <li><strong>週次案件共有ミーティングの実施:</strong> シートを議題に潜在課題や新提案を議論し、チームの総合力を高める。</li>
+                            <li><strong>グループ会社との戦略的連携:</strong> 「連携提案」を基に情報共有会を開き、相互送客の質と量を向上させる好循環を創出する。</li>
+                            <li><strong>「勝ちパターン」の分析と横展開:</strong> 契約済案件から成功法則を見つけ出し、チーム全体の成約率を底上げする。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#F48C06] mb-4">将来の発展形：CRMへの展開</h3>
+                        <p class="text-gray-700 mb-4">このシートは将来の顧客管理システム（CRM）への試作品です。データが蓄積されれば、本格的なシステムへ移行し、さらなる成長を目指します。</p>
+                        <ul class="list-disc list-inside space-y-3 text-gray-700">
+                            <li><strong>マーケティングの自動化:</strong> Webフォームと連携し、見込み客へ関連情報を自動配信する。</li>
+                            <li><strong>営業活動の効率化:</strong> タスクや期限をカレンダーへ自動登録し、対応漏れを撲滅する。</li>
+                            <li><strong>経営判断の迅速化:</strong> 利益率や成約期間をリアルタイムで可視化し、データに基づいた経営を実現する。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="partnership" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-center text-[#004D80] mb-6">戦略的パートナーシップによる提供価値の拡大</h2>
+                <div>
+                    <div>
+                        <p class="text-base md:text-lg leading-relaxed text-gray-700 mb-4">
+                            私たちの強みは、補助金申請やIT活用支援に留まりません。グループ内の税理士事務所・司法書士事務所との緊密な連携により、お客様のあらゆる経営課題にワンストップで対応可能です。
+                        </p>
+                        <p class="text-base md:text-lg leading-relaxed text-gray-700">
+                           「相談対応状況表」を通じて、税務や法務に関する潜在的なニーズを早期に発見し、専門家へスムーズに繋ぐことで、お客様の事業成長を包括的にサポートします。
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t border-gray-300">
+            <p class="text-gray-600">T&Lサポート株式会社</p>
+            <p class="text-sm text-gray-500">沖縄の中小企業と共に、未来を切り拓く。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const primaryColor = '#004D80';
+        const secondaryColor = '#F48C06';
+        const lightGrayColor = '#F4F6F8';
+        const textColor = '#374151';
+
+        function wrapText(text, maxWidth) {
+            const words = text.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + ' ' + words[i]).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                } else {
+                    currentLine += ' ' + words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        color: textColor,
+                        font: {
+                           size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: '#ffffff',
+                    titleColor: primaryColor,
+                    bodyColor: textColor,
+                    borderColor: '#E2E8F0',
+                    borderWidth: 1,
+                    padding: 10,
+                    displayColors: false
+                }
+            }
+        };
+
+    </script>
+
+</body>
+</html>

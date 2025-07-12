@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T&Lサポート株式会社 補助金・財務Webセミナー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            -webkit-print-color-adjust: exact; /* Chrome, Safari, Edge */
+            color-adjust: exact; /* Firefox */
+        }
+        /* A4サイズコンテナ */
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 30px auto;
+            padding: 15mm;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        /* 印刷設定 */
+        @media print {
+            body, html {
+                margin: 0;
+                padding: 0;
+                background-color: #fff;
+            }
+            .a4-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 15mm;
+                width: 100%;
+                height: 100%;
+                page-break-after: always;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+        .brand-blue { color: #004A80; }
+        .brand-blue-bg { background-color: #004A80; }
+        .brand-orange { color: #F48C06; }
+        .brand-orange-bg { background-color: #F48C06; }
+        .brand-light-blue-bg { background-color: #E6F4FF; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="a4-container">
+        <!-- ヘッダー -->
+        <header class="text-center border-b-4 brand-blue-bg pb-4 mb-6">
+            <p class="text-xl font-bold text-white">【初心者大歓迎！】財務のプロ集団「T&Lサポート」が贈る</p>
+            <h1 class="text-4xl font-extrabold text-white mt-2">事業成長を加速する！<br>補助金と財務のW活用セミナー</h1>
+            <p class="mt-4 text-2xl font-bold brand-orange-bg text-white inline-block px-6 py-2 rounded-full">毎週金曜日 12:00〜13:00 オンライン開催</p>
+        </header>
+
+        <main class="flex-grow">
+            <div class="grid grid-cols-1 gap-6">
+                <section class="brand-light-blue-bg p-4 rounded-lg">
+                    <h2 class="text-xl font-bold brand-blue border-l-4 border-orange-500 pl-2 mb-3">こんなお悩みありませんか？</h2>
+                    <ul class="space-y-1 text-gray-700">
+                        <li>✓ 補助金に初めて挑戦するけど、何から始めればいいか分からない…</li>
+                        <li>✓ 電子申請や事業計画書の作成に不安を感じている</li>
+                        <li>✓ 採択されるだけでなく、その後の事業成長に繋げたい</li>
+                        <li>✓ 会社の資金繰りや財務状況も相談したい</li>
+                    </ul>
+                </section>
+
+                <section class="bg-white p-4 rounded-lg border border-gray-200">
+                    <h2 class="text-xl font-bold brand-blue border-l-4 border-orange-500 pl-2 mb-3">このセミナーで得られること</h2>
+                    <ul class="space-y-1 text-gray-700">
+                        <li>✓ 自社が補助金の対象になるか、その場で可能性がわかる</li>
+                        <li>✓ 申請までに必要な準備とスケジュール感が明確になる</li>
+                        <li>✓ 採択のポイントを押さえた、質の高い事業計画書作成のコツが学べる</li>
+                        <li>✓ 財務・補助金の専門家チームに直接質問できる</li>
+                    </ul>
+                </section>
+                
+                <section class="bg-white p-4 rounded-lg border border-gray-200">
+                    <h2 class="text-xl font-bold brand-blue border-l-4 border-orange-500 pl-2 mb-3">週替りの開催テーマ</h2>
+                    <div class="space-y-3">
+                        <div class="brand-light-blue-bg p-3 rounded-lg">
+                            <strong class="brand-blue">第1・3・5週【補助金活用編】</strong>
+                            <p class="text-gray-700 mt-1 text-sm">採択される事業計画書の書き方から、販路開拓に繋げる活用法まで徹底解説！</p>
+                        </div>
+                        <div class="bg-yellow-100 p-3 rounded-lg border border-yellow-300">
+                            <strong class="brand-orange">第2・4週【財務改善編】</strong>
+                            <p class="text-gray-700 mt-1 text-sm">脱・どんぶり勘定！会社の数字を経営に活かす、明日から使える予実管理術を学びます。</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-right mt-2 text-gray-500">※どちらのテーマからでもお気軽にご参加いただけます。</p>
+                </section>
+
+                <section class="bg-white p-4 rounded-lg text-center border-2 brand-orange-bg">
+                    <p class="font-bold text-white text-lg">参加費</p>
+                    <p class="font-extrabold text-4xl text-white">無料</p>
+                    <p class="text-sm text-white">(定員:各回10名様)</p>
+                </section>
+
+                <section class="bg-white p-4 rounded-lg border border-gray-200">
+                    <h2 class="text-xl font-bold brand-blue text-center mb-3">講師紹介</h2>
+                    <div class="flex justify-center mb-3">
+                        <img src="https://storage.googleapis.com/gemini-prod/images/0517551f-50d4-4545-8b38-d6c2a11b22e7" alt="講師の玉城祐輔氏" class="w-28 h-28 rounded-full object-cover shadow-md border-4 border-white">
+                    </div>
+                    <p class="text-center font-bold text-lg brand-blue">玉城 祐輔 (たましろ ゆうすけ)</p>
+                    <p class="text-center text-sm text-gray-500">T&Lサポート株式会社 代表取締役</p>
+                    <div class="text-sm mt-2 text-gray-700 bg-gray-50 p-3 rounded-lg">
+                        T&Lサポート株式会社の代表として、企業の財務改善や補助金活用を支援。元商工会経営指導員として10年間で培った現場知見と、金融機関出身者など専門家チームの総合力で、企業の課題解決をサポートしている。4児の父。
+                    </div>
+                </section>
+
+                    <section class="bg-white p-4 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold brand-blue text-center mb-2">参加者の声</h3>
+                    <div class="space-y-2 text-sm">
+                        <p class="bg-gray-50 p-2 rounded-lg">「補助金が後払いだと初めて知り、資金繰りの重要性がよく分かりました。」(30代・飲食業)</p>
+                        <p class="bg-gray-50 p-2 rounded-lg">「自分の事業がどの補助金の対象になるか、具体的にイメージできました。」(40代・小売業)</p>
+                    </div>
+                </section>
+
+                <section class="text-center mt-4">
+                    <h2 class="text-2xl font-bold brand-blue">お申し込み・詳細はこちら</h2>
+                    <p class="text-gray-600 mt-1">LINE公式アカウントを友だち追加して<br>セミナー情報や特典を受け取る！</p>
+                    <div class="flex justify-center items-center mt-3 space-x-4">
+                        <img src="https://placehold.co/150x150/E6F4FF/004A80?text=LINE+QR" alt="LINE公式アカウントQRコード" class="w-36 h-36 border-4 border-white rounded-lg shadow-md">
+                        <div class="text-left">
+                            <p class="font-bold text-lg brand-blue">参加者限定特典</p>
+                            <ul class="list-disc list-inside bg-yellow-100 p-3 rounded-lg border border-yellow-300 text-sm">
+                                <li>すぐに使える申請書ガイド</li>
+                                <li>対象経費チェックツール</li>
+                                <li><strong>無料個別相談</strong> (通常30分→<strong>60分</strong>)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="font-bold text-lg mt-2 brand-blue">「おきなわ補助金ナビ」</p>
+                </section>
+            </div>
+        </main>
+
+        <!-- フッター -->
+        <footer class="text-center mt-6 pt-4 border-t-2 border-gray-200">
+            <p class="font-bold text-lg brand-blue">主催・お問い合わせ</p>
+            <p class="text-gray-700">T&Lサポート株式会社</p>
+            <p class="text-sm text-gray-500">沖縄県中頭郡北谷町伊平241-2-202 / Email: tamashiro@taxlegal.jp</p>
+             <div class="mt-2">
+                <p class="text-xs text-gray-400">連携パートナー</p>
+                <div class="flex justify-center items-center space-x-4 mt-1">
+                    <p class="text-sm font-semibold text-gray-600">司法書士法人あさと事務所</p>
+                    <p class="text-sm font-semibold text-gray-600">エクシード税理士法人</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
