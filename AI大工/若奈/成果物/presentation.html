@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI活用事例：保育園のおたより改善</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+        body {
+            font-family: 'M PLUS Rounded 1c', 'Hiragino Sans', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .presentation-container {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: #fff;
+        }
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 60px 100px;
+            box-sizing: border-box;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+        }
+        .slide.active {
+            opacity: 1;
+        }
+        .footer {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #555;
+            background-color: rgba(255,255,255,0.7);
+            padding: 8px 18px;
+            border-radius: 12px;
+        }
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0,0,0,0.3);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+            user-select: none;
+        }
+        #prev { left: 20px; }
+        #next { right: 20px; }
+
+        /* Slide 1: Title */
+        #slide1 { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); color: #fff; }
+        #slide1 h1 { font-size: 90px; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); margin: 0; }
+        #slide1 h2 { font-size: 44px; font-weight: 400; margin: 20px 0 40px; }
+        #slide1 .provider { font-size: 34px; font-weight: 700; }
+
+        /* Slide 2: Before */
+        #slide2 { background-color: #f5f5f5; }
+        #slide2>h2 { color: #d32f2f; font-size: 56px; font-weight: 800; margin-bottom: 10px; }
+        #slide2>h3 { color: #333; font-size: 40px; font-weight: 400; margin-top: 0; }
+        #before-content {
+            font-family: 'Hiragino Sans', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
+            background-color: #fdfaf4;
+            color: #5d4037;
+            padding: 25px;
+            border: 8px solid #d4c1a9;
+            width: 85%;
+            box-sizing: border-box;
+            transform: scale(0.95);
+        }
+        #before-content .header { text-align: center; border-bottom: 2px dashed #bcaaa4; padding-bottom: 15px; margin-bottom: 25px; }
+        #before-content .header h1 { font-size: 34px; font-weight: bold; color: #795548; margin: 0; }
+        #before-content .header p { font-size: 20px; margin-top: 8px; }
+        #before-content .section { margin-bottom: 25px; }
+        #before-content .section h2 { font-size: 28px; color: #8d6e63; border-left: 6px solid #a1887f; padding-left: 12px; margin-bottom: 20px; text-align: left;}
+        #before-content ul { list-style: none; padding-left: 0; }
+        #before-content li { background-color: #efebe9; border-radius: 8px; padding: 15px 20px; margin-bottom: 12px; line-height: 1.7; border: 1px solid #d7ccc8; text-align: left; font-size: 24px;}
+        #before-content .highlight { font-weight: bold; color: #d32f2f; }
+        #before-content .note { background-color: #fff8e1; border: 1px dashed #ffc107; padding: 15px; border-radius: 8px; font-size: 18px; text-align: left;}
+
+        /* Slide 3: After */
+        #slide3 { background-color: #f5f5f5; }
+        #slide3>h2 { color: #29b6f6; font-size: 52px; font-weight: 800; margin: 0; }
+        #slide3>h3 { color: #333; font-size: 38px; font-weight: 400; margin: 0 0 5px 0;}
+        #after-content { transform: scale(0.95); margin-top: 0; }
+        #after-content .calendar-container { font-family: 'Hiragino Sans', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif; background: linear-gradient(135deg, #fff9e6, #fbe9e7); padding: 20px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); color: #5d4037; width: 100%; box-sizing: border-box; }
+        #after-content .calendar-header { text-align: center; margin-bottom: 15px; }
+        #after-content .calendar-header h2 { font-size: 36px; color: #795548; font-weight: bold; margin: 0; }
+        #after-content .sunflower, #after-content .watermelon { font-size: 38px; vertical-align: middle; }
+        #after-content .calendars-wrapper { display: flex; justify-content: center; gap: 20px; }
+        #after-content .calendar { width: 90%; }
+        #after-content .calendar h3 { text-align: center; color: #8d6e63; font-size: 30px; margin-bottom: 15px; }
+        #after-content table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        #after-content th, #after-content td { text-align: center; vertical-align: top; padding: 6px 4px; height: 78px; font-size: 20px; position: relative; }
+        #after-content th { color: #a1887f; font-weight: normal; }
+        #after-content th.sun, #after-content td.sun { color: #e57373; }
+        #after-content th.sat, #after-content td.sat { color: #64b5f6; }
+        #after-content td { background-color: rgba(255,255,255,0.5); border-radius: 5px; }
+        #after-content td:not(:empty):hover { transform: scale(1.1); transition: 0.2s; }
+        #after-content .other-month { color: #ccc; }
+        #after-content .event-label { font-size: 17px; font-weight: bold; line-height: 1.3; margin-top: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        #after-content .event-important { background-color: #ffcdd2; border: 1px solid #e57373; }
+        #after-content .event-special { background-color: #fff59d; border: 1px solid #ffeb3b; }
+        #after-content .event-fun { background-color: #c8e6c9; border: 1px solid #81c784; }
+        #after-content .event-note { background-color: #e1bee7; border: 1px solid #ba68c8; }
+        #after-content .holiday { background-color: #ffccbc; border: 1px solid #ff8a65; }
+        #after-content .event-closed { background-color: #cfd8dc; border: 1px solid #90a4ae; text-decoration: line-through; }
+        #after-content .legend { margin-top: 15px; padding: 15px; background-color: rgba(255,255,255,0.6); border-radius: 10px; }
+        #after-content .legend h4 { margin: 0 0 10px; text-align: center; font-size: 22px; color: #795548; }
+        #after-content .legend ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; font-size: 18px; }
+        #after-content .legend li { display: flex; align-items: center; }
+        #after-content .color-box { width: 18px; height: 18px; border-radius: 5px; margin-right: 10px; }
+
+        /* Slide 4: How */
+        #slide4 { background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); }
+        #slide4 h2 { font-size: 56px; font-weight: 800; color: #434343; margin-bottom: 40px; }
+        .chat-container { width: 85%; max-width: 750px; }
+        .chat-bubble { padding: 25px; border-radius: 25px; margin-bottom: 25px; max-width: 80%; font-size: 28px; line-height: 1.6; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .user { background-color: #29b6f6; color: white; margin-left: auto; border-bottom-right-radius: 5px; text-align: right; }
+        .ai { background-color: #ffffff; color: #333; margin-right: auto; border-bottom-left-radius: 5px; text-align: left; }
+        #slide4 p { font-size: 32px; color: #555; margin-top: 40px; font-weight: 700; }
+        
+        /* Slide 5: CTA */
+        #slide5 { background: linear-gradient(120deg, #f6d365 0%, #fda085 100%); }
+        #slide5 h1 { font-size: 70px; font-weight: 800; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+        #slide5 h2 { font-size: 40px; font-weight: 400; color: #fff; margin-bottom: 50px; }
+        .cta-content { display: flex; justify-content: space-around; align-items: center; width: 90%; background-color: rgba(255,255,255,0.8); padding: 40px; border-radius: 20px; }
+        .qr-code img { width: 250px; height: 250px; }
+        .qr-code p { font-size: 28px; font-weight: 700; color: #333; margin-top: 10px; }
+        .service-list h3 { font-size: 36px; margin: 0 0 20px; color: #333; }
+        .service-list ul { list-style: none; padding: 0; text-align: left; }
+        .service-list li { font-size: 28px; margin-bottom: 15px; }
+        #slide5 .provider { font-size: 32px; font-weight: 700; color: #fff; margin-top: 30px; }
+
+        .cta-direct-message {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 50px;
+            border-radius: 25px;
+            width: 85%;
+            max-width: 850px;
+        }
+        .dm-text {
+            font-size: 44px;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .insta-icon {
+            font-size: 54px;
+            vertical-align: middle;
+        }
+        .account-name {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 15px;
+            margin-top: 25px;
+            font-size: 48px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <div id="slide1" class="slide active">
+            <h1>AI活用で、<br>保育園のおたよりを劇的改善！</h1>
+            <h2>保護者目線で、もっと見やすく、もっと分かりやすく。</h2>
+            <h3 class="provider">提供: T&Lサポート株式会社（玉城祐輔）</h3>
+            <div class="footer">@tamashiro_taxlegal</div>
+        </div>
+
+        <div id="slide2" class="slide">
+            <h2><span style="font-size: 60px;">😟</span> Before</h2>
+            <h3>「文字ばかりで、予定が頭に入ってこない…」</h3>
+            <div id="before-content">
+                <div class="header">
+                    <h1>にじいろ保育園 なつやすみのおしらせ</h1>
+                    <p>（2025年7月）</p>
+                </div>
+                <div class="section">
+                    <h2>🍉 7月のよてい</h2>
+                    <ul>
+                        <li>7月7日（月）～11日（金）<span class="highlight">個人面談</span></li>
+                        <li>7月15日（火）プール開き</li>
+                        <li>7月19日（土）<span class="highlight">夏祭り</span>（午前中）</li>
+                        <li>7月21日（月）海の日（祝日）</li>
+                        <li>7月28日（月）～8月1日（金）午前保育</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer">@tamashiro_taxlegal</div>
+        </div>
+
+        <div id="slide3" class="slide">
+            <h2><span style="font-size: 60px;">🤩</span> After</h2>
+            <h3>「ひと目でわかる！」カレンダーに改善</h3>
+            <div id="after-content">
+                <div class="calendar-container improved">
+                    <div class="calendar-header">
+                        <h2><span class="sunflower">🌻</span> にじいろ保育園 なつやすみカレンダー <span class="watermelon">🍉</span></h2>
+                    </div>
+                    <div class="calendars-wrapper">
+                        <div class="calendar">
+                            <h3>2025年 7月</h3>
+                            <table>
+                                <thead><tr><th class="sun">日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th class="sat">土</th></tr></thead>
+                                <tbody>
+                                    <tr><td class="other-month">29</td><td>30</td><td>1</td><td>2</td><td>3</td><td>4</td><td class="sat">5</td></tr>
+                                    <tr><td class="sun">6</td><td class="event-important">7<div class="event-label">個人面談</div></td><td class="event-important">8<div class="event-label">個人面談</div></td><td class="event-important">9<div class="event-label">個人面談</div></td><td class="event-important">10<div class="event-label">個人面談</div></td><td class="event-important">11<div class="event-label">個人面談</div></td><td class="sat">12</td></tr>
+                                    <tr><td class="sun">13</td><td>14</td><td class="event-fun">15<div class="event-label">プール開き</div></td><td>16</td><td>17</td><td>18</td><td class="sat event-special">19<div class="event-label">夏祭り</div></td></tr>
+                                    <tr><td class="sun">20</td><td class="holiday">21<div class="event-label">海の日</div></td><td>22</td><td>23</td><td>24</td><td>25</td><td class="sat">26</td></tr>
+                                    <tr><td class="sun">27</td><td class="event-note">28<div class="event-label">午前保育</div></td><td class="event-note">29<div class="event-label">午前保育</div></td><td class="event-note">30<div class="event-label">午前保育</div></td><td class="event-note">31<div class="event-label">午前保育</div></td><td class="other-month">1</td><td class="other-month">2</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="legend">
+                        <h4><span class="key-icon">🔑</span> 凡例</h4>
+                        <ul>
+                            <li><span class="color-box event-important"></span> 重要(面談等)</li>
+                            <li><span class="color-box event-special"></span> 特別行事</li>
+                            <li><span class="color-box event-fun"></span> イベント</li>
+                            <li><span class="color-box event-note"></span> 日程注意</li>
+                            <li><span class="color-box holiday"></span> 祝日</li>
+                            <li><span class="color-box event-closed"></span> 休園日</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">@tamashiro_taxlegal</div>
+        </div>
+        
+        <div id="slide4" class="slide">
+            <h2><span style="font-size: 60px;">💬</span> How?</h2>
+            <div class="chat-container">
+                <div class="chat-bubble user">このお便り、もっと見やすくならないかな？🤔</div>
+                <div class="chat-bubble ai">お任せください！カレンダー形式はいかがでしょう？祝日と予定を色分けして、直感的に理解できるようにしますね。🎨</div>
+                <div class="chat-bubble user">いいね！幼稚園のお便りだから、もっと柔らかい雰囲気にしてほしいな。😊</div>
+                <div class="chat-bubble ai">承知しました。パステルカラーを基調に、可愛らしいイラストを追加したデザイン案です。凡例も付けて、予定の種類がひと目でわかるようにしました。✨</div>
+            </div>
+            <p>AIとの対話を通じて、要望を瞬時にデザインに反映できます。</p>
+            <div class="footer">@tamashiro_taxlegal</div>
+        </div>
+
+        <div id="slide5" class="slide">
+            <h1>あなたの「不便」、<br>AIで解決しませんか？</h1>
+            <h2>業務効率化、資料作成、SNS運用など<br>お気軽にご相談ください！</h2>
+            <div class="cta-direct-message">
+                <p class="dm-text">
+                    <span class="insta-icon">📷</span>
+                    ご相談・ご依頼は<br>
+                    InstagramのDMからお気軽にどうぞ！<br>
+                    <span class="account-name">@tamashiro_taxlegal</span>
+                </p>
+            </div>
+            <h3 class="provider">提供: T&Lサポート株式会社（玉城祐輔）</h3>
+            <div class="footer">@tamashiro_taxlegal</div>
+        </div>
+
+        <div id="prev" class="nav-arrow">‹</div>
+        <div id="next" class="nav-arrow">›</div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                document.getElementById('next').click();
+            } else if (e.key === 'ArrowLeft') {
+                document.getElementById('prev').click();
+            }
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html> 

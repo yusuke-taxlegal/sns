@@ -76,7 +76,7 @@
         </section>
 
         <section id="workflow" class="mb-16">
-            <h2 class="text-3xl font-bold text-center mb-10" style="color: #005F73;">かんたん3ステップ！使い方フロー</h2>
+            <h2 class="text-3xl font-bold text-center mb-10" style="color: #005F73;">かんたん4ステップ！新・使い方フロー</h2>
             <div class="flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-4">
 
                 <div class="card text-center flex-1 w-full">
@@ -89,6 +89,14 @@
 
                 <div class="card text-center flex-1 w-full">
                     <div class="text-5xl font-bold mb-2 mx-auto w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #E0F2F1; color: #0A9396;">2</div>
+                    <h3 class="text-xl font-bold mb-2" style="color: #005F73;">フォーム作成 🖱️</h3>
+                    <p class="text-gray-600">メニューから申込フォームをワンクリックで自動生成します。</p>
+                </div>
+
+                <div class="flow-arrow transform rotate-90 md:rotate-0">➔</div>
+
+                <div class="card text-center flex-1 w-full">
+                    <div class="text-5xl font-bold mb-2 mx-auto w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #E0F2F1; color: #0A9396;">3</div>
                     <h3 class="text-xl font-bold mb-2" style="color: #005F73;">コピー＆ペースト 📋</h3>
                     <p class="text-gray-600">まとまった情報をコピーし、GPTsに貼り付けて送信します。</p>
                 </div>
@@ -96,7 +104,7 @@
                 <div class="flow-arrow transform rotate-90 md:rotate-0">➔</div>
 
                 <div class="card text-center flex-1 w-full">
-                    <div class="text-5xl font-bold mb-2 mx-auto w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #E0F2F1; color: #0A9396;">3</div>
+                    <div class="text-5xl font-bold mb-2 mx-auto w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #E0F2F1; color: #0A9396;">4</div>
                     <h3 class="text-xl font-bold mb-2" style="color: #005F73;">自動生成 ✨</h3>
                     <p class="text-gray-600">案内文と告知画像が自動で作成されます。</p>
                 </div>
@@ -139,7 +147,7 @@
             </div>
         </section>
 
-        <section id="advanced" class="mb-16">
+        <section id="advanced" class="mb-16 hidden">
             <div class="card p-8 bg-gradient-to-br from-teal-50 to-cyan-100">
                 <h2 class="text-3xl font-bold text-center mb-4" style="color: #005F73;">さらに高品質なチラシを作成</h2>
                 <p class="text-center text-gray-600 mb-10">ロゴやQRコードを入れたい場合は、Canva連携が便利です。</p>
@@ -167,16 +175,16 @@
         
         <section id="links">
             <h2 class="text-3xl font-bold text-center mb-10" style="color: #005F73;">関連リンク集</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <a href="https://docs.google.com/spreadsheets/d/1pCWqmJSS30rpik6r_I_K06KwXmIVzT8D6b6KW0v-ajs/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="block card text-center hover:bg-yellow-50">
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="https://docs.google.com/spreadsheets/d/1pCWqmJSS30rpik6r_I_K06KwXmIVzT8D6b6KW0v-ajs/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="block card text-center hover:bg-yellow-50 w-full max-w-sm">
                     <h3 class="text-xl font-bold" style="color: #EE9B00;">入力用スプレッドシート</h3>
                     <p class="text-gray-600 mt-2">まずはこちらにセミナー情報を入力</p>
                 </a>
-                <a href="https://chatgpt.com/g/g-684a514137c48191a5c7535bfd708cc1-yotuhaqin-ai-xin-tuo-okinawa-seminaan-nei-asisutanto" target="_blank" rel="noopener noreferrer" class="block card text-center hover:bg-yellow-50">
+                <a href="https://chatgpt.com/g/g-684a514137c48191a5c7535bfd708cc1-yotuhaqin-ai-xin-tuo-okinawa-seminaan-nei-asisutanto" target="_blank" rel="noopener noreferrer" class="block card text-center hover:bg-yellow-50 w-full max-w-sm">
                     <h3 class="text-xl font-bold" style="color: #EE9B00;">セミナー案内アシスタントGPTs</h3>
                     <p class="text-gray-600 mt-2">情報をペーストして案内を生成</p>
                 </a>
-                <a href="#" class="block card text-center hover:bg-yellow-50" style="cursor: not-allowed; opacity: 0.6;">
+                <a href="#" class="block card text-center hover:bg-yellow-50 w-full max-w-sm" style="cursor: not-allowed; opacity: 0.6; display: none;">
                     <h3 class="text-xl font-bold" style="color: #EE9B00;">Canvaチラシテンプレート</h3>
                     <p class="text-gray-600 mt-2">（現在調整中です）</p>
                 </a>

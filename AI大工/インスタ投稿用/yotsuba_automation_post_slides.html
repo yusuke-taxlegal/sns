@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インスタ投稿用スライド：よつばグループ業務効率化事例</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+        body {
+            font-family: 'M PLUS Rounded 1c', 'Hiragino Sans', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .presentation-container {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: #fff;
+        }
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .slide.active {
+            opacity: 1;
+        }
+        .footer {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #555;
+            background-color: rgba(255,255,255,0.7);
+            padding: 8px 18px;
+            border-radius: 12px;
+        }
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0,0,0,0.3);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+            user-select: none;
+        }
+        #prev { left: 20px; }
+        #next { right: 20px; }
+
+        /* Slide Styles */
+        h1, h2, h3, p, li { margin: 0; }
+        h1 { font-size: 72px; font-weight: 800; }
+        h2 { font-size: 56px; font-weight: 700; margin-bottom: 40px; }
+        p { font-size: 32px; line-height: 1.7; }
+
+        /* Slide 1: Title */
+        #slide1 { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        #slide1 h1 { text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        #slide1 p { font-size: 40px; margin-top: 20px; }
+        #slide1 .swipe-icon { margin-top: 50px; font-size: 36px; animation: swipe 1.5s infinite; }
+        @keyframes swipe { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(20px); } }
+
+        /* Slide 2: Before */
+        #slide2 { background-color: #f5f5f5; }
+        #slide2 h2 { color: #d32f2f; }
+        .problem-box { border: 4px dashed #ffcdd2; background-color: #fff0f1; padding: 40px; border-radius: 20px; width: 85%; }
+        .problem-box p { font-size: 36px; line-height: 1.8; color: #333; }
+        .problem-box .icon { font-size: 48px; margin-bottom: 20px; }
+
+        /* Slide 3: After */
+        #slide3 { background-color: #f5f5f5; }
+        #slide3 h2 { color: #29b6f6; }
+        .solution-box { border: 4px solid #c8e6c9; background: linear-gradient(135deg, #e8f5e9, #f1f8e9); padding: 40px; border-radius: 20px; width: 85%; }
+        .solution-box p { font-size: 36px; line-height: 1.8; color: #1b5e20; }
+        .solution-box .highlight { background: #fff9c4; padding: 5px 15px; border-radius: 10px; font-weight: 700; }
+        .solution-box .icon { font-size: 48px; margin-bottom: 20px; }
+
+        /* Slide 4: How */
+        #slide4 { background: #e8eaf6; }
+        #slide4 h2 { color: #3949ab; }
+        .tech-stack { display: flex; justify-content: center; align-items: center; gap: 50px; }
+        .tech-item { display: flex; flex-direction: column; align-items: center; }
+        .tech-item .logo { width: 120px; height: 120px; border-radius: 20px; background-color: white; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .tech-item img { width: 80px; }
+        .tech-item p { font-size: 28px; font-weight: 700; margin-top: 20px; color: #333; }
+        .plus-icon { font-size: 60px; color: #757575; }
+        #slide4 > p { margin-top: 50px; font-size: 36px; font-weight: 700; color: #3949ab; }
+
+        /* Slide 5: CTA */
+        #slide5 { background: linear-gradient(120deg, #f6d365 0%, #fda085 100%); }
+        #slide5 h2 { color: white; font-size: 64px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+        .cta-direct-message { background-color: rgba(255, 255, 255, 0.85); padding: 50px; border-radius: 25px; width: 85%; max-width: 850px; }
+        .dm-text { font-size: 44px; font-weight: 700; color: #333; line-height: 1.6; }
+        .insta-icon { font-size: 54px; vertical-align: middle; }
+        .account-name { display: inline-block; background-color: #333; color: #fff; padding: 12px 28px; border-radius: 15px; margin-top: 25px; font-size: 48px; }
+        #slide5 .provider { font-size: 32px; font-weight: 700; color: #fff; margin-top: 40px; }
+
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <div id="slide1" class="slide active">
+            <h1>毎月のセミナー案内、<br>まだ消耗してませんか？</h1>
+            <p>その手作業、AIで"ほぼ自動化"できます！✨</p>
+            <div class="swipe-icon">👉</div>
+            <div class="footer">T&Lサポート株式会社</div>
+        </div>
+
+        <div id="slide2" class="slide">
+            <h2><span style="font-size: 60px;">😟</span> Before</h2>
+            <div class="problem-box">
+                <div class="icon">🔄📝🔗</div>
+                <p>情報を手作業でコピペ<br>毎回フォームを作り直し<br>担当者の負担が大きい…</p>
+            </div>
+            <div class="footer">T&Lサポート株式会社</div>
+        </div>
+
+        <div id="slide3" class="slide">
+            <h2><span style="font-size: 60px;">🤩</span> After</h2>
+            <div class="solution-box">
+                <div class="icon">💡✨🤖</div>
+                <p><span class="highlight">スプレッドシートに<br>入力するだけ！</span></p>
+                <p>案内文も申込フォームも<br>ワンクリックで自動生成！</p>
+            </div>
+            <div class="footer">T&Lサポート株式会社</div>
+        </div>
+        
+        <div id="slide4" class="slide">
+            <h2><span style="font-size: 60px;">💬</span> How?</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/2048px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" alt="Spreadsheet"></div>
+                    <p>Spreadsheet</p>
+                </div>
+                <div class="plus-icon">+</div>
+                <div class="tech-item">
+                    <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/2048px-ChatGPT_logo.svg.png" alt="ChatGPT"></div>
+                    <p>ChatGPT (GPTs)</p>
+                </div>
+                <div class="plus-icon">+</div>
+                <div class="tech-item">
+                    <div class="logo"><img src="https://developers.google.com/apps-script/images/logo.png" alt="Apps Script"></div>
+                    <p>Apps Script</p>
+                </div>
+            </div>
+            <p>既存のツールを連携させて、<br>あなたの業務に合わせて自動化します！</p>
+            <div class="footer">T&Lサポート株式会社</div>
+        </div>
+
+        <div id="slide5" class="slide">
+            <h2>その「面倒な作業」、<br>まるっと解決しませんか？</h2>
+            <div class="cta-direct-message">
+                <p class="dm-text">
+                    <span class="insta-icon">✉️</span>
+                    ご相談・ご依頼は<br>
+                    DMからお気軽にどうぞ！<br>
+                    <span class="account-name">@tamashiro_taxlegal</span>
+                </p>
+            </div>
+            <h3 class="provider">T&Lサポート株式会社（玉城祐輔）</h3>
+            <div class="footer">AI大工</div>
+        </div>
+
+        <div id="prev" class="nav-arrow">‹</div>
+        <div id="next" class="nav-arrow">›</div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                document.getElementById('next').click();
+            } else if (e.key === 'ArrowLeft') {
+                document.getElementById('prev').click();
+            }
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html> 
