@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>どっちを選ぶ？🤔 PC向けモバイルバッテリー徹底比較</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 40vh;
+        }
+        .donut-chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px;
+        }
+        .flowchart-box {
+            border: 2px solid #0D2C54;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            width: 90%;
+            max-width: 300px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .flowchart-arrow {
+            width: 2px;
+            height: 2rem;
+            background-color: #0D2C54;
+        }
+    </style>
+</head>
+<body class="text-[#0D2C54]">
+
+    <main class="container mx-auto p-4 md:p-8 max-w-5xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">PCも充電できる！モバイルバッテリー</h1>
+            <p class="text-lg md:text-xl text-gray-600">あなたのスタイルに合う一台はどっち？</p>
+        </header>
+
+        <section class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">一目でわかる！スペック比較</h2>
+            <p class="text-center text-gray-500 mb-6">「携帯性」と「充電パワー」、重要な2つの指標をグラフで見てみましょう。</p>
+            <div class="chart-container">
+                <canvas id="comparisonChart"></canvas>
+            </div>
+            <div class="mt-6 text-sm text-gray-600 text-center">
+                <p>このグラフは、2つの製品の重さ（g）とバッテリー容量（mAh）を直接比較しています。どちらもPCを充電できるパワフルなモデルですが、その中でも携帯性と容量のバランスが異なることがわかります。</p>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-12">
+
+            <article class="bg-white rounded-xl shadow-lg p-6 md:p-8 flex flex-col">
+                <div class="flex-grow">
+                    <a href="https://amzn.asia/d/gl8Jdro" target="_blank" rel="noopener noreferrer" class="block mb-6">
+                        <img src="https://i.gyazo.com/3c71af61b0995baede395478d549dd68.jpg" alt="CIO コンセント一体型モバイルバッテリー" class="w-full h-52 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                    </a>
+                    <a href="https://amzn.asia/d/gl8Jdro" target="_blank" rel="noopener noreferrer" class="block text-center hover:opacity-80 transition-opacity">
+                        <h3 class="text-2xl font-bold">⚖️【携帯性 重視派】</h3>
+                        <p class="font-bold text-[#00A6FB] text-lg underline">CIO コンセント一体型</p>
+                    </a>
+                    <p class="text-center text-gray-600 my-4">「ACアダプター、もういらない！」<br>コンパクトさを追求するあなたの相棒。</p>
+                    
+                    <div class="donut-chart-container my-4">
+                        <canvas id="plugDonutChart"></canvas>
+                    </div>
+                    <p class="text-center font-bold text-lg -mt-4 mb-4">PC充電 約<span class="text-3xl text-[#00A6FB]">0.7</span>回分</p>
+                    <p class="text-sm text-center text-gray-600 mb-6">スマホ専用品よりは重いですが、PC用としては軽量。緊急時の延長には十分なパワーです。</p>
+
+                    <ul class="space-y-3 text-base">
+                        <li class="flex items-start"><span class="text-2xl mr-2 text-green-500">✅</span><div><strong class="text-[#00A6FB]">ACアダプター兼用:</strong> 荷物が減り、カバンが圧倒的に軽くなります。</div></li>
+                        <li class="flex items-start"><span class="text-2xl mr-2 text-green-500">✅</span><div><strong class="text-[#00A6FB]">PC用としては軽量:</strong> 308gで持ち運びやすい設計です。</div></li>
+                        <li class="flex items-start"><span class="text-2xl mr-2 text-yellow-500">🤔</span><div><strong>注意点:</strong> PCを満充電にするほどの容量はありません。</div></li>
+                    </ul>
+                </div>
+                 <div class="mt-8 text-center">
+                    <a href="https://amzn.asia/d/gl8Jdro" target="_blank" rel="noopener noreferrer" class="inline-block bg-[#FFBC42] text-[#0D2C54] font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-transform transform hover:scale-105">
+                        Amazonで見る
+                    </a>
+                </div>
+            </article>
+
+            <article class="bg-white rounded-xl shadow-lg p-6 md:p-8 flex flex-col">
+                <div class="flex-grow">
+                     <a href="https://amzn.asia/d/1XzgJrP" target="_blank" rel="noopener noreferrer" class="block mb-6">
+                        <img src="https://i.gyazo.com/0154ed23b4f17440f0f5ef74bc2331a4.jpg" alt="CIO 脱着式ケーブル付きモバイルバッテリー" class="w-full h-52 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                    </a>
+                     <a href="https://amzn.asia/d/1XzgJrP" target="_blank" rel="noopener noreferrer" class="block text-center hover:opacity-80 transition-opacity">
+                        <h3 class="text-2xl font-bold">🔋【充電パワー 重視派】</h3>
+                        <p class="font-bold text-[#DC0073] text-lg underline">CIO 脱着式ケーブル付き</p>
+                    </a>
+                    <p class="text-center text-gray-600 my-4">「バッテリー切れの心配、さようなら」<br>どこでも頼れるパワフルモデル。</p>
+                    
+                    <div class="donut-chart-container my-4">
+                        <canvas id="cableDonutChart"></canvas>
+                    </div>
+                    <p class="text-center font-bold text-lg -mt-4 mb-4">PC充電 約<span class="text-3xl text-[#DC0073]">1.3</span>回分以上</p>
+                    <p class="text-sm text-center text-gray-600 mb-6">PCをフル充電してもまだ余裕。1日中電源のない場所でも安心です。</p>
+
+                    <ul class="space-y-3 text-base">
+                        <li class="flex items-start"><span class="text-2xl mr-2 text-green-500">✅</span><div><strong class="text-[#DC0073]">圧倒的な大容量:</strong> <strong class="text-xl">20000mAh</strong>でPCもスマホも余裕で充電。</div></li>
+                        <li class="flex items-start"><span class="text-2xl mr-2 text-green-500">✅</span><div><strong class="text-[#DC0073]">ケーブル内蔵:</strong> 「ケーブル忘れた！」という悲劇とは無縁です。</div></li>
+                        <li class="flex items-start"><span class="text-2xl mr-2 text-yellow-500">🤔</span><div><strong>注意点:</strong> バッテリー本体の充電用にACアダプターが別途必要になります。</div></li>
+                    </ul>
+                </div>
+                <div class="mt-8 text-center">
+                    <a href="https://amzn.asia/d/1XzgJrP" target="_blank" rel="noopener noreferrer" class="inline-block bg-[#FFBC42] text-[#0D2C54] font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-transform transform hover:scale-105">
+                        Amazonで見る
+                    </a>
+                </div>
+            </article>
+        </div>
+
+        <section class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">あなたにピッタリなのはどっち？簡単診断チャート</h2>
+            <div class="flex flex-col items-center">
+                <div class="flowchart-box">
+                    <p>一番優先したいことは何ですか？</p>
+                </div>
+                <div class="flex w-full justify-center items-stretch my-4" style="height: 5rem;">
+                    <div class="flex flex-col items-center w-1/2">
+                       <div class="h-full w-px bg-gray-300"></div>
+                    </div>
+                     <div class="flex flex-col items-center w-1/2">
+                       <div class="h-full w-px bg-gray-300"></div>
+                    </div>
+                </div>
+                <div class="flex w-full justify-around">
+                     <div class="flex flex-col items-center w-1/2 text-center">
+                        <p class="font-bold mb-2">荷物を少しでも<br>コンパクトにしたい！</p>
+                         <div class="flowchart-arrow"></div>
+                         <div class="flowchart-box border-2 border-[#00A6FB] mt-4">
+                             <p class="text-lg font-bold">携帯性 重視派</p>
+                             <p class="font-bold text-xl text-[#00A6FB]">コンセント一体型</p>
+                         </div>
+                    </div>
+                    <div class="flex flex-col items-center w-1/2 text-center">
+                        <p class="font-bold mb-2">充電切れの不安を<br>完全になくしたい！</p>
+                         <div class="flowchart-arrow"></div>
+                         <div class="flowchart-box border-2 border-[#DC0073] mt-4">
+                            <p class="text-lg font-bold">充電パワー 重視派</p>
+                            <p class="font-bold text-xl text-[#DC0073]">ケーブル付き大容量</p>
+                         </div>
+                    </div>
+                </div>
+                 <div class="mt-6 text-sm text-gray-600 text-center">
+                    <p>このチャートは、あなたの最も重要なニーズに基づいて最適な製品を提案します。<br>「携帯性」を取るか、「充電パワー」を取るかが大きな分かれ道です。</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center p-6 bg-[#0D2C54] text-white rounded-lg shadow-md">
+             <h2 class="text-2xl font-bold mb-2">結論</h2>
+             <p class="max-w-2xl mx-auto">
+                 <strong>日帰りの外出やカフェ作業がメイン</strong>で、コンパクトさ・身軽さを最優先するなら<strong class="text-[#89CFF0]">「コンセント一体型」</strong>。
+                 一方で、<strong>長時間の外出や出張が多く</strong>、バッテリー残量を気にせずパワフルに作業したいなら<strong class="text-[#F472B6]">「ケーブル付き大容量」</strong>が最高のパートナーになるでしょう。
+             </p>
+        </footer>
+
+    </main>
+
+    <script>
+        window.onload = function() {
+            const tooltipTitleCallback = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            const comparisonCtx = document.getElementById('comparisonChart').getContext('2d');
+            new Chart(comparisonCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['コンセント一体型', 'ケーブル付き'],
+                    datasets: [
+                        {
+                            label: '重さ (g)',
+                            data: [308, 390],
+                            backgroundColor: '#00A6FB',
+                            borderColor: '#007AB3',
+                            borderWidth: 1,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: '容量 (mAh)',
+                            data: [10000, 20000],
+                            backgroundColor: '#FFBC42',
+                            borderColor: '#D99E30',
+                            borderWidth: 1,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    ...tooltipTitleCallback,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            position: 'left',
+                            title: { display: true, text: '重さ (g)' }
+                        },
+                        y1: {
+                            beginAtZero: true,
+                            position: 'right',
+                            title: { display: true, text: '容量 (mAh)' },
+                            grid: { drawOnChartArea: false }
+                        }
+                    }
+                }
+            });
+
+            const plugDonutCtx = document.getElementById('plugDonutChart').getContext('2d');
+            new Chart(plugDonutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['充電可能分', '残り'],
+                    datasets: [{
+                        data: [70, 30],
+                        backgroundColor: ['#00A6FB', '#E0E0E0'],
+                        borderColor: ['#FFFFFF'],
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    }
+                }
+            });
+
+            const cableDonutCtx = document.getElementById('cableDonutChart').getContext('2d');
+            new Chart(cableDonutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['充電可能分', ''],
+                    datasets: [{
+                        data: [100, 30],
+                        backgroundColor: ['#DC0073', '#F472B6'],
+                        borderColor: ['#FFFFFF'],
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                 options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

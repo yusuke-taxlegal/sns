@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPO法人夢WALK 業務改善インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #F3F4F6;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        .icon-box {
+            font-size: 3rem;
+            line-height: 1;
+        }
+        .arrow {
+            font-size: 2.5rem;
+            color: #F27405;
+            align-self: center;
+            margin: 0 1rem;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-5xl font-bold text-[#0A81D1] mb-2">NPO法人夢WALKの未来へ</h1>
+            <p class="text-lg md:text-xl text-gray-600">デジタルの力で、ミッションを次のステージへ</p>
+        </header>
+
+        <main>
+            
+            <section class="mb-12 p-6 bg-white rounded-lg card-shadow">
+                <h2 class="text-2xl font-bold text-center text-[#0A81D1] mb-4">業務プロセスの課題と解決策</h2>
+                <p class="text-center max-w-3xl mx-auto text-gray-600">日々の業務に潜む5つの大きな課題。それらは単なる非効率ではなく、組織の成長を妨げる要因となっています。テクノロジーを活用することで、これらの課題を解決し、スタッフが本来の支援業務に集中できる環境を構築します。</p>
+            </section>
+
+            <div class="space-y-8">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white p-6 rounded-lg card-shadow">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-2 text-gray-500">BEFORE: 課題</h3>
+                        <div class="icon-box text-red-500">📞 tangled 📠</div>
+                        <h4 class="text-lg font-semibold mt-2">予約・スケジュール管理</h4>
+                        <p class="text-gray-600 mt-1">電話やメールでの個別調整に多くの時間を費やし、ダブルブッキングの危険性と常に隣り合わせの状態。</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-2 text-[#0A81D1]">AFTER: 解決策</h3>
+                         <div class="icon-box text-green-500">🗓️ ✅</div>
+                        <h4 class="text-lg font-semibold mt-2">予約システムの導入</h4>
+                        <p class="text-gray-600 mt-1">Webから直接予約可能に。カレンダーが自動連携され、調整業務を劇的に削減します。</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <div class="chart-container h-64 md:h-80 max-h-[350px]">
+                            <canvas id="scheduleChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-2">グラフは、DX導入によるスケジュール調整業務の工数削減効果を示しています。</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white p-6 rounded-lg card-shadow">
+                    <div class="text-center md:order-2">
+                        <h3 class="text-xl font-bold mb-2 text-gray-500">BEFORE: 課題</h3>
+                        <div class="icon-box text-red-500">📄 🧮</div>
+                        <h4 class="text-lg font-semibold mt-2">請求書発行・会計</h4>
+                        <p class="text-gray-600 mt-1">Excelでの手作業による請求書作成は時間がかかり、計算ミスや入力漏れのリスクが高い。</p>
+                    </div>
+                    <div class="text-center md:order-1">
+                         <h3 class="text-xl font-bold mb-2 text-[#0A81D1]">AFTER: 解決策</h3>
+                         <div class="icon-box text-green-500">☁️ ➡️ 💹</div>
+                        <h4 class="text-lg font-semibold mt-2">会計ソフトによる自動化</h4>
+                        <p class="text-gray-600 mt-1">請求書発行から入金管理までを自動化。正確な財務状況をリアルタイムで把握可能に。</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <div class="chart-container h-64 md:h-80 max-h-[350px]">
+                            <canvas id="invoiceChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-2">円グラフは、手作業による請求書作成プロセスの内訳と、自動化による改善の可能性を示しています。</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white p-6 rounded-lg card-shadow">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-2 text-gray-500">BEFORE: 課題</h3>
+                        <div class="icon-box text-red-500">📌 ❓</div>
+                        <h4 class="text-lg font-semibold mt-2">タスク・プロジェクト管理</h4>
+                        <p class="text-gray-600 mt-1">口頭や紙での指示が多く、進捗が不透明。タスクが属人化し、抜け漏れが発生しやすい。</p>
+                    </div>
+                    <div class="text-center">
+                         <h3 class="text-xl font-bold mb-2 text-[#0A81D1]">AFTER: 解決策</h3>
+                        <div class="icon-box text-green-500">📊 👥</div>
+                        <h4 class="text-lg font-semibold mt-2">管理ツールの導入</h4>
+                        <p class="text-gray-600 mt-1">全タスクを可視化し、チームで進捗を共有。協力体制を強化し、業務の質を向上させます。</p>
+                    </div>
+                     <div class="md:col-span-2">
+                        <div class="chart-container h-64 md:h-80 max-h-[350px]">
+                            <canvas id="taskChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-2">グラフは、タスク管理ツール導入後のプロジェクト状況の可視化を示しています。</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white p-6 rounded-lg card-shadow">
+                    <div class="text-center md:order-2">
+                        <h3 class="text-xl font-bold mb-2 text-gray-500">BEFORE: 課題</h3>
+                        <div class="icon-box text-red-500">📁 📧</div>
+                        <h4 class="text-lg font-semibold mt-2">情報管理と共有</h4>
+                        <p class="text-gray-600 mt-1">利用者や支援者の情報がメールやファイルに散在。一貫した対応が困難で、情報が失われるリスクも。</p>
+                    </div>
+                    <div class="text-center md:order-1">
+                        <h3 class="text-xl font-bold mb-2 text-[#0A81D1]">AFTER: 解決策</h3>
+                        <div class="icon-box text-green-500">🗃️ 🔗</div>
+                        <h4 class="text-lg font-semibold mt-2">CRMによる情報一元化</h4>
+                        <p class="text-gray-600 mt-1">全ての関係者情報を一元管理。一人ひとりに合わせた、きめ細やかなサポートを実現します。</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <div class="p-4 flex justify-center items-center">
+                           <div class="text-center">
+                                <span class="text-2xl p-4 bg-red-100 rounded-full">法人</span>
+                                <div class="inline-block w-16 h-1 bg-gray-300 align-middle"></div>
+                                <span class="text-2xl p-4 bg-red-100 rounded-full">保護者</span>
+                                <div class="inline-block w-16 h-1 bg-gray-300 align-middle"></div>
+                                <span class="text-2xl p-4 bg-red-100 rounded-full">利用者</span>
+                           </div>
+                           <div class="mx-8 text-4xl text-[#F27405]">➡️</div>
+                           <div class="p-6 bg-green-200 rounded-full text-3xl font-bold text-green-800">CRM</div>
+                        </div>
+                         <p class="text-center text-sm text-gray-500 mt-2">ダイアグラムは、散在した情報がCRMによって一元管理される様子を示しています。</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white p-6 rounded-lg card-shadow">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-2 text-gray-500">BEFORE: 課題</h3>
+                        <div class="icon-box text-red-500">🧠 ✍️</div>
+                        <h4 class="text-lg font-semibold mt-2">相談記録・ノウハウ継承</h4>
+                        <p class="text-gray-600 mt-1">貴重な相談ノウハウが個人の経験の中に留まり、組織の資産として蓄積・共有されていない。</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-2 text-[#0A81D1]">AFTER: 解決策</h3>
+                        <div class="icon-box text-green-500">🤖 ➡️ 📚</div>
+                        <h4 class="text-lg font-semibold mt-2">AIによるナレッジの体系化</h4>
+                        <p class="text-gray-600 mt-1">AIで面談を自動で文字起こし・要約。「夢WALKメソッド」を組織の財産として未来へ継承します。</p>
+                    </div>
+                     <div class="md:col-span-2">
+                        <div class="chart-container h-64 md:h-80 max-h-[350px]">
+                            <canvas id="knowledgeChart"></canvas>
+                        </div>
+                         <p class="text-center text-sm text-gray-500 mt-2">グラフは、ナレッジの体系化による組織の知識資産の成長を示しています。</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+            <h3 class="text-xl font-bold text-[#0A81D1] mb-4">推奨テクノロジースタック</h3>
+            <div class="flex justify-center items-center space-x-6 text-gray-600 font-semibold">
+                <span>TimeRex</span>
+                <span>•</span>
+                <span>freee会計</span>
+                <span>•</span>
+                <span>Notion</span>
+                <span>•</span>
+                <span>PLAUD NOTE</span>
+            </div>
+             <p class="mt-4 text-sm text-gray-500">&copy; 2025 NPO法人夢WALK. このインフォグラフィックは業務改善提案のために作成されました。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const FONT_COLOR = '#1F2937';
+        const BORDER_COLOR = '#E5E7EB';
+        const PALETTE = {
+            blue: '#0A81D1',
+            orange: '#F27405',
+            yellow: '#F2B705',
+            red: '#EF4444',
+            green: '#22C55E'
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: FONT_COLOR,
+                        font: { size: 14 }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: FONT_COLOR, font: { size: 12 } },
+                    grid: { color: BORDER_COLOR }
+                },
+                x: {
+                    ticks: { color: FONT_COLOR, font: { size: 12 } },
+                    grid: { display: false }
+                }
+            }
+        };
+
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) return str;
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        new Chart(document.getElementById('scheduleChart'), {
+            type: 'bar',
+            data: {
+                labels: ['手動でのブロック作業', '電話・メールでの調整', 'ダブルブッキング対応'],
+                datasets: [{
+                    label: 'Before (現状の工数)',
+                    data: [15, 20, 5],
+                    backgroundColor: PALETTE.red,
+                    borderColor: PALETTE.red,
+                    borderWidth: 1
+                }, {
+                    label: 'After (削減後の工数)',
+                    data: [1, 2, 0],
+                    backgroundColor: PALETTE.green,
+                    borderColor: PALETTE.green,
+                    borderWidth: 1
+                }]
+            },
+            options: { ...commonChartOptions, indexAxis: 'y' }
+        });
+
+        new Chart(document.getElementById('invoiceChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['請求額の計算', '請求書の作成・印刷', '郵送・送付作業', '入金確認・消込'],
+                datasets: [{
+                    label: '手作業での請求業務の内訳 (時間)',
+                    data: [40, 30, 15, 15],
+                    backgroundColor: [PALETTE.red, PALETTE.orange, PALETTE.yellow, '#F97316'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                     legend: { position: 'top', labels: { color: FONT_COLOR } },
+                     tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('taskChart'), {
+            type: 'bar',
+            data: {
+                labels: ['イベント企画', ['助成金申請', 'プロジェクト'], '日々の支援記録', '監査準備'],
+                datasets: [
+                    { label: '未着手', data: [2, 1, 3, 4], backgroundColor: PALETTE.red },
+                    { label: '進行中', data: [5, 4, 8, 2], backgroundColor: PALETTE.yellow },
+                    { label: '完了', data: [1, 0, 15, 1], backgroundColor: PALETTE.green }
+                ]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    x: { stacked: true, ticks: { color: FONT_COLOR }, grid: { display: false } },
+                    y: { stacked: true, ticks: { color: FONT_COLOR }, grid: { color: BORDER_COLOR } }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('knowledgeChart'), {
+            type: 'line',
+            data: {
+                labels: ['開始時', '3ヶ月後', '6ヶ月後', '1年後', '2年後'],
+                datasets: [{
+                    label: '組織のナレッジ資産',
+                    data: [10, 50, 120, 300, 700],
+                    fill: true,
+                    borderColor: PALETTE.blue,
+                    backgroundColor: 'rgba(10, 129, 209, 0.2)',
+                    tension: 0.1
+                }]
+            },
+            options: commonChartOptions
+        });
+
+    </script>
+</body>
+</html>

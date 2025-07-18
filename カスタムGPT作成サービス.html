@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カスタムGPTサービス 価格設定ガイド - インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 
+        Narrative Plan:
+        1.  Title/Hook: Start with the core philosophy from the source: "Pricing is based on Value, not Time."
+        2.  Section 1 (Value Proposition): Visualize the tangible benefits a client receives (time saved, inquiries increased, etc.) to make the concept of "value" concrete.
+        3.  Section 2 (Service Tiers): This is the main section. Present the three distinct service plans (Prototype, Full Custom, Retainer) in a clear, comparable format using Material Design-inspired cards.
+        4.  Section 3 (Process Flow): Illustrate the 3-step process for creating a service menu (Decompose -> Package -> Price) to show the logic behind the offerings.
+        5.  Section 4 (Price Comparison): Use a simple bar chart to visually compare the starting price points of the three plans, giving clients a quick understanding of the investment scale.
+        6.  Conclusion: End with the empowering final message from the source document to inspire confidence.
+
+        Visualization Choices:
+        -   Value Proposition (Section 1): Goal: Inform. Visualization: Styled cards with large numbers and Unicode icons. Justification: Makes abstract benefits tangible and easy to grasp. Method: HTML/CSS. NO SVG.
+        -   Service Tiers (Section 2): Goal: Compare/Organize. Visualization: A three-column grid of cards. Justification: The classic "松竹梅" (Good/Better/Best) layout is perfect for comparing plans. Method: HTML/CSS with Tailwind. NO SVG.
+        -   Process Flow (Section 3): Goal: Show a Process. Visualization: A simple horizontal flowchart. Justification: Clearly shows the logical progression from idea to priced service. Method: Structured HTML/CSS with Tailwind. NO SVG, NO MERMAID JS.
+        -   Price Comparison (Section 4): Goal: Compare. Visualization: A horizontal bar chart. Justification: Ideal for comparing the magnitude of different price points. Library: Chart.js (Canvas). NO SVG.
+        -   All other icons are Unicode characters.
+
+        Color Palette: Energetic & Playful (Adapted for a professional, tech-forward look)
+        -   Primary Blue: #005F73
+        -   Accent Teal: #0A9396
+        -   Call-to-Action/Highlight Orange: #EE9B00
+        -   Text: #1E293B (Slate-800)
+        -   Background: #F8FAFC (Slate-50)
+        -   Card Background: #FFFFFF
+
+        Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All charts are rendered on Canvas by Chart.js. All diagrams are built with structured HTML and styled with Tailwind CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px;
+            max-height: 300px;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #005F73, #0A9396);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-3xl md:text-5xl font-bold gradient-text mb-4">カスタムGPTサービス 価格設計ガイド</h1>
+            <p class="text-lg md:text-xl text-gray-600">「時給」ではなく「価値」で考える、新しい価格のカタチ</p>
+        </header>
+
+        <main>
+            <section id="value" class="mb-16 md:mb-20">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">お客様が手に入れる「未来の変化」とは？</h2>
+                <p class="text-center text-gray-500 mb-10 max-w-3xl mx-auto">お客様はAIというツールではなく、AIがもたらす「業務の効率化」や「事業の成長」という価値に対して対価を支払います。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-3">⏰</div>
+                        <p class="text-xl font-bold text-[#005F73]">月20時間</p>
+                        <p class="text-gray-500">の作業時間削減</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-3">📈</div>
+                        <p class="text-xl font-bold text-[#005F73]">月2件</p>
+                        <p class="text-gray-500">の問い合わせ増</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-3">😊</div>
+                        <p class="text-xl font-bold text-[#005F73]">精神的ストレス</p>
+                        <p class="text-gray-500">からの解放</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-3">📋</div>
+                        <p class="text-xl font-bold text-[#005F73]">業務の標準化</p>
+                        <p class="text-gray-500">で属人化を解消</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="plans" class="mb-16 md:mb-20">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-10">お客様が選びやすい３つの料金プラン</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 flex flex-col border-t-4 border-gray-300">
+                        <h3 class="text-xl font-bold text-center mb-1">① お試しプラン</h3>
+                        <p class="text-center text-gray-500 mb-4">プロトタイプ制作</p>
+                        <p class="text-center text-3xl font-bold text-[#0A9396] mb-4">¥3万~</p>
+                        <p class="text-sm text-center text-gray-600 mb-6">まずはAIを体験してみたい方向けの入門プランです。</p>
+                        <ul class="space-y-3 text-gray-700 flex-grow">
+                            <li class="flex items-start"><span class="mr-2 mt-1">✔️</span>簡易ヒアリング（1回）</li>
+                            <li class="flex items-start"><span class="mr-2 mt-1">✔️</span>プロトタイプ版GPT開発</li>
+                            <li class="flex items-start"><span class="mr-2 mt-1">✔️</span>簡単な操作説明</li>
+                        </ul>
+                        <div class="bg-slate-100 p-3 mt-6 rounded-md text-sm">
+                            <p class="font-bold">説明ポイント:</p>
+                            <p>「まずはAIがどんなものか、御社に合うかをこのプランでお試しいただけます。」</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-2xl p-6 md:p-8 flex flex-col border-t-4 border-[#EE9B00] transform lg:scale-105">
+                        <div class="text-center text-sm font-bold uppercase tracking-wider bg-[#EE9B00] text-white py-1 px-3 rounded-full -mt-12 mb-4 mx-auto">一番人気</div>
+                        <h3 class="text-2xl font-bold text-center mb-1">② 基本プラン</h3>
+                        <p class="text-center text-gray-500 mb-4">フルカスタム開発</p>
+                        <p class="text-center text-4xl font-bold text-[#005F73] mb-4">¥10万~</p>
+                        <p class="text-sm text-center text-gray-600 mb-6">課題解決に特化した、即戦力となるAIを本格導入したい方向け。</p>
+                        <ul class="space-y-3 text-gray-700 flex-grow">
+                            <li class="flex items-start"><span class="mr-2 mt-1">✔️</span>詳細ヒアリング（複数回）</li>
+                            <li class="flex items-start"><span class="mr-2 mt-1">✔️</span>完全オーダーメイドGPT開発</li>
+                            <li class="flex items-start"><span class="mr-2 mt-1">✔️</span>詳細マニュアル作成</li>
+                            <li class="flex items-start"><span class="mr-2 mt-1">✔️</span>導入トレーニング</li>
+                        </ul>
+                        <div class="bg-orange-100 p-3 mt-6 rounded-md text-sm">
+                            <p class="font-bold">説明ポイント:</p>
+                            <p>「御社の理念まで理解したAIを開発し、業務の根幹からサポートします。」</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 flex flex-col border-t-4 border-gray-300">
+                        <h3 class="text-xl font-bold text-center mb-1">③ 伴走プラン</h3>
+                        <p class="text-center text-gray-500 mb-4">月額運用サポート</p>
+                        <p class="text-center text-3xl font-bold text-[#0A9396] mb-4">月額¥3万~</p>
+                        <p class="text-sm text-center text-gray-600 mb-6">導入後も継続的に成果を出し続けたい方向け。</p>
+                        <ul class="space-y-3 text-gray-700 flex-grow">
+                            <li class="flex items-start"><span class="mr-2 mt-1">✔️</span>月1回の定例MTG</li>
+                            <li class="flex items-start"><span class="mr-2 mt-1">✔️</span>利用状況の分析と改善提案</li>
+                            <li class="flex items-start"><span class="mr-2 mt-1">✔️</span>プロンプトの更新</li>
+                            <li class="flex items-start"><span class="mr-2 mt-1">✔️</span>チャットでのQ&A対応</li>
+                        </ul>
+                        <div class="bg-slate-100 p-3 mt-6 rounded-md text-sm">
+                            <p class="font-bold">説明ポイント:</p>
+                            <p>「作ったAIを陳腐化させず、事業成長に貢献するパートナーとして併走します。」</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="process" class="mb-16 md:mb-20">
+                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-10">安心のサービス提供プロセス</h2>
+                 <div class="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
+                    <div class="flex flex-col md:flex-row justify-around items-center text-center">
+                        <div class="flex-1 p-4">
+                             <div class="text-3xl mb-2">1️⃣</div>
+                             <h3 class="text-lg font-bold text-[#005F73]">要素に分解</h3>
+                             <p class="text-sm text-gray-500">サービス内容を細かく洗い出します</p>
+                        </div>
+                        <div class="text-4xl text-gray-300 mx-4 my-4 md:my-0">→</div>
+                        <div class="flex-1 p-4">
+                            <div class="text-3xl mb-2">2️⃣</div>
+                            <h3 class="text-lg font-bold text-[#005F73]">パッケージ化</h3>
+                             <p class="text-sm text-gray-500">お客様が選びやすいプランを作ります</p>
+                        </div>
+                         <div class="text-4xl text-gray-300 mx-4 my-4 md:my-0">→</div>
+                        <div class="flex-1 p-4">
+                            <div class="text-3xl mb-2">3️⃣</div>
+                            <h3 class="text-lg font-bold text-[#005F73]">価格を決定</h3>
+                             <p class="text-sm text-gray-500">コストと価値の両面から価格を決めます</p>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+            
+             <section id="chart" class="mb-16 md:mb-20">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-10">価格帯の比較</h2>
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                     <div class="chart-container">
+                        <canvas id="priceChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">※各プランの開始価格を比較したものです。基本プランは機能の複雑さにより変動します。</p>
+                </div>
+             </section>
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t border-slate-200">
+            <p class="text-xl md:text-2xl font-bold text-gray-700">自信を持って、お客様の未来を語ろう</p>
+            <p class="mt-3 text-gray-500 max-w-2xl mx-auto">この価格設計は、専門性や提供価値をお客様に分かりやすく伝える「翻訳機」。単なるツールではなく、お客様のビジネスの可能性を広げる「未来への投資」を提案します。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapText = (text, charLimit = 16) => {
+                if (typeof text !== 'string' || text.length <= charLimit) {
+                    return text;
+                }
+                const words = text.split('');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length > charLimit) {
+                        lines.push(currentLine);
+                        currentLine = '';
+                    }
+                    currentLine += word;
+                }
+                if (currentLine) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join('');
+                } else {
+                    return label;
+                }
+            };
+            
+            const universalTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(context.parsed.x);
+                                }
+                                return label;
+                            }
+                        },
+                        titleFont: { size: 14 },
+                        bodyFont: { size: 14 },
+                        padding: 12,
+                        boxPadding: 4,
+                    }
+                }
+            };
+
+            const priceChartCtx = document.getElementById('priceChart')?.getContext('2d');
+            if (priceChartCtx) {
+                new Chart(priceChartCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['① お試しプラン', '② 基本プラン', '③ 伴走プラン(月額)'],
+                        datasets: [{
+                            label: '開始価格（円）',
+                            data: [30000, 100000, 30000],
+                            backgroundColor: [
+                                'rgba(148, 210, 189, 0.7)', // #94D2BD
+                                'rgba(238, 155, 0, 0.7)',  // #EE9B00
+                                'rgba(10, 147, 150, 0.7)', // #0A9396
+                            ],
+                            borderColor: [
+                                '#94D2BD',
+                                '#EE9B00',
+                                '#0A9396',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...universalTooltipOptions,
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        return new Intl.NumberFormat('ja-JP', { notation: 'compact' }).format(value);
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            ...universalTooltipOptions.plugins,
+                            legend: {
+                                display: false
+                            },
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

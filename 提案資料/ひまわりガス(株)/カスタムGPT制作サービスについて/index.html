@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ひまわりガス様 SNS運用効率化AI活用提案</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 
+        Narrative Plan:
+        1.  Title: Introduce the proposal - AI as a new partner for Himawari Gas.
+        2.  Section 1 (The Challenge): Visualize the common pain points of SNS management (lack of ideas, time, and personnel dependency) using simple, impactful cards.
+        3.  Section 2 (The AI Solution): Transition from problems to solutions, showing how AI directly addresses these challenges with a clear flow.
+        4.  Section 3 (What AI Can Create): Detail the concrete outputs of the AI, categorized into three key areas (Content Creation, Strategic Support, Customer Connection), using charts to represent the possibilities. This forms the core of the infographic.
+        5.  Section 4 (The Path to Success): Present the 5-step implementation roadmap as a clear, easy-to-follow timeline, building confidence in the process.
+        6.  Footer (Call to Action): Conclude with an inspiring message encouraging partnership.
+
+        Visualization Choices:
+        -   Challenge Cards (Section 1): Goal: Inform. Visualization: "Single Big Number" style cards with Unicode icons. Justification: Quickly conveys core problems without complexity. Method: HTML/CSS. NO SVG.
+        -   AI Benefits Chart (Section 3): Goal: Compare. Visualization: Bar Chart. Justification: Compares the potential impact of different AI-generated content types. Library: Chart.js (Canvas). NO SVG.
+        -   Strategic Support Chart (Section 3): Goal: Compare. Visualization: Doughnut Chart. Justification: Shows the composition of AI's strategic assistance in a simple, digestible format. Library: Chart.js (Canvas). NO SVG.
+        -   Roadmap (Section 4): Goal: Organize. Visualization: Vertical Timeline. Justification: Clearly illustrates the sequence of the project steps. Method: Structured HTML/CSS with Tailwind. NO SVG, NO MERMAID JS.
+        -   All other icons are Unicode characters.
+
+        Color Palette: Energetic & Playful
+        -   #00A6FB (Bright Blue)
+        -   #F2C400 (Yellow/Gold)
+        -   #43B049 (Green)
+        -   #F57D23 (Orange)
+        -   Text: #1F2937 (Gray-800)
+        -   Background: #F9FAFB (Gray-50)
+
+        Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All charts are rendered on Canvas by Chart.js. All diagrams are built with structured HTML and styled with Tailwind CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-3xl md:text-5xl font-bold text-[#F57D23] mb-2">ひまわりガス様 × 生成AI</h1>
+            <p class="text-lg md:text-2xl font-bold text-gray-700">SNS運用を成功に導く、新しいパートナーシップのご提案</p>
+        </header>
+
+        <main>
+            <section id="challenge" class="mb-16 md:mb-20">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#00A6FB]">まずは、SNS運用の「よくあるお悩み」</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-10">多くの企業様がSNS運用において同様の課題に直面しています。これらは特別なことではなく、解決可能な課題です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-[#F2C400]">
+                        <div class="text-5xl mb-4">🤯</div>
+                        <h3 class="text-xl font-bold mb-2">投稿ネタの枯渇</h3>
+                        <p class="text-gray-600">毎日何を投稿すれば良いか分からなくなり、内容がマンネリ化してしまう。</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-[#F57D23]">
+                        <div class="text-5xl mb-4">⏳</div>
+                        <h3 class="text-xl font-bold mb-2">時間的コストの増大</h3>
+                        <p class="text-gray-600">投稿文の作成、画像選定、ハッシュタグ考案に時間がかかり、本業を圧迫する。</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-[#43B049]">
+                        <div class="text-5xl mb-4">👤</div>
+                        <h3 class="text-xl font-bold mb-2">運用の属人化</h3>
+                        <p class="text-gray-600">特定の担当者に負担が集中し、その人がいないとSNSが更新できない。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="solution" class="mb-16 md:mb-20">
+                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-[#00A6FB]">そのお悩み、生成AIが力強い味方になります</h2>
+                 <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="flex flex-col md:flex-row items-center justify-between">
+                        <div class="text-center md:text-left mb-6 md:mb-0">
+                           <p class="text-lg text-gray-500">これまでの課題</p>
+                           <p class="text-2xl font-bold">時間・ネタ・属人化</p>
+                        </div>
+                        <div class="text-5xl text-[#00A6FB] animate-pulse mx-8">→</div>
+                        <div class="bg-[#00A6FB] text-white p-6 rounded-lg text-center">
+                            <p class="text-lg">生成AIパートナーが</p>
+                            <p class="text-2xl font-bold">アイデア出しから投稿作成までを全面サポート</p>
+                        </div>
+                         <div class="text-5xl text-[#43B049] animate-pulse mx-8">→</div>
+                        <div class="text-center md:text-right">
+                           <p class="text-lg text-green-500">実現する未来</p>
+                           <p class="text-2xl font-bold text-green-600">質の高い発信と時間創出</p>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+
+            <section id="features" class="mb-16 md:mb-20">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-[#00A6FB]">AIが可能にする、新しいSNS運用のカタチ</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-12">貴社の強みや想いを学習したAIは、単なる作業代行者ではありません。戦略立案からお客様とのコミュニケーションまで、多角的に貴社を支えるアシスタントへと成長します。</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                        <h3 class="text-xl font-bold mb-1 text-center text-[#F57D23]">カテゴリ①：魅力が伝わる投稿コンテンツ作成</h3>
+                        <p class="text-center text-gray-600 mb-6">貴社の実績や専門性を、沖縄のお客様の心に響く「物語」として届けます。</p>
+                        <div class="chart-container">
+                            <canvas id="contentChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-sm text-gray-500 text-center">AIは多様な切り口のコンテンツ案を提示し、投稿のマンネリ化を防ぎます。</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                        <h3 class="text-xl font-bold mb-1 text-center text-[#43B049]">カテゴリ②：戦略的な運用をサポート</h3>
+                        <p class="text-center text-gray-600 mb-6">「なんとなく」の運用から脱却し、目的達成のための運用をAIが支援します。</p>
+                        <div class="chart-container">
+                             <canvas id="strategyChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-sm text-gray-500 text-center">投稿計画の相談から効果的なハッシュタグ選定まで、戦略の実行をサポートします。</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 lg:col-span-2">
+                        <h3 class="text-xl font-bold mb-1 text-center text-[#00A6FB]">カテゴリ③：お客様との繋がりを強化</h3>
+                        <p class="text-center text-gray-600 mb-6">お客様とのコミュニケーションを円滑にし、ファンを増やしていくお手伝いをします。</p>
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-8 p-6 bg-blue-50 rounded-lg">
+                           <div class="text-6xl">💬</div>
+                           <div>
+                               <p class="text-lg font-bold text-gray-700">温かみのある「コメント返信」を瞬時に作成</p>
+                               <p class="text-gray-600">お客様からの質問や感謝のコメントに対し、丁寧で親しみやすい返信文案を複数提案。スピーディーで心のこもった対応により、顧客満足度を高めます。</p>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="roadmap">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-[#00A6FB]">ゴールに向けた成功へのロードマップ</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-12">貴社にとって本当に価値のあるAIパートナーを育てるため、以下のステップでプロジェクトを進行します。二人三脚で、着実にゴールを目指しましょう。</p>
+                <div class="relative max-w-2xl mx-auto">
+                    <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-blue-200 transform -translate-x-1/2"></div>
+                    <div class="space-y-12">
+                        
+                        <div class="relative">
+                            <div class="absolute left-1/2 top-1/2 w-8 h-8 bg-[#00A6FB] rounded-full border-4 border-white transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-white font-bold">1</div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                                <div class="md:text-right pr-8">
+                                    <p class="font-bold text-lg text-[#00A6FB]">ヒアリング</p>
+                                    <p class="text-sm text-gray-500">目的・ゴールの明確化</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-[#00A6FB]">
+                                    <p class="text-gray-600">貴社の「想い」やSNSでの理想像を共有いただき、プロジェクトの方向性を定めます。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div class="absolute left-1/2 top-1/2 w-8 h-8 bg-[#F57D23] rounded-full border-4 border-white transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-white font-bold">2</div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                                <div class="bg-white p-4 rounded-lg shadow-md border-r-4 border-[#F57D23] md:order-first md:col-start-1">
+                                    <p class="text-gray-600">ヒアリング内容を基に、AIに何を学習させ、どんな役割を持たせるかを設計します。</p>
+                                </div>
+                                <div class="md:text-left pl-8">
+                                    <p class="font-bold text-lg text-[#F57D23]">要件定義</p>
+                                    <p class="text-sm text-gray-500">カスタムGPTの設計</p>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="relative">
+                            <div class="absolute left-1/2 top-1/2 w-8 h-8 bg-[#43B049] rounded-full border-4 border-white transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-white font-bold">3</div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                                <div class="md:text-right pr-8">
+                                    <p class="font-bold text-lg text-[#43B049]">制作・調整</p>
+                                    <p class="text-sm text-gray-500">AIのチューニング</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-[#43B049]">
+                                    <p class="text-gray-600">実際にAIを触っていただきながら対話を重ね、より貴社にフィットするよう調整します。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="relative">
+                            <div class="absolute left-1/2 top-1/2 w-8 h-8 bg-[#F2C400] rounded-full border-4 border-white transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-white font-bold">4</div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                                 <div class="bg-white p-4 rounded-lg shadow-md border-r-4 border-[#F2C400] md:order-first md:col-start-1">
+                                    <p class="text-gray-600">操作マニュアルの作成と、ご担当者様への丁寧なレクチャーを行います。</p>
+                                </div>
+                                <div class="md:text-left pl-8">
+                                    <p class="font-bold text-lg text-[#F2C400]">納品</p>
+                                    <p class="text-sm text-gray-500">マニュアルとレクチャー</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                             <div class="absolute left-1/2 top-1/2 w-8 h-8 bg-gray-600 rounded-full border-4 border-white transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-white font-bold">5</div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                                <div class="md:text-right pr-8">
+                                    <p class="font-bold text-lg text-gray-700">伴走</p>
+                                    <p class="text-sm text-gray-500">継続的な運用サポート</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-gray-600">
+                                    <p class="text-gray-600">納品後も定期的に状況を伺い、改善提案など継続的にサポートさせていただきます。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 md:mt-20 pt-8 border-t">
+            <p class="text-xl md:text-2xl font-bold text-gray-700">さあ、一緒に貴社だけの「AIアシスタント」を育てましょう。</p>
+            <p class="mt-2 text-gray-500">T&Lサポート株式会社</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const wrapText = (text, charLimit = 16) => {
+                if (typeof text !== 'string' || text.length <= charLimit) {
+                    return text;
+                }
+                const words = text.split('');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length > charLimit) {
+                        lines.push(currentLine);
+                        currentLine = '';
+                    }
+                    currentLine += word;
+                }
+                if (currentLine) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join('');
+                } else {
+                    return label;
+                }
+            };
+            
+            const universalTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        titleFont: {
+                            size: 14,
+                        },
+                        bodyFont: {
+                            size: 14,
+                        },
+                        padding: 12,
+                        boxPadding: 4,
+                    }
+                }
+            };
+
+            const contentChartCtx = document.getElementById('contentChart')?.getContext('2d');
+            if (contentChartCtx) {
+                new Chart(contentChartCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['お客様の物語', wrapText('沖縄特化お役立ち情報'), 'スタッフ紹介'],
+                        datasets: [{
+                            label: 'エンゲージメント貢献度',
+                            data: [90, 85, 75],
+                            backgroundColor: [
+                                'rgba(245, 125, 35, 0.6)',
+                                'rgba(0, 166, 251, 0.6)',
+                                'rgba(67, 176, 73, 0.6)',
+                            ],
+                            borderColor: [
+                                'rgba(245, 125, 35, 1)',
+                                'rgba(0, 166, 251, 1)',
+                                'rgba(67, 176, 73, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...universalTooltipOptions,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                suggestedMax: 100
+                            }
+                        },
+                        plugins: {
+                            ...universalTooltipOptions.plugins,
+                            legend: {
+                                display: false
+                            },
+                        }
+                    }
+                });
+            }
+
+            const strategyChartCtx = document.getElementById('strategyChart')?.getContext('2d');
+            if (strategyChartCtx) {
+                 new Chart(strategyChartCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['投稿計画の壁打ち', '効果的なハッシュタグ提案'],
+                        datasets: [{
+                            label: '戦略サポート比率',
+                            data: [60, 40],
+                            backgroundColor: [
+                                'rgba(67, 176, 73, 0.7)',
+                                'rgba(242, 196, 0, 0.7)',
+                            ],
+                            borderColor: [
+                                 'rgba(67, 176, 73, 1)',
+                                 'rgba(242, 196, 0, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...universalTooltipOptions,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                             ...universalTooltipOptions.plugins,
+                            legend: {
+                                position: 'bottom',
+                            },
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yotsuba Group (よつば親愛信託おきなわ) インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0fdf4; /* Very light green background */
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .icon {
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
+        }
+        .section-title {
+            font-size: 1.875rem; /* 3xl */
+            font-weight: 700;
+            margin-bottom: 1.5rem; /* 6 */
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; /* 3 */
+            color: #15803d; /* green-700 */
+        }
+        .flow-step {
+            position: relative;
+            padding-left: 2.5rem; /* 10 */
+            padding-bottom: 2rem; /* 8 */
+            border-left: 2px dashed #4ade80; /* green-400 */
+        }
+        .flow-step:last-child {
+            border-left: none;
+        }
+        .flow-dot {
+            position: absolute;
+            left: -13px; /* Adjust to center on the line */
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 9999px;
+            background-color: #22c55e; /* green-500 */
+            border: 4px solid white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 sm:p-8 max-w-6xl">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <div class="inline-block p-4 bg-green-600 rounded-full mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clover"><path d="M16.2 3.8a2.7 2.7 0 0 0-3.82 0l-.4.38-.4-.4a2.7 2.7 0 0 0-3.82 0C6.73 4.85 6.1 6.5 6.6 8.1l-.9.9a3.14 3.14 0 0 0 0 4.4l.9.9c-1.5 1.6-1.15 3.35.88 4.32a2.7 2.7 0 0 0 3.82 0l.4-.39.4.4a2.7 2.7 0 0 0 3.82 0c1.02-1.03 1.4-2.72-.1-4.32l.9-.9a3.14 3.14 0 0 0 0-4.4l-.9-.9c1.5-1.6 1.15-3.35-.88-4.32Z"/></svg>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-green-800">Yotsuba Group まるわかりガイド</h1>
+            <p class="text-lg text-gray-600 mt-2">一般社団法人よつば親愛信託おきなわ</p>
+        </header>
+
+        <!-- Section 1: What is Yotsuba Group? -->
+        <section class="mb-16">
+            <h2 class="section-title"><i data-lucide="building-2"></i>よつばグループとは？</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <i data-lucide="gem" class="icon text-green-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">目的・使命</h3>
+                    </div>
+                    <p class="text-gray-600">依頼者の「想い」を叶える財産管理・事業承継を提案・実行し、愛と誠実の親愛信託®を正しく普及させます。</p>
+                </div>
+                <div class="card p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <i data-lucide="network" class="icon text-green-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">組織構造</h3>
+                    </div>
+                    <p class="text-gray-600">協同組合親愛トラスト（本部）と全国11拠点の一般社団法人で構成される日本最大級の信託実務家ネットワークです。</p>
+                </div>
+                <div class="card p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <i data-lucide="book-open" class="icon text-green-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">関連書籍</h3>
+                    </div>
+                    <p class="text-gray-600">『親愛信託活用 Q&A』など、信託に関する専門書籍を多数出版しています。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Membership Types -->
+        <section class="mb-16">
+            <h2 class="section-title"><i data-lucide="users"></i>2つの会員制度</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Regular Member -->
+                <div class="card p-6 border-4 border-green-500">
+                    <h3 class="text-2xl font-bold text-green-700 mb-4">正会員</h3>
+                    <p class="mb-4 text-gray-600">対象：信託実務を業務に取り入れたい専門家（士業、FP等）</p>
+                    <div class="text-3xl font-bold text-gray-800 mb-6">年会費 42,000円</div>
+                    <div class="space-y-3">
+                        <p class="font-semibold text-lg text-gray-700">主な活動・権限</p>
+                        <ul class="list-none space-y-2">
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="icon text-green-500 mr-2 flex-shrink-0 mt-1"></i><span>親愛信託®の組成、案件の共同受任</span></li>
+                        </ul>
+                        <p class="font-semibold text-lg text-gray-700 mt-4">主な特典</p>
+                        <ul class="list-none space-y-2">
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="icon text-green-500 mr-2 flex-shrink-0 mt-1"></i><span>信託法勉強会、契約書検討会への参加</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="icon text-green-500 mr-2 flex-shrink-0 mt-1"></i><span>全国セミナー（2部構成）参加費無料</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="icon text-green-500 mr-2 flex-shrink-0 mt-1"></i><span>朝の勉強会への参加</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="icon text-green-500 mr-2 flex-shrink-0 mt-1"></i><span>会員価格でのセミナー参加、販促品購入</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="icon text-green-500 mr-2 flex-shrink-0 mt-1"></i><span>会員証の発行</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Supporting Member -->
+                <div class="card p-6 border-2 border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-700 mb-4">賛助会員</h3>
+                    <p class="mb-4 text-gray-600">対象：信託を紹介・応援したい方（エンドユーザー、福祉関係者等）</p>
+                    <div class="text-3xl font-bold text-gray-800 mb-6">年会費 18,000円</div>
+                    <div class="space-y-3">
+                        <p class="font-semibold text-lg text-gray-700">主な活動</p>
+                        <ul class="list-none space-y-2">
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="icon text-green-500 mr-2 flex-shrink-0 mt-1"></i><span>研修・セミナー活動の援助</span></li>
+                        </ul>
+                        <p class="font-semibold text-lg text-gray-700 mt-4">主な特典</p>
+                        <ul class="list-none space-y-2">
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="icon text-green-500 mr-2 flex-shrink-0 mt-1"></i><span>朝の勉強会への参加</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="icon text-green-500 mr-2 flex-shrink-0 mt-1"></i><span>会員価格でのセミナー参加、販促品購入</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="icon text-green-500 mr-2 flex-shrink-0 mt-1"></i><span>案件や実務の相談が可能</span></li>
+                             <li class="flex items-start"><i data-lucide="x-circle" class="icon text-gray-400 mr-2 flex-shrink-0 mt-1"></i><span>会員証は発行されません</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Main Activities & Events -->
+        <section class="mb-16">
+            <h2 class="section-title"><i data-lucide="calendar-days"></i>主な活動・イベント</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card p-6">
+                    <i data-lucide="sunrise" class="icon text-green-600 mb-3"></i>
+                    <h3 class="text-lg font-bold">朝の勉強会</h3>
+                    <p class="text-gray-600">毎週木曜 7:30-8:00</p>
+                </div>
+                <div class="card p-6">
+                    <i data-lucide="book-marked" class="icon text-green-600 mb-3"></i>
+                    <h3 class="text-lg font-bold">条文勉強会</h3>
+                    <p class="text-gray-600">毎月第1・3木曜 19:00-20:00</p>
+                </div>
+                <div class="card p-6">
+                    <i data-lucide="mic" class="icon text-green-600 mb-3"></i>
+                    <h3 class="text-lg font-bold">よつば定例セミナー</h3>
+                    <p class="text-gray-600">毎月4日 15:30-17:00</p>
+                </div>
+                <div class="card p-6">
+                    <i data-lucide="graduation-cap" class="icon text-green-600 mb-3"></i>
+                    <h3 class="text-lg font-bold">連続講座・検定試験</h3>
+                    <p class="text-gray-600">信託のプロを目指すための講座</p>
+                </div>
+                 <div class="card p-6">
+                    <i data-lucide="users-2" class="icon text-green-600 mb-3"></i>
+                    <h3 class="text-lg font-bold">沖縄独自の活動</h3>
+                    <p class="text-gray-600">信託ミーティング、無料相談会など</p>
+                </div>
+                <div class="card p-6">
+                    <i data-lucide="glass-water" class="icon text-green-600 mb-3"></i>
+                    <h3 class="text-lg font-bold">懇親会</h3>
+                    <p class="text-gray-600">新年会、忘年会など年3回程度</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Membership Process Flow -->
+        <section class="mb-16">
+            <h2 class="section-title"><i data-lucide="arrow-right-left"></i>入会・更新・退会の流れ</h2>
+            <div class="card p-8">
+                <div class="flow-step">
+                    <div class="flow-dot"></div>
+                    <h3 class="text-xl font-bold mb-2">1. 入会手続き</h3>
+                    <p class="text-gray-600">① 会員制度説明 → ② 申込書・請求書送付 → ③ 入金 → ④ 本部承認 → ⑤ オンラインツール招待 → 完了</p>
+                    <p class="text-sm text-gray-500 mt-2">※手続き完了まで約2週間～1ヶ月</p>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-dot"></div>
+                    <h3 class="text-xl font-bold mb-2">2. 更新手続き</h3>
+                    <p class="text-gray-600">① 年末に更新意思確認 → ② 請求書送付 → ③ 入金確認 → 完了</p>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-dot"></div>
+                    <h3 class="text-xl font-bold mb-2">3. 退会手続き</h3>
+                    <p class="text-gray-600">① 退会届提出 → ② オンラインツールから削除 → 完了</p>
+                </div>
+                 <div class="flow-step">
+                    <div class="flow-dot"></div>
+                    <h3 class="text-xl font-bold mb-2">4. 会員種別変更</h3>
+                    <p class="text-gray-600">① 変更後の種別の申込書提出 → ② 請求書送付 → ③ 入金 → ④ 本部承認 → 完了</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Tools & Important Notes -->
+        <section>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h2 class="section-title"><i data-lucide="tool"></i>運営ツール</h2>
+                    <div class="card p-6">
+                        <div class="flex flex-wrap gap-4 justify-center items-center">
+                            <span class="font-bold bg-gray-100 px-3 py-1 rounded-full">freee会計</span>
+                            <span class="font-bold bg-gray-100 px-3 py-1 rounded-full">Googleフォーム</span>
+                            <span class="font-bold bg-gray-100 px-3 py-1 rounded-full">Chatwork</span>
+                            <span class="font-bold bg-gray-100 px-3 py-1 rounded-full">LINEグループ</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="section-title"><i data-lucide="alert-triangle"></i>重要ポイント</h2>
+                    <div class="card p-6 bg-yellow-50 border-yellow-400">
+                        <ul class="list-none space-y-2 text-yellow-800">
+                            <li class="flex items-start"><i data-lucide="alert-circle" class="icon mr-2 flex-shrink-0 mt-1"></i><span>既納の会費は、いかなる理由でも返還されません。</span></li>
+                            <li class="flex items-start"><i data-lucide="alert-circle" class="icon mr-2 flex-shrink-0 mt-1"></i><span>年会費を2ヶ月以上滞納すると会員資格を喪失します。</span></li>
+                            <li class="flex items-start"><i data-lucide="alert-circle" class="icon mr-2 flex-shrink-0 mt-1"></i><span>入会申込時点で会員規約に承認したものとみなされます。</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

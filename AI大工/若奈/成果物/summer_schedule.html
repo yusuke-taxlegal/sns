@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>夏休みの予定</title>
+<style>
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 2px solid #add8e6;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #005f73;
+    font-size: 2em;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #a2d2ff, #bde0fe);
+    border-radius: 10px 10px 0 0;
+    padding-top: 20px;
+    margin: -20px -20px 20px -20px;
+  }
+  h2 {
+    color: #ee6c4d;
+    font-size: 1.5em;
+    border-left: 7px solid #ee6c4d;
+    padding-left: 15px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  .calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  .calendar-table th {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    padding: 8px 0;
+    font-size: 0.9em;
+  }
+  .calendar-table th.sun { background-color: #ff7f7f; }
+  .calendar-table th.mon { background-color: #fca311; }
+  .calendar-table th.tue { background-color: #fca311; }
+  .calendar-table th.wed { background-color: #fca311; }
+  .calendar-table th.thu { background-color: #fca311; }
+  .calendar-table th.fri { background-color: #fca311; }
+  .calendar-table th.sat { background-color: #7f7fff; }
+
+  .calendar-table td {
+    border: 1px solid #ddd;
+    height: 100px;
+    vertical-align: top;
+    padding: 4px;
+    background-color: #fff;
+    overflow: hidden;
+  }
+  .calendar-table td.other-month {
+    background-color: #f7f7f7;
+  }
+  .day-number {
+    font-size: 1em;
+    font-weight: bold;
+  }
+  .sun .day-number { color: #ff7f7f; }
+  .sat .day-number { color: #7f7fff; }
+  
+  .day-event {
+    font-size: 0.75em;
+    margin-top: 4px;
+    padding: 3px;
+    background-color: #e9f5db;
+    border-radius: 4px;
+    display: block;
+    margin-bottom: 3px;
+    color: #0077b6;
+    line-height: 1.3;
+  }
+  .note {
+    font-size: 0.9em;
+    color: #d62828;
+  }
+  .section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fefae0;
+    border-radius: 8px;
+    border-left: 5px solid #dda15e;
+  }
+  .section h3 {
+    color: #bc6c25;
+    margin-top: 0;
+    font-size: 1.2em;
+  }
+  .section ul {
+    padding-left: 20px;
+    margin: 10px 0 0;
+    list-style-type: '☀️';
+  }
+  .section li {
+    padding-left: 10px;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🍧 夏休みの予定 🌻</h1>
+
+  <h2>📅 2025年 7月・8月</h2>
+  <table class="calendar-table">
+      <thead>
+          <tr>
+              <th class="sun">日</th><th class="mon">月</th><th class="tue">火</th><th class="wed">水</th><th class="thu">木</th><th class="fri">金</th><th class="sat">土</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td class="sun"><span class="day-number">20</span></td>
+              <td class="mon"><span class="day-number">21</span></td>
+              <td class="tue"><span class="day-number">22</span><div class="day-event">ｱｽﾘｰﾄｸﾗｽ</div></td>
+              <td class="wed"><span class="day-number">23</span><div class="day-event">昆虫採取</div></td>
+              <td class="thu"><span class="day-number">24</span><div class="day-event">ﾖｶﾞ指導日<span class="note">(体)</span></div><div class="day-event">水遊び</div></td>
+              <td class="fri"><span class="day-number">25</span></td>
+              <td class="sat"><span class="day-number">26</span></td>
+          </tr>
+          <tr>
+              <td class="sun"><span class="day-number">27</span></td>
+              <td class="mon"><span class="day-number">28</span></td>
+              <td class="tue"><span class="day-number">29</span><div class="day-event">感触遊び<span class="note">(砂･水)</span></div></td>
+              <td class="wed"><span class="day-number">30</span></td>
+              <td class="thu"><span class="day-number">31</span></td>
+              <td class="fri"><span class="day-number">1</span></td>
+              <td class="sat"><span class="day-number">2</span></td>
+          </tr>
+          <tr>
+              <td class="sun"><span class="day-number">3</span></td>
+              <td class="mon"><span class="day-number">4</span></td>
+              <td class="tue"><span class="day-number">5</span><div class="day-event">ｱｽﾘｰﾄｸﾗｽ</div></td>
+              <td class="wed"><span class="day-number">6</span><div class="day-event">昆虫採取</div></td>
+              <td class="thu"><span class="day-number">7</span><div class="day-event">水遊び</div></td>
+              <td class="fri"><span class="day-number">8</span></td>
+              <td class="sat"><span class="day-number">9</span></td>
+          </tr>
+          <tr>
+              <td class="sun"><span class="day-number">10</span></td>
+              <td class="mon"><span class="day-number">11</span></td>
+              <td class="tue"><span class="day-number">12</span></td>
+              <td class="wed"><span class="day-number">13</span><div class="day-event">絵画指導日<span class="note">(ｽ)</span></div></td>
+              <td class="thu"><span class="day-number">14</span><div class="day-event">水遊び</div></td>
+              <td class="fri"><span class="day-number">15</span></td>
+              <td class="sat"><span class="day-number">16</span></td>
+          </tr>
+          <tr>
+              <td class="sun"><span class="day-number">17</span></td>
+              <td class="mon"><span class="day-number">18</span><div class="day-event">感触遊び<span class="note">(泡)</span></div></td>
+              <td class="tue"><span class="day-number">19</span><div class="day-event">ﾌｨﾝｶﾞｰﾍﾟｲﾝﾃｨﾝｸﾞ<span class="note">(ｽ)</span></div></td>
+              <td class="wed"><span class="day-number">20</span></td>
+              <td class="thu"><span class="day-number">21</span></td>
+              <td class="fri"><span class="day-number">22</span></td>
+              <td class="sat"><span class="day-number">23</span></td>
+          </tr>
+          <tr>
+              <td class="sun"><span class="day-number">24</span><div class="day-event">水遊び<span class="note">(水鉄砲)</span></div></td>
+              <td class="mon"><span class="day-number">25</span></td>
+              <td class="tue"><span class="day-number">26</span><div class="day-event">お楽しみ会</div></td>
+              <td class="wed"><span class="day-number">27</span></td>
+              <td class="thu"><span class="day-number">28</span></td>
+              <td class="fri"><span class="day-number">29</span><div class="day-event">保育室清掃</div></td>
+              <td class="sat"><span class="day-number">30</span></td>
+          </tr>
+          <tr>
+              <td class="sun"><span class="day-number">31</span></td>
+              <td class="other-month"></td>
+              <td class="other-month"></td>
+              <td class="other-month"></td>
+              <td class="other-month"></td>
+              <td class="other-month"></td>
+              <td class="other-month"></td>
+          </tr>
+      </tbody>
+  </table>
+
+  <div class="section">
+    <h3>● 園外保育</h3>
+    <ul>
+      <li>水筒・カラー帽子・園指定体育着登園</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>● 水遊び・感触遊び</h3>
+    <ul>
+      <li>毎日持参するリュックとは別の鞄に、汚れてもよい服・フェイスタオル・ビニール袋・草履の準備をお願いします。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>● 昆虫採集・観察</h3>
+    <ul>
+      <li>ご自宅に虫取り網、虫かごがあるお子様は持たせても構いません。</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html> 

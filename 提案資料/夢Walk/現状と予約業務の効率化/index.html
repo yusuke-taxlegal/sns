@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPO法人夢WALK様 業務効率化のご提案</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8fafc;
+        }
+        .pain-point {
+            position: relative;
+            padding-left: 1.5rem;
+            color: #B91C1C;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .pain-point::before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+        }
+        .solution-point {
+            position: relative;
+            padding: 1rem;
+            background-color: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            color: #166534;
+            font-size: 1rem;
+        }
+        .solution-point h5 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.125rem;
+        }
+        .solution-point h5::before {
+            content: '💡';
+            margin-right: 0.5rem;
+            font-size: 1.375rem;
+        }
+        .tool-card {
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .tool-card:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .arrow {
+            font-weight: bold;
+            color: #4b5563;
+        }
+        .card-content {
+            flex-grow: 1;
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+        .flow-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            width: 2rem;
+            text-align: center;
+        }
+        .flow-arrow-vertical {
+            font-size: 1.25rem;
+            color: #9ca3af;
+            margin-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">NPO法人夢WALK様 業務効率化のご提案</h1>
+            <p class="text-lg md:text-xl text-gray-600">予約管理の課題解決から始める、組織全体の生産性向上</p>
+        </header>
+
+        <!-- 予約管理プロセスの変革 -->
+        <div class="mb-16">
+            <header class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">予約管理プロセスの変革</h2>
+                <p class="text-lg md:text-xl text-gray-600">手作業による非効率なフローから、自動化されたスムーズな連携へ</p>
+            </header>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Before -->
+                <div class="bg-red-50 border-2 border-red-200 p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold text-red-800 mb-4 text-center">BEFORE: 現状の煩雑な手作業フロー</h3>
+                    <div>
+                        <div class="flow-step">
+                            <span class="flow-icon">🌐</span>
+                            <span>お客様がAirリザーブのページから予約</span>
+                        </div>
+                        <div class="flow-arrow-vertical">↓</div>
+                        <div class="flow-step">
+                            <span class="flow-icon">🤯</span>
+                            <span>スタッフが自身の予定（会議、私用等）をGoogleカレンダーに入力</span>
+                        </div>
+                        <div class="flow-arrow-vertical">↓</div>
+                        <div class="flow-step">
+                            <span class="flow-icon">🖱️</span>
+                            <span class="font-bold">【最重要課題】スタッフの予定を見ながら、Airリザーブの予約枠を手動でブロック</span>
+                        </div>
+                        <div class="flow-arrow-vertical">↓</div>
+                        <div class="flow-step">
+                            <span class="flow-icon">⚠️</span>
+                            <span>ブロックし忘れや、予約の転記ミスによるダブルブッキングが常に発生するリスク</span>
+                        </div>
+                        <div class="mt-6">
+                            <p class="pain-point">予約ページはあるものの、カレンダーとの双方向連携がなく、結局は手作業での調整が必須となっている。</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- After -->
+                <div class="bg-green-50 border-2 border-green-200 p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold text-green-800 mb-4 text-center">AFTER: 提案する自動化フロー</h3>
+                    <div>
+                        <div class="flow-step">
+                            <span class="flow-icon">🌐</span>
+                            <span>お客様がTimeRexの予約ページにアクセス</span>
+                        </div>
+                        <div class="flow-arrow-vertical">↓</div>
+                        <div class="flow-step">
+                            <span class="flow-icon">🤖</span>
+                            <span class="font-bold">システムが全スタッフのGoogleカレンダーを自動で確認し、空き時間のみ提示</span>
+                        </div>
+                        <div class="flow-arrow-vertical">↓</div>
+                        <div class="flow-step">
+                            <span class="flow-icon">✅</span>
+                            <span>お客様が希望日時を選び、予約完了</span>
+                        </div>
+                        <div class="flow-arrow-vertical">↓</div>
+                        <div class="flow-step bg-blue-100 p-2 rounded">
+                            <span class="flow-icon">📬</span>
+                            <span>予約内容がLINE WORKSへ自動で通知され、即時共有</span>
+                        </div>
+                        <div class="mt-6 solution-point bg-white">
+                            <h5>導入効果</h5>
+                            <p>調整業務がゼロになり、スタッフは本来の支援業務に集中。予約情報はリアルタイムでチームに共有される。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-12 border-t-2 border-gray-200">
+
+        <header class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">現状のツール活用と課題の全体像</h2>
+            <p class="text-lg md:text-xl text-gray-600">組織内外のコミュニケーションと業務プロセスの可視化</p>
+        </header>
+
+        <div class="flex justify-center items-center mb-10">
+            <div class="p-6 bg-blue-600 text-white rounded-full shadow-lg text-center">
+                <h2 class="text-2xl font-bold">NPO法人<br>夢WALK</h2>
+                <p class="text-sm">(情報のハブ)</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- 企業クライアント -->
+            <div class="flex flex-col space-y-4">
+                <h3 class="text-2xl font-bold text-center text-gray-700">🏢 企業クライアント</h3>
+                <div class="tool-card">
+                    <div class="card-content">
+                        <h4 class="font-bold text-xl">エアリザーブ</h4>
+                        <p class="text-base text-blue-600 font-semibold mb-2">目的: 産業カウンセリングの予約</p>
+                        <div class="flex items-center text-gray-600 flex-wrap">
+                            <span>クライアント</span>
+                            <span class="arrow mx-2">→</span>
+                            <span>予約URL</span>
+                            <span class="arrow mx-2">→</span>
+                            <span>Googleカレンダー</span>
+                        </div>
+                        <p class="pain-point mt-3">Googleカレンダーの予定と自動連携せず、手動での予約ブロックが必須。ダブルブッキングのリスクが高い。</p>
+                    </div>
+                    <div class="solution-point mt-4">
+                        <h5>解決策提案</h5>
+                        <p>TimeRexを導入し、予約確定時にLINE WORKSへ自動通知。調整業務をゼロにし、情報共有を迅速化。</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="card-content">
+                        <h4 class="font-bold text-xl">Excel & メール</h4>
+                        <p class="text-base text-blue-600 font-semibold mb-2">目的: 請求書の発行・送付</p>
+                        <div class="flex items-center text-gray-600 flex-wrap">
+                            <span>予約実績</span>
+                            <span class="arrow mx-2">→</span>
+                            <span>Excel</span>
+                            <span class="arrow mx-2">→</span>
+                            <span>PDF</span>
+                            <span class="arrow mx-2">→</span>
+                            <span>メール</span>
+                        </div>
+                        <p class="pain-point mt-3">完全に手作業。件数が増えるとミスが発生しやすく、時間がかかる。</p>
+                    </div>
+                    <div class="solution-point mt-4">
+                        <h5>解決策提案</h5>
+                        <p>会計ソフト(freee等)を導入。請求書を自動作成→PDF化→メール送付まで行い、手作業を撲滅。</p>
+                    </div>
+                </div>
+                 <div class="tool-card">
+                    <h4 class="font-bold text-xl">Chatwork / メール</h4>
+                    <p class="text-base text-blue-600 font-semibold mb-2">目的: 日常の連絡・調整</p>
+                    <p class="pain-point mt-3">連絡手段が顧客ごとに異なり、情報が分散。確認漏れの原因に。</p>
+                </div>
+            </div>
+
+            <!-- 保護者 -->
+            <div class="flex flex-col space-y-4">
+                <h3 class="text-2xl font-bold text-center text-gray-700">👨‍👩‍👧‍👦 保護者</h3>
+                <div class="tool-card">
+                    <h4 class="font-bold text-xl">LINE (公式)</h4>
+                    <p class="text-base text-green-600 font-semibold mb-2">目的: 日々の活動報告・連絡</p>
+                     <div class="flex items-center text-gray-600">
+                        <span>スタッフ</span>
+                        <span class="arrow mx-2">→</span>
+                        <span>活動記録</span>
+                        <span class="arrow mx-2">→</span>
+                        <span>保護者</span>
+                    </div>
+                    <p class="pain-point mt-3">他のツールと情報が分断。重要なやり取りがLINE内に埋もれてしまう。</p>
+                </div>
+            </div>
+
+            <!-- スタッフ (内部) -->
+            <div class="flex flex-col space-y-4">
+                <h3 class="text-2xl font-bold text-center text-gray-700">👥 スタッフ (内部)</h3>
+                <div class="tool-card">
+                    <h4 class="font-bold text-xl">Googleカレンダー</h4>
+                    <p class="text-base text-yellow-600 font-semibold mb-2">目的: 全員のスケジュール共有</p>
+                     <div class="flex items-center text-gray-600">
+                        <span>全スタッフ</span>
+                        <span class="arrow mx-2">↔</span>
+                        <span>共有カレンダー</span>
+                    </div>
+                    <p class="pain-point mt-3">無料Gmailアカウントの共有で運用。セキュリティと管理面で大きなリスク。</p>
+                </div>
+                <div class="tool-card">
+                    <h4 class="font-bold text-xl">LINE WORKS</h4>
+                    <p class="text-base text-yellow-600 font-semibold mb-2">目的: スケジュール連携・連絡</p>
+                    <p class="pain-point mt-3">Googleカレンダーと連携しているが、他の情報（メール、LINE等）とは分断。</p>
+                </div>
+                <div class="tool-card">
+                    <h4 class="font-bold text-xl">紙・手書き</h4>
+                    <p class="text-base text-yellow-600 font-semibold mb-2">目的: 出退勤管理・進行管理</p>
+                    <p class="pain-point mt-3">アナログな管理。情報のリアルタイム共有ができず、進捗が不透明になりがち。</p>
+                </div>
+            </div>
+
+            <!-- 公的機関 -->
+            <div class="flex flex-col space-y-4">
+                <h3 class="text-2xl font-bold text-center text-gray-700">🏛️ 公的機関</h3>
+                <div class="tool-card">
+                    <h4 class="font-bold text-xl">児童支援 会計システム</h4>
+                    <p class="text-base text-purple-600 font-semibold mb-2">目的: 児童デイサービスの請求</p>
+                    <p class="text-gray-600">請求関連の機能はスムーズに動作している。</p>
+                    <p class="pain-point mt-3">付属の掲示板・管理機能は活用されておらず、実質的に請求専用となっている。</p>
+                </div>
+                <div class="tool-card">
+                    <h4 class="font-bold text-xl">メール / 電話</h4>
+                    <p class="text-base text-purple-600 font-semibold mb-2">目的: 各種申請・調整</p>
+                    <p class="pain-point mt-3">やり取りが担当者個人に依存し、組織としての記録が残りにくい。</p>
+                </div>
+            </div>
+
+        </div>
+        
+        <hr class="my-12 border-t-2 border-gray-200">
+
+        <!-- 今後の包括的なサポート提案 -->
+        <div class="mt-16">
+            <header class="text-center mb-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">今後の包括的なサポートについて</h2>
+                <p class="text-lg md:text-xl text-gray-600">T&Lサポートが伴走し、継続的な業務改善をご支援します</p>
+            </header>
+            <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                <p class="mb-6 text-gray-700 text-lg">
+                    今回の予約管理プロセスの改善は、業務効率化への重要な第一歩です。
+                    ヒアリングさせていただいた内容を基に、まずは最も大きな課題である予約業務の自動化をご提案させていただきました。
+                </p>
+                <p class="mb-6 text-gray-700 text-lg">
+                    今後も、<strong class="text-blue-600">TimeRex</strong>による予約の完全自動化の導入支援を皮切りに、<strong class="text-blue-600">会計freee</strong>を活用した請求業務の効率化、そして最終的には<strong class="text-blue-600">Google Workspace</strong>導入による組織全体の情報共有基盤の強化など、貴団体の状況と成長に合わせて段階的なIT活用をご提案いたします。
+                </p>
+                <p class="mb-4 text-gray-700 text-lg">
+                    手作業をなくし、スタッフの皆様が本来の価値ある業務に集中できる環境づくりを、私、T&Lサポート株式会社の玉城が責任を持ってサポートいたします。まずはお気軽にご相談ください。
+                </p>
+                <div class="text-right mt-6 font-semibold text-gray-800 text-lg">
+                    <p>T&Lサポート株式会社</p>
+                    <p>代表取締役 玉城 祐輔</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

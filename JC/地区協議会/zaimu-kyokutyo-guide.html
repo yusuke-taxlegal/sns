@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCI沖縄 財務局長インフォグラフィック (詳細版)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f9ff; /* Very light blue background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-arrow::after {
+            content: '↓';
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0ea5e9; /* A shade from the palette */
+            display: block;
+            text-align: center;
+            margin: 0.5rem 0;
+        }
+        .card-header {
+            border-bottom: 2px solid #9ad2e6;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003f5c] mb-3">JCI沖縄地区協議会 財務局長 完全ガイド</h1>
+            <p class="text-lg text-[#4d8fac]">責務・実践・AI活用による戦略的ガバナンス</p>
+        </header>
+
+        <main class="space-y-16">
+            
+            <section id="role-philosophy" class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c] card-header">財務局長の理念：公益の受託者として</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-10">財務局長は単なる会計係ではありません。会員から信託された財産を預かり、公益社団法人としての社会的信用を守る、組織のガバナンスの要です。その職務は「攻め」と「守り」の戦略的両立によって定義されます。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-blue-50 border-l-4 border-[#4d8fac] p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-[#003f5c] mb-3">守りの財務：コンプライアンスの最後の砦</h3>
+                        <ul class="space-y-2 text-gray-700 list-disc list-inside">
+                            <li><strong>法的責務の遵守:</strong> 公益法人会計基準・関連法規を遵守し、組織の法的地位を保護する。</li>
+                            <li><strong>内部統制の徹底:</strong> 定款・諸規則に基づき、全ての事業が適正に執行されるよう監督する。</li>
+                            <li><strong>透明性の確保:</strong> 全ての取引を正確に記録し、内外への説明責任を果たす基盤を築く。</li>
+                        </ul>
+                    </div>
+                    <div class="bg-teal-50 border-l-4 border-[#9ad2e6] p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-[#003f5c] mb-3">攻めの財務：事業価値の最大化</h3>
+                         <ul class="space-y-2 text-gray-700 list-disc list-inside">
+                            <li><strong>費用対効果の追求:</strong> 限られた資源で最大の事業効果を生むための代替案や改善策を積極的に提案する。</li>
+                            <li><strong>戦略的パートナーシップ:</strong> 各委員会の良き相談役となり、財務的観点から事業計画の実現を支援する。</li>
+                            <li><strong>持続可能性の構築:</strong> 効率的な財務運営を通じて、将来の活動のための強固な財政基盤を築く。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="annual-cycle" class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c] card-header">財務局長の年間サイクル</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold text-[#003f5c] mb-2">第1四半期</h3>
+                        <p class="font-bold text-[#4d8fac] mb-3">予算策定・承認</p>
+                        <p class="text-sm text-gray-600">年間予算案を策定し、理事会・総会で承認を得る。新年度の会計基盤を確立。</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold text-[#003f5c] mb-2">第2・3四半期</h3>
+                        <p class="font-bold text-[#4d8fac] mb-3">運営管理・監督</p>
+                        <p class="text-sm text-gray-600">日々の会計処理、月次報告、予算執行を監督。全国大会等の事業を財務面から支援。</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold text-[#003f5c] mb-2">第4四半期</h3>
+                        <p class="font-bold text-[#4d8fac] mb-3">決算・監査準備</p>
+                        <p class="text-sm text-gray-600">会計帳簿を締め、年次財務諸表を作成。監事による監査に備え、一年間の財務を総括。</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold text-[#003f5c] mb-2">任期末</h3>
+                        <p class="font-bold text-[#4d8fac] mb-3">次年度への引継ぎ</p>
+                        <p class="text-sm text-gray-600">全ての財務記録、マニュアル、課題をまとめ、次期役員へ円滑な移行を保証する。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="budget-review-flow" class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c] card-header">財政規則審査会議：4つの審査基準</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-10">全ての事業議案は、理事会に上程される前に財務局長が主導する財政規則審査会議を通過します。これは組織の財務的健全性を保つための重要なプロセスです。</p>
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center bg-blue-100 p-4 rounded-t-lg shadow">
+                        <p class="font-bold text-blue-800">各委員会が事業議案を提出</p>
+                    </div>
+                    <div class="flow-arrow"></div>
+                    <div class="bg-[#d1eeea] p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-xl text-center text-[#003f5c] mb-6">財務局長による4つの視点からの厳格な審査</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-left">
+                            <div class="p-3 bg-white rounded"><strong>現実性:</strong> 見積もりは過去の実績に照らして妥当か？</div>
+                            <div class="p-3 bg-white rounded"><strong>効率性:</strong> 最も費用対効果の高い方法が選択されているか？</div>
+                            <div class="p-3 bg-white rounded"><strong>準拠性:</strong> 予算は全ての内部規則と法的要件を満たしているか？</div>
+                            <div class="p-3 bg-white rounded"><strong>網羅性:</strong> 潜在的なコストが全て洗い出され、計上されているか？</div>
+                        </div>
+                    </div>
+                    <div class="flow-arrow"></div>
+                    <div class="text-center bg-green-100 p-4 rounded-b-lg shadow">
+                         <p class="font-bold text-green-800">承認後、理事会へ上程</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="auditor-relationship" class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c] card-header">監事との関係：健全なガバナンスの要</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-10">監事は理事の職務執行を監査する独立した役員です。財務局長は、監事との健全な緊張関係と信頼関係を築き、「常に監査可能な状態」を維持する責務があります。</p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                    <div class="text-center">
+                        <div class="w-40 h-40 bg-[#4d8fac] rounded-full flex items-center justify-center text-white p-4 shadow-lg">
+                            <p class="font-bold">財務局長<br/>(執行側)</p>
+                        </div>
+                        <p class="mt-2 text-gray-600">正確な情報提供義務</p>
+                    </div>
+                    <div class="text-2xl font-bold text-[#003f5c] transform md:-rotate-90">⇔</div>
+                    <div class="text-center">
+                        <div class="w-40 h-40 bg-[#003f5c] rounded-full flex items-center justify-center text-white p-4 shadow-lg">
+                            <p class="font-bold">監事<br/>(監査側)</p>
+                        </div>
+                        <p class="mt-2 text-gray-600">監査・監督権限</p>
+                    </div>
+                </div>
+                <div class="mt-8 text-center bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-lg max-w-2xl mx-auto">
+                    <h4 class="font-bold">心構え: Always Audit-Ready</h4>
+                    <p>期末の監査は「確認作業」とすべく、日々の業務で証憑管理や記録を徹底し、自らの業務をセルフ監査する意識が重要です。</p>
+                </div>
+            </section>
+
+            <section id="budget-visualization">
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <div class="lg:col-span-3 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                        <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-2">予算構成案（支出）</h2>
+                        <p class="text-center text-gray-600 mb-6">支出は、目的達成に直結する「事業費」と組織運営に必要な「管理費」に大別されます。</p>
+                        <div class="chart-container">
+                            <canvas id="expenseChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                        <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-2">予算構成案（収入）</h2>
+                        <p class="text-center text-gray-600 mb-6">主な財源は会員からの会費です。</p>
+                        <div class="chart-container">
+                            <canvas id="incomeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="ai-copilot" class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c] card-header">AI活用術：財務業務の効率化と高度化</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-10">AIは、反復作業を自動化し、財務局長がより戦略的な業務に集中するための時間を創出する強力な副操縦士です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-[#003f5c] mb-4">戦術的活用（効率化）</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="bg-[#4d8fac] text-white rounded-full w-6 h-6 text-center mr-3 flex-shrink-0">1</span><span><strong>データ入力自動化 (AI-OCR):</strong> 紙の領収書をスキャンし、手入力をゼロに。</span></li>
+                            <li class="flex items-start"><span class="bg-[#4d8fac] text-white rounded-full w-6 h-6 text-center mr-3 flex-shrink-0">2</span><span><strong>自動仕訳:</strong> 取引内容から勘定科目をAIが自動で提案・入力。</span></li>
+                            <li class="flex items-start"><span class="bg-[#4d8fac] text-white rounded-full w-6 h-6 text-center mr-3 flex-shrink-0">3</span><span><strong>経費精算効率化:</strong> 規定違反の可能性がある申請をAIが自動でフラグ立て。</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-[#003f5c] mb-4">戦略的活用（有効性向上）</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="bg-[#003f5c] text-white rounded-full w-6 h-6 text-center mr-3 flex-shrink-0">1</span><span><strong>異常・不正検知:</strong> 全取引データを分析し、通常と異なるパターンを即座に検出。</span></li>
+                            <li class="flex items-start"><span class="bg-[#003f5c] text-white rounded-full w-6 h-6 text-center mr-3 flex-shrink-0">2</span><span><strong>予測分析:</strong> 過去データから、より精度の高い予算予測やキャッシュフロー分析を実施。</span></li>
+                            <li class="flex items-start"><span class="bg-[#003f5c] text-white rounded-full w-6 h-6 text-center mr-3 flex-shrink-0">3</span><span><strong>報告書作成の自動化:</strong> 財務データから理事会向け報告書の草案を生成AIが自動作成。</span></li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="mt-10">
+                    <h3 class="text-2xl font-bold text-center text-[#003f5c] mb-6">AI導入による時間創出効果（月次作業の試算）</h3>
+                     <div class="chart-container" style="height: 300px;">
+                        <canvas id="aiImpactChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="90-day-plan" class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c] card-header">最初の90日間 行動計画</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
+                    <div class="bg-[#d1eeea] p-6 rounded-t-lg md:rounded-tr-none md:rounded-l-lg">
+                        <h3 class="text-xl font-bold text-[#003f5c] border-b-2 border-[#003f5c] pb-2 mb-4">最初の30日: 評価と理解</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>前任者・会長・監事と面談</li>
+                            <li>重要書類（定款、財務諸表等）を精読</li>
+                            <li>会計システムへのアクセス確保</li>
+                        </ul>
+                    </div>
+                    <div class="bg-[#9ad2e6] p-6">
+                        <h3 class="text-xl font-bold text-[#003f5c] border-b-2 border-[#003f5c] pb-2 mb-4">31-60日: 管理と安定化</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>現行の財務プロセスをレビュー</li>
+                            <li>理事会への月次報告サイクルを確立</li>
+                            <li>最初の財政規則審査会議を主導</li>
+                        </ul>
+                    </div>
+                    <div class="bg-[#4d8fac] p-6 rounded-b-lg md:rounded-bl-none md:rounded-r-lg">
+                        <h3 class="text-xl font-bold text-white border-b-2 border-white pb-2 mb-4">61-90日: 計画と改善</h3>
+                         <ul class="list-disc list-inside space-y-2 text-white">
+                            <li>次年度予算の骨子作成に着手</li>
+                            <li>財務マニュアルの改訂箇所を特定</li>
+                            <li>理事会へ初期所見と年間計画を報告</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-300">
+            <p class="text-gray-600">このガイドが、財務局長の皆様が任期を成功裏に終え、組織に永続的な価値を残す一助となることを願っています。</p>
+            <p class="text-sm text-gray-400 mt-4">JCI Okinawa District Council Financial Director Infographic v2</p>
+        </footer>
+    </div>
+
+<script>
+    const brandColors = {
+        primaryDark: '#003f5c',
+        primary: '#4d8fac',
+        primaryLight: '#9ad2e6',
+        primaryExtraLight: '#d1eeea',
+        white: '#ffffff'
+    };
+    
+    const tooltipCallback = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                          return label.join(' ');
+                        } else {
+                          return label;
+                        }
+                    }
+                }
+            },
+            legend: {
+                labels: {
+                    color: '#003f5c',
+                    font: {
+                        size: 14
+                    }
+                }
+            }
+        }
+    };
+
+    function wrapLabel(label) {
+        const maxLength = 16;
+        if (label.length <= maxLength) {
+            return label;
+        }
+        const words = label.split(' ');
+        let lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).trim().length > maxLength) {
+                lines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        });
+        if (currentLine) {
+            lines.push(currentLine.trim());
+        }
+        return lines;
+    }
+
+    const incomeCtx = document.getElementById('incomeChart').getContext('2d');
+    const incomeChart = new Chart(incomeCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['正会員会費収入', '賛助金収入', '事業収入', '雑収入'],
+            datasets: [{
+                label: '収入内訳',
+                data: [10000000, 1000000, 500000, 100000],
+                backgroundColor: [
+                    brandColors.primary,
+                    brandColors.primaryLight,
+                    brandColors.primaryDark,
+                    brandColors.primaryExtraLight
+                ],
+                borderColor: brandColors.white,
+                borderWidth: 4,
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            ...tooltipCallback
+        }
+    });
+
+    const expenseCtx = document.getElementById('expenseChart').getContext('2d');
+    const expenseChart = new Chart(expenseCtx, {
+        type: 'bar',
+        data: {
+            labels: ['委員会事業費', ['全国大会・', '京都会議等登録費'], '旅費交通費', '事務局費', '通信費', '会議費', '諸会費', '予備費'],
+            datasets: [{
+                label: '事業費',
+                data: [4000000, 1500000, 1000000, 0, 0, 0, 0, 0],
+                backgroundColor: brandColors.primary,
+            }, {
+                label: '管理費',
+                data: [0, 0, 0, 2000000, 300000, 500000, 300000, 1000000],
+                backgroundColor: brandColors.primaryLight,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    stacked: true,
+                    ticks: { color: brandColors.primaryDark, font: { size: 12 } }
+                },
+                y: {
+                    stacked: true,
+                    ticks: {
+                        color: brandColors.primaryDark,
+                        callback: function(value) {
+                            if (value >= 1000000) return (value / 1000000) + '百万円';
+                            if (value >= 1000) return (value / 1000) + '千円';
+                            return value + '円';
+                        }
+                    }
+                }
+            },
+            ...tooltipCallback
+        }
+    });
+
+    const aiImpactCtx = document.getElementById('aiImpactChart').getContext('2d');
+    const aiImpactChart = new Chart(aiImpactCtx, {
+        type: 'bar',
+        data: {
+            labels: [wrapLabel('データ入力と仕訳'), wrapLabel('経費精算の確認'), wrapLabel('財務報告書作成')],
+            datasets: [{
+                label: '手作業時間',
+                data: [10, 8, 12],
+                backgroundColor: brandColors.primaryLight,
+                borderColor: brandColors.primary,
+                borderWidth: 1
+            }, {
+                label: 'AI活用後の時間',
+                data: [2, 3, 4],
+                backgroundColor: brandColors.primaryDark,
+                borderColor: brandColors.primary,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: brandColors.primaryDark,
+                        callback: function(value) { return value + '時間/月'; }
+                    }
+                },
+                y: {
+                    ticks: { color: brandColors.primaryDark, font: { size: 12 } }
+                }
+            },
+            ...tooltipCallback
+        }
+    });
+
+</script>
+
+</body>
+</html>

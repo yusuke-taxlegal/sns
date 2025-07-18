@@ -1,2 +1,17 @@
-# Local Netlify folder
-.netlify
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Obsidian
+.obsidian/
+trash/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Netlify
+.netlify/

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D BIMデータ ビジュアライザー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            /* Prevent scrollbars from appearing */
+        }
+
+        #container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        #info-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            z-index: 10;
+        }
+
+        #controls-info {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <div id="container">
+        <!-- The 3D scene will be rendered here -->
+    </div>
+
+    <div id="info-panel">
+        <h1 id="projectName" class="text-xl font-bold text-gray-900"></h1>
+        <p id="projectNumber" class="text-sm text-gray-600 mb-4"></p>
+        <div id="details-content">
+            <p class="text-gray-700">3Dモデル上のオブジェクトをクリックすると、詳細情報が表示されます。</p>
+        </div>
+    </div>
+
+    <div id="controls-info">
+        <p><strong>操作方法:</strong></p>
+        <ul>
+            <li><strong>回転:</strong> マウス左ボタンをドラッグ</li>
+            <li><strong>ズーム:</strong> マウスホイールをスクロール</li>
+            <li><strong>移動:</strong> マウス右ボタンをドラッグ</li>
+        </ul>
+    </div>
+
+    <!-- Three.js library -->
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+        {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.157.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // --- BIM Data (with 3D position and rotation) ---
+        // Note: Dimensions are in mm. We will scale them down for the scene.
+        const bimData = {
+          "projectInfo": { "projectName": "沖縄の戸建て住宅プロジェクト", "projectNumber": "OKW-HOME-2025-02" },
+          "building": {
+            "id": "bldg-home-01", "name": "沖縄の平屋住宅", "numberOfStories": 1,
+            "levels": [
+              {
+                "id": "level-01", "name": "1階", "elevation": 0.0,
+                "elements": [
+                  // 床スラブ
+                  { "id": "slab-01", "type": "IfcSlab", "name": "床スラブ", "properties": { "thickness": 150 }, "geometry": { "pos": [8000, 75, 7000], "size": [16000, 150, 14000] } },
+                  // 屋根 (陸屋根)
+                  { "id": "roof-slab", "type": "IfcRoof", "name": "陸屋根", "properties": { "thickness": 200 }, "geometry": { "pos": [8000, 3100, 7000], "size": [17000, 200, 15000] } },
+                  // 外壁
+                  { "id": "wall-ext-s-1", "type": "IfcWall", "name": "外壁-南", "properties": { "height": 3000, "thickness": 200 }, "geometry": { "pos": [8000, 1575, 14000], "size": [16000, 3000, 200] } },
+                  { "id": "wall-ext-n-1", "type": "IfcWall", "name": "外壁-北", "properties": { "height": 3000, "thickness": 200 }, "geometry": { "pos": [8000, 1575, 0], "size": [16000, 3000, 200] } },
+                  { "id": "wall-ext-w-1", "type": "IfcWall", "name": "外壁-西", "properties": { "height": 3000, "thickness": 200 }, "geometry": { "pos": [0, 1575, 7000], "size": [200, 3000, 14000] } },
+                  { "id": "wall-ext-e-1", "type": "IfcWall", "name": "外壁-東", "properties": { "height": 3000, "thickness": 200 }, "geometry": { "pos": [16000, 1575, 7000], "size": [200, 3000, 14000] } },
+                  // 内壁
+                  { "id": "wall-int-1", "type": "IfcWall", "name": "内壁-リビング/寝室", "properties": { "height": 2800, "thickness": 100 }, "geometry": { "pos": [8000, 1475, 7000], "size": [100, 2800, 14000] } },
+                  { "id": "wall-int-2", "type": "IfcWall", "name": "内壁-バスルーム", "properties": { "height": 2800, "thickness": 100 }, "geometry": { "pos": [3000, 1475, 4000], "size": [6000, 2800, 100] } },
+                  // ドアと窓
+                  { "id": "door-01", "type": "IfcDoor", "name": "玄関ドア", "properties": { "width": 1000, "height": 2200 }, "geometry": { "pos": [12000, 1175, 14000], "size": [1000, 2200, 220] } },
+                  { "id": "window-01", "type": "IfcWindow", "name": "窓-リビング", "properties": { "width": 3000, "height": 1500, "sillHeight": 900 }, "geometry": { "pos": [5000, 1725, 14000], "size": [3000, 1500, 220] } },
+                  { "id": "window-02", "type": "IfcWindow", "name": "窓-寝室", "properties": { "width": 1800, "height": 1200, "sillHeight": 1100 }, "geometry": { "pos": [12000, 1775, 0], "size": [1800, 1200, 220] } }
+                ]
+              }
+            ]
+          }
+        };
+
+        // --- Global variables ---
+        let scene, camera, renderer, controls;
+        const raycaster = new THREE.Raycaster();
+        // FIX: Use THREE.Vector2 for mouse coordinates, not PointerEvent.
+        const mouse = new THREE.Vector2();
+        const SCALE = 0.001; // Scale from mm to meters for the scene
+        const buildingElements = []; // To store created meshes for raycasting
+        let selectedObject = null;
+
+        // --- Initialization ---
+        function init() {
+            // Scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x87ceeb); // 空の色
+
+            // Camera
+            camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(25, 20, 35);
+
+            // Renderer
+            const container = document.getElementById('container');
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            // Controls
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.target.set(10, 3, 5); // Center on the building
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(50, 50, 50);
+            scene.add(directionalLight);
+
+            // Ground Plane
+            const groundGeo = new THREE.PlaneGeometry(100, 100);
+            const groundMat = new THREE.MeshLambertMaterial({ color: 0x8BC34A }); // 地面の色
+            const ground = new THREE.Mesh(groundGeo, groundMat);
+            ground.rotation.x = -Math.PI / 2;
+            scene.add(ground);
+
+            // Build the model
+            buildModel();
+
+            // Set up UI
+            setupUI();
+
+            // Event Listeners
+            window.addEventListener('resize', onWindowResize);
+            // FIX: Attach listener to the renderer's canvas for better accuracy
+            renderer.domElement.addEventListener('click', onMouseClick);
+        }
+
+        // --- Build Model ---
+        function buildModel() {
+            const materials = {
+                slab: new THREE.MeshLambertMaterial({ color: 0x999999, transparent: true, opacity: 0.7 }),
+                wall: new THREE.MeshLambertMaterial({ color: 0xeae0c8 }), // 壁の色
+                door: new THREE.MeshLambertMaterial({ color: 0x8B4513 }), // ドアの色
+                window: new THREE.MeshLambertMaterial({ color: 0x5a8a9e, transparent: true, opacity: 0.6 }), // 窓の色
+                roof: new THREE.MeshLambertMaterial({ color: 0x6c757d }), // 屋根の色
+            };
+
+            bimData.building.levels.forEach(level => {
+                level.elements.forEach(element => {
+                    if (!element.geometry) return;
+
+                    const [w, h, d] = element.geometry.size.map(s => s * SCALE);
+                    const geometry = new THREE.BoxGeometry(w, h, d);
+                    
+                    let material;
+                    if (element.type.includes('Slab')) material = materials.slab.clone();
+                    else if (element.type.includes('Wall')) material = materials.wall.clone();
+                    else if (element.type.includes('Door')) material = materials.door.clone();
+                    else if (element.type.includes('Window')) material = materials.window.clone();
+                    else if (element.type.includes('Roof')) material = materials.roof.clone();
+                    
+                    const mesh = new THREE.Mesh(geometry, material);
+                    
+                    const [px, py, pz] = element.geometry.pos.map(p => p * SCALE);
+                    mesh.position.set(px, py, pz);
+
+                    // Store BIM data directly on the mesh object
+                    mesh.userData.bimInfo = element;
+                    // Store original color for deselection
+                    mesh.userData.originalColor = material.color.getHex();
+
+                    scene.add(mesh);
+                    buildingElements.push(mesh);
+                });
+            });
+        }
+
+        // --- UI Setup ---
+        function setupUI() {
+            document.getElementById('projectName').textContent = bimData.projectInfo.projectName;
+            document.getElementById('projectNumber').textContent = `Project No: ${bimData.projectInfo.projectNumber}`;
+        }
+        
+        function showDetails(bimInfo) {
+            const detailsContent = document.getElementById('details-content');
+            let propertiesHtml = Object.entries(bimInfo.properties).map(([key, value]) => {
+                const formattedKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                return `
+                    <tr class="border-b last:border-b-0">
+                        <td class="py-1 px-2 text-sm font-medium text-gray-500">${formattedKey}</td>
+                        <td class="py-1 px-2 text-sm text-gray-900">${value}</td>
+                    </tr>
+                `;
+            }).join('');
+            
+            detailsContent.innerHTML = `
+                <h3 class="text-md font-bold text-indigo-600 mb-1">${bimInfo.name}</h3>
+                <p class="text-xs text-gray-500 mb-1">ID: ${bimInfo.id}</p>
+                <p class="text-xs text-gray-500 mb-3">タイプ: ${bimInfo.type}</p>
+                <div class="border rounded-md bg-gray-50">
+                    <table class="w-full text-left"><tbody>${propertiesHtml}</tbody></table>
+                </div>
+            `;
+        }
+
+
+        // --- Event Handlers ---
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // FIX: Rewrote selection logic for better stability
+        function onMouseClick(event) {
+            // Calculate mouse position in normalized device coordinates (-1 to +1)
+            mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+            mouse.y = - (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(buildingElements);
+
+            // Deselect previous object
+            if (selectedObject) {
+                selectedObject.material.color.set(selectedObject.userData.originalColor);
+                selectedObject = null;
+            }
+
+            if (intersects.length > 0) {
+                const intersectedObject = intersects[0].object;
+                selectedObject = intersectedObject;
+                
+                // Highlight new object
+                selectedObject.material.color.set(0xff0000); // Highlight in red
+                
+                // Show info
+                showDetails(selectedObject.userData.bimInfo);
+            } else {
+                 // If no object is clicked, clear the details panel
+                document.getElementById('details-content').innerHTML = '<p class="text-gray-700">3Dモデル上のオブジェクトをクリックすると、詳細情報が表示されます。</p>';
+            }
+        }
+
+        // --- Animation Loop ---
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true
+            renderer.render(scene, camera);
+        }
+
+        // --- Start ---
+        init();
+        animate();
+    </script>
+</body>
+
+</html>

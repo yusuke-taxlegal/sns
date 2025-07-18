@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T&Lサポート株式会社 相談記録プロンプトジェネレーター</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F4F6F8;
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            text-align: center;
+        }
+        .kpi-value {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #004D80;
+        }
+        .kpi-label {
+            font-size: 1rem;
+            color: #4A5568;
+            margin-top: 0.5rem;
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        }
+        .flow-arrow {
+            color: #A0AEC0;
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#004D80]">相談記録プロンプトジェネレーター</h1>
+            <p class="text-lg md:text-xl mt-4 text-gray-600">ヒアリング内容から、Geminiへの指示（プロンプト）を簡単作成</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="how-to-use" class="bg-sky-50 p-6 rounded-lg shadow-md border-l-4 border-sky-400 mb-12">
+                <h2 class="text-2xl font-bold text-center text-[#004D80] mb-4">ご利用方法</h2>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 text-center">
+                    <div class="flex items-center">
+                        <span class="text-3xl font-bold text-[#F48C06] mr-3">1.</span>
+                        <p class="text-gray-700">文字起こしを<br>貼り付け</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:block">&rarr;</div>
+                    <div class="flex items-center mt-2 md:mt-0">
+                        <span class="text-3xl font-bold text-[#F48C06] mr-3">2.</span>
+                        <p class="text-gray-700">プロンプトを<br>生成＆コピー</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:block">&rarr;</div>
+                    <div class="flex items-center mt-2 md:mt-0">
+                        <span class="text-3xl font-bold text-[#F48C06] mr-3">3.</span>
+                        <p class="text-gray-700">Geminiに貼り付けて<br>実行</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="generator" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-center text-[#004D80] mb-6">Step 1: ヒアリング内容の貼り付け</h2>
+                <textarea id="transcript" rows="10" class="w-full p-4 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#F48C06] focus:border-[#F48C06]" placeholder="ここにヒアリングの文字起こしテキストを貼り付けてください..."></textarea>
+                
+                <div class="text-center mt-6">
+                    <button id="generateBtn" class="bg-[#004D80] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#003a66] transition-colors duration-300 shadow-md text-lg">
+                        プロンプトを生成する
+                    </button>
+                </div>
+            </section>
+
+            <section id="result" class="hidden bg-gray-50 p-6 md:p-8 rounded-lg shadow-inner">
+                <h2 class="text-2xl font-bold text-center text-[#004D80] mb-6">Step 2: 生成されたプロンプトをコピー</h2>
+                 <textarea id="generatedPrompt" rows="15" class="w-full p-4 border border-gray-300 rounded-md bg-gray-100" readonly></textarea>
+                 <div class="text-center mt-6">
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <button id="copyBtn" class="w-full sm:w-auto bg-[#F48C06] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#dd7e05] transition-colors duration-300 shadow-md text-lg">
+                            プロンプトをコピー
+                        </button>
+                        <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" id="geminiBtn" class="w-full sm:w-auto bg-gray-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-gray-700 transition-colors duration-300 shadow-md text-lg">
+                            Geminiを開く
+                        </a>
+                    </div>
+                    <p id="copyFeedback" class="text-green-600 mt-4 h-6"></p>
+                </div>
+            </section>
+            
+            <hr class="my-16 border-t-2 border-gray-300">
+
+            <header class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-[#004D80]">T&Lサポートの挑戦</h1>
+                <p class="text-lg md:text-xl mt-4 text-gray-600">データドリブンな顧客支援で、沖縄の中小企業の未来を共創する</p>
+            </header>
+
+            <section id="vision" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-center text-[#004D80] mb-6">私たちの使命：機会損失の撲滅と提案力の最大化</h2>
+                <div>
+                    <div>
+                        <p class="text-base md:text-lg leading-relaxed text-gray-700 mb-4">
+                            日々多くの事業者様からご相談をいただく中で、担当者個々の対応には限界があり、拾いきれていない本質的な課題や、より良い提案の機会を逃しているケースがありました。
+                        </p>
+                        <p class="text-base md:text-lg leading-relaxed text-gray-700">
+                            私たちはこの状況を打破すべく、「相談対応状況表」という情報共有の仕組みを導入。全ての相談内容をデータとして蓄積・可視化し、チーム全員で顧客の成功を支援する体制を構築します。これは、単なる記録ではなく、私たちの成長を加速させる戦略的なエンジンです。
+                        </p>
+                        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                            <a href="https://forms.gle/Qf4hUZaEW9uUDaWF7"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="block w-full bg-[#004D80] text-white font-bold py-4 px-6 rounded-lg hover:bg-[#003a66] transition-colors duration-300 shadow-md text-base">
+                                <strong>① 相談内容の入力</strong><br><span class="text-sm font-normal">（Googleフォーム）</span>
+                            </a>
+                            <a href="https://docs.google.com/spreadsheets/d/18CLGXOAX8PmSn-nYJzo1QdtCv-8TBDi-4Hlc3nK-Zt0/edit?usp=sharing"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="block w-full bg-[#F48C06] text-white font-bold py-4 px-6 rounded-lg hover:bg-[#dd7e05] transition-colors duration-300 shadow-md text-base">
+                                <strong>② 相談対応状況の確認</strong><br><span class="text-sm font-normal">（スプレッドシート）</span>
+                            </a>
+                            <a href="https://drive.google.com/open?id=15bqmqBsS2CyS5qTXIZ2yeUYuJHaQusa4&usp=drive_fs"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="block w-full bg-gray-600 text-white font-bold py-4 px-6 rounded-lg hover:bg-gray-700 transition-colors duration-300 shadow-md text-base">
+                                <strong>③ 生成ドキュメントの確認</strong><br><span class="text-sm font-normal">（共有フォルダ）</span>
+                            </a>
+                        </div>
+                        <div class="mt-6 p-4 bg-sky-50 border-l-4 border-sky-400 text-sky-800 rounded">
+                            <h4 class="font-bold">入力TIPS</h4>
+                            <p class="text-sm">PCのブックマークやお気に入り、スマートフォンのホーム画面などにフォームURLを登録しておくと、いつでも素早くアクセスでき、入力の手間が省けます。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="process">
+                 <h2 class="text-3xl font-bold text-center text-[#004D80] mb-8">情報共有が生み出す、新しい顧客支援プロセス</h2>
+                <div class="flex flex-col items-center">
+                    <div class="w-full max-w-2xl">
+                        <div class="flow-step">
+                            <span class="text-3xl text-[#F48C06] mr-4">①</span>
+                            <div>
+                                <h3 class="font-bold text-lg">相談受付</h3>
+                                <p class="text-sm text-gray-600">あらゆる窓口からの相談を一元的に集約</p>
+                            </div>
+                        </div>
+                        <div class="text-center flow-arrow">↓</div>
+                        <div class="flow-step">
+                            <span class="text-3xl text-[#F48C06] mr-4">②</span>
+                            <div>
+                                <h3 class="font-bold text-lg">状況表へ入力</h3>
+                                <p class="text-sm text-gray-600">顕在・潜在課題、経緯などをデータとして記録</p>
+                            </div>
+                        </div>
+                         <div class="text-center flow-arrow">↓</div>
+                        <div class="flow-step bg-[#004D80] text-white">
+                            <span class="text-3xl text-white mr-4">③</span>
+                            <div>
+                                <h3 class="font-bold text-lg">チームでの共有・分析</h3>
+                                <p class="text-sm text-gray-50">週次会議で多角的な視点から最適な提案を議論</p>
+                            </div>
+                        </div>
+                         <div class="text-center flow-arrow">↓</div>
+                        <div class="flow-step">
+                            <span class="text-3xl text-[#F48C06] mr-4">④</span>
+                            <div>
+                                <h3 class="font-bold text-lg">戦略的提案</h3>
+                                <p class="text-sm text-gray-600">IT活用から財務まで、顧客に最適なソリューションを提示</p>
+                            </div>
+                        </div>
+                         <div class="text-center flow-arrow">↓</div>
+                         <div class="flow-step">
+                            <span class="text-3xl text-[#F48C06] mr-4">⑤</span>
+                            <div>
+                                <h3 class="font-bold text-lg">グループ連携</h3>
+                                <p class="text-sm text-gray-600">必要に応じて税理士・司法書士事務所と連携し、ワンストップで課題を解決</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="details" class="bg-gray-50 p-6 md:p-8 rounded-lg shadow-inner">
+                <h2 class="text-3xl font-bold text-center text-[#004D80] mb-8">戦略を支える「相談対応状況表」の項目詳細</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white rounded-lg shadow">
+                        <thead class="bg-[#004D80] text-white">
+                            <tr>
+                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">カテゴリ</th>
+                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">項目名</th>
+                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">目的・ポイント</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700">
+                            <tr class="border-b"><td class="py-3 px-4 font-bold" rowspan="4">A.案件基本情報</td><td class="py-3 px-4">対応日時</td><td class="py-3 px-4 text-sm">（ご提案の通り）</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">事業者名</td><td class="py-3 px-4 text-sm">（ご提案の通り）</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">顧客担当者名</td><td class="py-3 px-4 text-sm">誰と話したかを明確にします。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">対応者名</td><td class="py-3 px-4 text-sm">（ご提案の通り）誰が関わったかを明確にします。</td></tr>
+
+                            <tr class="border-b"><td class="py-3 px-4 font-bold" rowspan="4">B.相談経緯・内容</td><td class="py-3 px-4">流入経路</td><td class="py-3 px-4 text-sm">どのチャネルが有効か分析し、マーケティング施策に活かします。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">連携元</td><td class="py-3 px-4 text-sm">グループ連携の貢献度を可視化します。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">事業者の顕在課題</td><td class="py-3 px-4 text-sm">（ご提案の通り）相談内容や課題を具体的に記載します。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">事業者の潜在課題</td><td class="py-3 px-4 text-sm">「拾いきれていない課題」を拾うための最重要項目です。</td></tr>
+
+                            <tr class="border-b"><td class="py-3 px-4 font-bold" rowspan="5">C.提案・アクション</td><td class="py-3 px-4">提案サービス</td><td class="py-3 px-4 text-sm">提案漏れを防ぎ、誰が何を担当できるか明確にします。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">具体的な提案内容</td><td class="py-3 px-4 text-sm">提案内容をナレッジとして蓄積し、チームの提案力を底上げします。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">グループ連携提案</td><td class="py-3 px-4 text-sm">グループ連携を意識的に行うための項目です。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">次アクション</td><td class="py-3 px-4 text-sm">行動を明確にし、案件の停滞を防ぎます。</td></tr>
+                            <tr class="border-b"><td class="py-3 px-4">アクション期限</td><td class="py-3 px-4 text-sm"></td></tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="next-steps" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-center text-[#004D80] mb-8">データを価値に変える、未来へのステップ</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#F48C06] mb-4">シート運用段階での活用法</h3>
+                        <ul class="list-disc list-inside space-y-3 text-gray-700">
+                            <li><strong>週次案件共有ミーティングの実施:</strong> シートを議題に潜在課題や新提案を議論し、チームの総合力を高める。</li>
+                            <li><strong>グループ会社との戦略的連携:</strong> 「連携提案」を基に情報共有会を開き、相互送客の質と量を向上させる好循環を創出する。</li>
+                            <li><strong>「勝ちパターン」の分析と横展開:</strong> 契約済案件から成功法則を見つけ出し、チーム全体の成約率を底上げする。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#F48C06] mb-4">将来の発展形：CRMへの展開</h3>
+                        <p class="text-gray-700 mb-4">このシートは将来の顧客管理システム（CRM）への試作品です。データが蓄積されれば、本格的なシステムへ移行し、さらなる成長を目指します。</p>
+                        <ul class="list-disc list-inside space-y-3 text-gray-700">
+                            <li><strong>マーケティングの自動化:</strong> Webフォームと連携し、見込み客へ関連情報を自動配信する。</li>
+                            <li><strong>営業活動の効率化:</strong> タスクや期限をカレンダーへ自動登録し、対応漏れを撲滅する。</li>
+                            <li><strong>経営判断の迅速化:</strong> 利益率や成約期間をリアルタイムで可視化し、データに基づいた経営を実現する。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="partnership" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-center text-[#004D80] mb-6">戦略的パートナーシップによる提供価値の拡大</h2>
+                <div>
+                    <div>
+                        <p class="text-base md:text-lg leading-relaxed text-gray-700 mb-4">
+                            私たちの強みは、補助金申請やIT活用支援に留まりません。グループ内の税理士事務所・司法書士事務所との緊密な連携により、お客様のあらゆる経営課題にワンストップで対応可能です。
+                        </p>
+                        <p class="text-base md:text-lg leading-relaxed text-gray-700">
+                           「相談対応状況表」を通じて、税務や法務に関する潜在的なニーズを早期に発見し、専門家へスムーズに繋ぐことで、お客様の事業成長を包括的にサポートします。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ai-collaboration" class="bg-sky-50 p-6 md:p-8 rounded-lg shadow-inner border-l-4 border-sky-400">
+                <h2 class="text-3xl font-bold text-center text-[#004D80] mb-6">AIとの協働による戦略立案の高度化</h2>
+                <div>
+                    <div>
+                        <p class="text-base md:text-lg leading-relaxed text-gray-700 mb-4">
+                            私たちは、生成AI（Gemini）を単なる文字起こしの要約ツールとして利用するだけではありません。T&Lサポートのミッションと事業戦略を深く理解させた上で、**「事業開発パートナー」**という役割を与えています。
+                        </p>
+                        <p class="text-base md:text-lg leading-relaxed text-gray-700">
+                            AIは、各相談案件の背後にある本質的な課題を分析し、私たちの最終目的である「財務コンサルティング契約」へ繋げるための具体的な戦略、トークスクリプト、さらには想定される反論への切り返しまでを提案します。このAIによる戦略的な壁打ちが、私たちの提案品質を常に高いレベルで維持し、お客様への提供価値を最大化します。
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t border-gray-300">
+            <p class="text-gray-600">T&Lサポート株式会社</p>
+            <p class="text-sm text-gray-500">沖縄の中小企業と共に、未来を切り拓く。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const generateBtn = document.getElementById('generateBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const transcriptEl = document.getElementById('transcript');
+        const generatedPromptEl = document.getElementById('generatedPrompt');
+        const resultSection = document.getElementById('result');
+        const copyFeedbackEl = document.getElementById('copyFeedback');
+        
+        const basePrompt = `# プロンプト for T&Lサポート 相談対応記録アシスタント
+
+## 企業背景とミッション
+
+我々「T&Lサポート株式会社」は、沖縄の中小・小規模事業者の財務支援をメインサービスとする専門家集団です。代表の玉城祐輔は元商工会経営指導員としての11年の現場経験を持ち、補助金申請サポートを得意としています。しかし、補助金はあくまで顧客との接点（フロントエンド）です。私たちの真の目的は、その先にある**月額制の財務コンサルティング契約**を通じて、お客様の経営に深く伴走し、事業の継続的な成長を支援することにあります。
+
+チームには税理士や金融機関出身者も在籍しており、多角的な視点から本質的な経営課題の解決が可能です。特に、代表の玉城はデジタル・AI活用に長けており、業務効率化支援も大きな強みとしています。
+
+## 役割 (Role)
+
+あなたは、上記の企業背景とミッションを深く理解した、T&Lサポート株式会社の**事業開発パートナー**です。あなたの任務は、クライアントとの対話（入力データ）から単に情報を整理するだけでなく、**「この相談案件を、いかにして本命である財務コンサルティング契約に繋げるか」**という戦略的視点を常に持ち、具体的なアクションプランを構築することです。
+
+## 目的 (Goal)
+
+このタスクは、事業者との相談内容から、以下の2つのアウトプットを生成することを目的とします。
+1.  **相談記録の構造化**: チーム内での情報共有を円滑にするため、相談内容を所定のフォーマットで正確に要約する。
+2.  **戦略的提案の立案**: 相談内容を分析し、T&Lサポートの強みを最大限に活かした、財務コンサル契約に繋げるための具体的な戦略とアクションを提案する。
+
+## 入力データ (Input)
+
+\`\`\`text
+{TRANSCRIPT_PLACEHOLDER}
+\`\`\`
+
+## 出力指示 (Output Instruction)
+
+上記の入力データに基づき、以下の項目を全て埋めてください。見出しには「▼」を付けて、視覚的に分かりやすくしてください。各項目は、相談内容の事実に基づいて具体的に、かつ簡潔に記述してください。特に「事業者の潜在課題」「具体的な提案内容」「次アクション」は、あなたの専門的な洞察力が最も求められる重要項目です。
+
+---
+
+## ▼ A. 案件基本情報
+
+- 対応日時: （例: 2025/07/11 10:00）
+- 事業者名:
+- 顧客担当者名: （役職も分かれば記載）
+- 対応者名: （T&Lサポートの担当者）
+- 業種: （例: 建設業, 飲食業, 小売業, etc.）
+
+## ▼ B. 相談経緯・内容
+
+- 流入経路: \`税理士事務所紹介\`, \`司法書士事務所紹介\`, \`Webセミナー\`, \`SNS\`, \`知人紹介\`, \`既存顧客\`, \`その他\` の中から選択。
+- 連携元: グループ会社からの紹介の場合、具体的な事務所名を記載。（例: ●●税理士事務所）
+- 事業者の顕在課題: 相談者が明確に「課題だ」「困っている」と発言している内容を客観的に要約。
+- 事業者の潜在課題: 経営コンサルタントの視点で、対話全体から推測される、相談者自身がまだ明確に認識していない可能性のある本質的な課題、将来的なリスク、あるいはビジネスチャンスを具体的に記述。（例: 「属人的な業務フローによる事業継続リスク」「資金繰り計画の不在による成長機会の損失」など）
+
+## ▼ C. 提案・アクション
+
+- 提案サービス: \`補助金\`, \`資金調達\`, \`IT活用支援\`, \`財務コンサル\`, \`その他\` の中から、今回提案した、または今後提案可能性があるものを複数選択。
+- 具体的な提案内容: 上記サービスについて、どのような提案を行ったか、または今後行うべきかを具体的に記述。これはチームのナレッジになります。
+- グループ連携提案: 税理士や司法書士の専門知識が必要だと思われる点を具体的に記述。（例: 「事業承継に伴う株式譲渡の法的手続きについて、司法書士法人あさと事務所との連携を提案」「社会保険労務士と連携し、助成金を活用した従業員の待遇改善を提案」など）
+- 次アクション: この相談を受けて、次に「誰が」「何を」「いつまでに」すべきか、具体的かつ実行可能な行動を明確に記載。
+- アクション期限: 次アクションの具体的な期限を設定。
+
+## ▼ D. ステータス
+
+- 進捗ステータス: \`初回接触\`, \`提案中\`, \`見積提示済\`, \`契約検討中\`, \`契約済\`, \`失注\`, \`ペンディング\` の中から現状最も近いものを選択。
+- 備考: その他、特筆すべき事項、担当者の所感などがあれば記載。
+
+---
+
+## ▼ E. 戦略的アドバイス（財務コンサルへのブリッジ提案）
+
+上記の分析を踏まえ、**T&Lサポートの事業開発パートナーとして**、このクライアントを本命の「財務コンサルティング契約」へ導くための具体的な戦略を提案してください。
+
+### ▼ 要約
+以下の分析内容全体を、最も重要なポイント3つに絞って箇条書きで要約してください。
+
+---
+
+▼ 根本課題の特定:
+    (この相談の裏に隠れている、補助金だけでは解決しない本質的な経営・財務課題は何か？)
+
+▼ 財務コンサル提案の切り口:
+    (補助金申請のどの段階で、どのような言葉で切り出せば、クライアントは財務支援の価値を最も感じやすいか？具体的なトークスクリプトも提示せよ。)
+
+▼ T&Lの提供価値と具体的なアクション:
+    (税理士・金融機関出身者・デジタルに強い代表といった当社のリソースを、このクライアントのためにどう活用すべきか？「誰が」「何を」「いつまでに」行うべきか具体的に示せ。)
+
+▼ 想定される反論と切り返し:
+    (「今は補助金だけで手一杯」「追加の費用は…」といった断り文句に対し、どのように応答すれば、前向きな検討を促せるか？)
+
+## 制約条件 (Constraints)
+
+-   単なる文字起こしの要約ではなく、チームの次のアクションに繋がり、ナレッジとして蓄積されるような戦略的な視点で情報を整理してください。
+-   客観的な事実（顕在課題など）と、あなたの分析・推察（潜在課題など）は明確に区別して記述してください。
+-   専門用語は避け、チームの誰もが理解できる平易な言葉でまとめてください。
+-   情報が不足していて判断できない項目がある場合は、「情報なし」と正直に記載してください。
+-   出力は必ず指定されたMarkdown形式に従ってください。
+-   生成した内容の最後に、以下の定型文を必ず追加してください。
+    \`\`\`markdown
+    ---
+    内容を確認の上、以下のリンクから相談対応状況表へ入力してください。
+    [入力フォームを開く](https://docs.google.com/forms/d/e/1FAIpQLSfR6UCuazMKk9JNdWOP782ud7aFXEYXlUnpGoc8EpM1m-EuZw/viewform?usp=header)
+    \`\`\`
+`;
+        generateBtn.addEventListener('click', () => {
+            const transcript = transcriptEl.value;
+            if (!transcript.trim()) {
+                alert('ヒアリング内容を貼り付けてください。');
+                return;
+            }
+
+            const fullPrompt = basePrompt.replace('{TRANSCRIPT_PLACEHOLDER}', transcript);
+            generatedPromptEl.value = fullPrompt;
+            resultSection.classList.remove('hidden');
+            copyFeedbackEl.textContent = '';
+        });
+
+        copyBtn.addEventListener('click', () => {
+            generatedPromptEl.select();
+            document.execCommand('copy');
+            copyFeedbackEl.textContent = 'コピーしました！';
+            setTimeout(() => {
+                copyFeedbackEl.textContent = '';
+            }, 3000);
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI活用事例：三線教室のおたより改善 - インスタ投稿</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #fdfaf4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .slider {
+            width: 1080px;
+            height: 1080px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 600%; /* 6 slides */
+        }
+        .slide {
+            width: 16.666%; /* 100 / 6 */
+            height: 1080px;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            padding: 60px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .nav-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 24px;
+            line-height: 1;
+            margin: 0 20px;
+        }
+        .footer {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 500;
+        }
+        .provider {
+            position: absolute;
+            bottom: 80px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 22px;
+            color: #555;
+        }
+        h1, h2, h3 {
+            font-family: 'Kiwi Maru', serif;
+            margin: 0;
+        }
+        p {
+            font-size: 32px;
+            line-height: 1.6;
+        }
+
+        /* Slide 1: Title */
+        .slide1 { background: linear-gradient(135deg, #00BFFF, #1E90FF); color: white; }
+        .slide1 h1 { font-size: 110px; }
+        .slide1 h2 { font-size: 48px; margin-top: 20px; font-weight: 400;}
+
+        /* Slide 2: Before */
+        .slide2 { background-color: #FFFBEA; }
+        .slide2 h2 { font-size: 80px; color: #d9534f; margin-bottom: 20px;}
+        .slide2 .quote { font-size: 48px; font-weight: bold; margin-bottom: 30px;}
+        .slide2 .before-box {
+            background-color: white;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            padding: 40px;
+            width: 80%;
+            font-size: 36px;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        /* Slide 3: After */
+        .slide3 { background-color: #E6F7FF; }
+        .slide3 h2 { font-size: 80px; color: #5cb85c; margin-bottom: 20px;}
+        .slide3 .quote { font-size: 48px; font-weight: bold; margin-bottom: 30px;}
+        .slide3 .placeholder-box {
+            width: 90%;
+            height: 600px;
+            border: 4px dashed #5cb85c;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 42px;
+            color: #5cb85c;
+            font-weight: bold;
+            background-color: #f0fff0;
+            text-align: center;
+            line-height: 1.5;
+        }
+        
+        /* Slide 4: How */
+        .slide4 { background-color: #f5f5f5; }
+        .slide4 h2 { font-size: 80px; color: #333; margin-bottom: 40px;}
+        .chat-bubble {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 25px;
+            margin-bottom: 25px;
+            max-width: 80%;
+            font-size: 34px;
+            line-height: 1.6;
+            text-align: left;
+        }
+        .user-bubble { background-color: #81D4FA; color: black; align-self: flex-end; border-top-right-radius: 5px;}
+        .ai-bubble { background-color: #fff; align-self: flex-start; border-top-left-radius: 5px;}
+        .slide4 .caption { font-size: 32px; color: #333; margin-top: 40px; }
+
+        /* Slide 5: Point */
+        .slide5 { background: linear-gradient(to top, #fff1eb, #ace0f9); }
+        .slide5 h2 { font-size: 80px; color: #ff6347; margin-bottom: 50px;}
+        .points-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            text-align: left;
+        }
+        .slide5 ul {
+            list-style: none;
+            padding: 0;
+            font-size: 40px;
+        }
+        .slide5 li {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+        }
+        .slide5 .icon {
+            font-size: 50px;
+            margin-right: 20px;
+        }
+
+        /* Slide 6: CTA */
+        .slide6 { background-color: #FFDAB9; }
+        .slide6 h2 { font-size: 80px; color: #333; margin-bottom: 30px; line-height: 1.4;}
+        .slide6 p { margin-bottom: 40px; }
+        .cta-box {
+            background-color: white;
+            border-radius: 20px;
+            padding: 50px;
+            width: 90%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .cta-box h3 { font-size: 52px; margin-bottom: 20px; }
+        .insta-id {
+            background-color: #333;
+            color: white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 48px;
+            font-weight: bold;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slider">
+    <div class="slides">
+        <!-- Slide 1: Title -->
+        <div class="slide slide1">
+            <h1>AIで三線教室の<br>おたよりを革新！</h1>
+            <h2>毎月の練習日程が、<br>もっと楽しく、もっと分かりやすく。</h2>
+            <div class="provider">提供: T&Lサポート株式会社 (玉城祐輔)</div>
+            <div class="footer">@tamashiro_taxlegal</div>
+        </div>
+
+        <!-- Slide 2: Before -->
+        <div class="slide slide2">
+            <h2>😩 Before</h2>
+            <p class="quote">「LINEで送られてくるけど、<br>予定が分かりにくい…」</p>
+            <div class="before-box">
+                <b>【8月のお稽古】</b><br>
+                ・8/2(土) 通常稽古<br>
+                ・8/5(火) コンクール対策<br>
+                ・8/9(土) 通常稽古<br>
+                ・8/13(水)-15(金) お盆休み<br>
+                ・8/23(土) 合同練習会<br>
+                ・8/30(土) おさらい会
+            </div>
+            <div class="footer">@tamashiro_taxlegal</div>
+        </div>
+
+        <!-- Slide 3: After -->
+        <div class="slide slide3">
+            <h2>🥰 After</h2>
+            <p class="quote">「ひと目で分かる！」<br>HTMLカレンダーに大変身！</p>
+            <div class="placeholder-box">
+                ここに生成したカレンダーの<br>スクリーンショットを挿入
+            </div>
+            <div class="footer">@tamashiro_taxlegal</div>
+        </div>
+        
+        <!-- Slide 4: How -->
+        <div class="slide slide4">
+            <h2>🤔 How?</h2>
+            <div class="chat-container" style="width: 100%; display: flex; flex-direction: column;">
+                <div class="chat-bubble user-bubble">この練習日程、もっと見やすくならないかな？沖縄らしい雰囲気もほしいな。</div>
+                <div class="chat-bubble ai-bubble">お任せください！沖縄の海や空をイメージしたデザインで、温かみのあるHTMLカレンダーを作成しますね。ちばりよー！💪</div>
+            </div>
+            <p class="caption">AIとの対話で、要望を瞬時にデザインへ反映</p>
+            <div class="footer">@tamashiro_taxlegal</div>
+        </div>
+        
+        <!-- Slide 5: Point -->
+        <div class="slide slide5">
+            <h2>✨ Point!</h2>
+            <div class="points-box">
+                <h3>「見るだけで楽しい」デザインへのこだわり</h3>
+                <ul>
+                    <li><span class="icon">🎨</span>沖縄の自然をイメージした配色</li>
+                    <li><span class="icon">🎵</span>練習内容が一目でわかる色分け</li>
+                    <li><span class="icon">📱</span>スマートフォンでの見やすさに特化</li>
+                    <li><span class="icon">📄</span>HTMLファイル形式で共有も簡単</li>
+                </ul>
+            </div>
+            <div class="footer">@tamashiro_taxlegal</div>
+        </div>
+        
+        <!-- Slide 6: CTA -->
+        <div class="slide slide6">
+            <h2>あなたの「不便」、<br>AIで解決しませんか？</h2>
+            <p>教室運営の効率化、情報発信、SNS運用など<br>お気軽にご相談ください！</p>
+            <div class="cta-box">
+                <h3>📷 ご相談・ご依頼は<br>InstagramのDMからお気軽にどうぞ！</h3>
+                <div class="insta-id">@tamashiro_taxlegal</div>
+            </div>
+            <div class="provider">提供: T&Lサポート株式会社 (玉城祐輔)</div>
+        </div>
+    </div>
+    <div class="navigation">
+        <button class="nav-btn" onclick="prevSlide()">&#10094;</button>
+        <button class="nav-btn" onclick="nextSlide()">&#10095;</button>
+    </div>
+</div>
+
+<script>
+    const slides = document.querySelector('.slides');
+    const slideCount = document.querySelectorAll('.slide').length;
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        if (index >= slideCount) {
+            index = 0;
+        } else if (index < 0) {
+            index = slideCount - 1;
+        }
+        currentIndex = index;
+        slides.style.transform = `translateX(-${currentIndex * (100 / slideCount)}%)`;
+    }
+
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentIndex - 1);
+    }
+</script>
+
+</body>
+</html> 
